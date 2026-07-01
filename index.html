@@ -53,20 +53,29 @@
 
         .header-logos {
             display: flex;
-            justify-content: space-between;
+            justify-content: flex-start;
             align-items: center;
             gap: 24px;
             margin-bottom: 24px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid var(--border-line);
         }
 
         .header-logos img.logo-bech {
-            height: 46px;
+            height: 44px;
             width: auto;
         }
 
         .header-logos img.logo-sf {
             height: 36px;
             width: auto;
+        }
+
+        .header-logos .logos-divider {
+            display: inline-block;
+            width: 1px;
+            height: 32px;
+            background: var(--border-line);
         }
 
         .header h1 {
@@ -748,10 +757,11 @@
         <div class="header">
             <div class="header-logos">
                 <img src="logos/bancoestado.svg" alt="BancoEstado" class="logo-bech">
+                <span class="logos-divider" aria-hidden="true"></span>
                 <img src="logos/salesforce.svg" alt="Salesforce" class="logo-sf">
             </div>
-            <h1>BancoEstado · Marketing Cloud</h1>
-            <p>Proyección de Consumibles y Análisis de Escenarios</p>
+            <h1>Proyección de Consumibles Marketing Cloud</h1>
+            <p>Simulador de escenarios de crecimiento</p>
         </div>
 
         <div class="tabs">
