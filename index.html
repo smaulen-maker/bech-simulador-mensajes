@@ -676,6 +676,18 @@
             transform: translateY(-1px);
         }
 
+        .contrato-nota {
+            margin-top: 20px;
+            padding-top: 14px;
+            border-top: 1px solid var(--border-line);
+            font-family: 'Inter', sans-serif;
+            font-size: 0.85em;
+            color: var(--text-gray);
+            font-style: italic;
+            line-height: 1.5;
+            text-align: left;
+        }
+
         .alert {
             background-color: var(--bg-card);
             border-left: 5px solid var(--accent-amber);
@@ -795,6 +807,7 @@
                         </div>
                     </div>
                 </div>
+                <p class="contrato-nota">Los valores unitarios utilizados en el cálculo de la inversión corresponden a los precios acordados en el Contrato N° 04339910 (Order Form Q-11232586), vigentes hasta el 31 de mayo de 2030.</p>
             </div>
         </div>
 
@@ -1156,7 +1169,7 @@
                     </div>
                 </div>
 
-                <div class="control-group-with-toggle">
+                <div class="control-group-with-toggle" id="wa-caso3-slot" style="display: none;">
                     <div class="toggle-container">
                         <span class="toggle-label" id="wa-caso3-type-label">Recurrente</span>
                         <label class="toggle-switch">
@@ -1436,15 +1449,11 @@
                                         <option value="25">Jul 28</option>
                                     </select>
                                 </p>
-                                <p style="margin: 8px 0 0 0; font-size: 0.9em;"><strong>Costo SKU (USD/paquete):</strong>
-                                    <input type="number" id="prop2-sku-precio" value="0.9" min="0" step="0.01"
-                                        onclick="event.stopPropagation()"
-                                        style="width: 90px; margin-left: 8px; padding: 4px 8px; border: 1px solid #ccc; border-radius: 4px; font-size: 0.9em;">
-                                </p>
                             </div>
                         </div>
                     </div>
                 </div>
+                <p class="contrato-nota">Los valores unitarios utilizados en el cálculo de la inversión corresponden a los precios acordados en el Contrato N° 04339910 (Order Form Q-11232586), vigentes hasta el 31 de mayo de 2030.</p>
             </div>
         </div>
 
@@ -1481,6 +1490,7 @@
                         </div>
                     </div>
                 </div>
+                <p class="contrato-nota">Los valores unitarios utilizados en el cálculo de la inversión corresponden a los precios acordados en el Contrato N° 04339910 (Order Form Q-11232586), vigentes hasta el 31 de mayo de 2030.</p>
             </div>
 
             <div class="chart-container" id="totales-consolidado" style="display: inline-flex;">
@@ -1581,8 +1591,8 @@
         };
 
         const WA_CATEGORIES = ['gas', 'digital', 'credito', 'marketing', 'caso1', 'caso2', 'caso3', 'caso4', 'caso5', 'caso6'];
-        // Slots ocultos que se revelan con el botón "+ Agregar caso"
-        const WA_HIDDEN_SLOTS = ['caso4', 'caso5', 'caso6'];
+        // Slots ocultos que se revelan con el botón "+ Agregar caso" (en orden)
+        const WA_HIDDEN_SLOTS = ['caso3', 'caso4', 'caso5', 'caso6'];
 
         // Convierte mensajes+tipo del caso a paquetes de 1.000 créditos
         // paquetes = (mensajes × multiplicador) / 1000
