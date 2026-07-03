@@ -3187,6 +3187,7 @@
                             title: {
                                 display: true,
                                 text: 'Paquetes de 1.000 créditos',
+                                padding: { top: 6, bottom: 14 },
                                 font: {
                                     family: 'Montserrat',
                                     size: 13,
@@ -3199,12 +3200,15 @@
                                 drawBorder: false
                             },
                             ticks: {
+                                padding: 8,
                                 font: {
                                     family: 'Inter',
                                     size: 12
                                 },
                                 color: '#555555',
                                 callback: function(value) {
+                                    if (value >= 1000000) return (value / 1000000).toLocaleString('es-CL', { maximumFractionDigits: 1 }) + ' M';
+                                    if (value >= 1000) return (value / 1000).toLocaleString('es-CL', { maximumFractionDigits: 0 }) + ' K';
                                     return formatNumber(value);
                                 }
                             }
