@@ -78,6 +78,116 @@
             background: var(--border-line);
         }
 
+        .header-actions {
+            margin-left: auto;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .download-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 16px;
+            background: transparent;
+            border: 1.5px solid var(--sf-blue);
+            border-radius: 6px;
+            color: var(--sf-blue);
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.9em;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .download-btn:hover {
+            background: var(--sf-blue);
+            color: #FFFFFF;
+            box-shadow: 0 3px 10px rgba(0, 161, 224, 0.25);
+            transform: translateY(-1px);
+        }
+
+        .download-btn-icon {
+            font-size: 1.1em;
+            line-height: 1;
+        }
+
+        .info-hint.info-hint--right .info-tooltip {
+            left: auto;
+            right: -5px;
+            transform: none;
+        }
+
+        .info-hint.info-hint--right .info-tooltip::after {
+            left: auto;
+            right: 10px;
+            transform: none;
+        }
+
+        .print-timestamp {
+            display: none;
+        }
+
+        @media print {
+            body {
+                background: #FFFFFF !important;
+                padding: 0 !important;
+            }
+
+            .container {
+                max-width: none;
+                margin: 0;
+            }
+
+            .tabs,
+            .download-btn,
+            .info-hint,
+            .add-caso-btn,
+            .escala-slider {
+                display: none !important;
+            }
+
+            .dashboard {
+                display: block !important;
+                page-break-after: always;
+            }
+
+            .dashboard:last-of-type {
+                page-break-after: auto;
+            }
+
+            .metric-card,
+            .chart-container,
+            .control-group-with-toggle,
+            .subsection {
+                page-break-inside: avoid;
+                box-shadow: none !important;
+                transform: none !important;
+            }
+
+            .escala-row {
+                justify-content: flex-start;
+                padding-top: 6px;
+                border-top: 1px dashed #CCCCCC;
+            }
+
+            .print-timestamp {
+                display: block;
+                text-align: right;
+                font-family: 'Inter', sans-serif;
+                font-size: 0.85em;
+                color: #555555;
+                margin-bottom: 12px;
+                padding-top: 4px;
+            }
+
+            .header {
+                border-left: none;
+                box-shadow: none !important;
+            }
+        }
+
         .header h1 {
             font-family: 'Montserrat', sans-serif;
             color: var(--text-primary);
@@ -738,6 +848,83 @@
             font-weight: 700;
         }
 
+        .info-hint {
+            position: relative;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            margin-left: 6px;
+            cursor: help;
+            vertical-align: middle;
+            outline: none;
+        }
+
+        .info-hint .info-icon {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 15px;
+            height: 15px;
+            border-radius: 50%;
+            background: var(--text-gray);
+            color: #fff;
+            font-family: 'Georgia', 'Times New Roman', serif;
+            font-size: 11px;
+            font-weight: 700;
+            font-style: italic;
+            line-height: 1;
+            transition: background 0.2s ease;
+        }
+
+        .info-hint:hover .info-icon,
+        .info-hint:focus .info-icon {
+            background: var(--sf-blue);
+        }
+
+        .info-hint .info-tooltip {
+            position: absolute;
+            bottom: calc(100% + 10px);
+            left: 50%;
+            transform: translateX(-50%);
+            background: #1A1A1A;
+            color: #FFFFFF;
+            padding: 10px 14px;
+            border-radius: 6px;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.8em;
+            font-style: normal;
+            font-weight: 400;
+            line-height: 1.5;
+            width: max-content;
+            max-width: 280px;
+            white-space: normal;
+            text-align: left;
+            letter-spacing: 0;
+            text-transform: none;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.18);
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.18s ease, visibility 0.18s ease;
+            z-index: 200;
+            pointer-events: none;
+        }
+
+        .info-hint .info-tooltip::after {
+            content: '';
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            border: 6px solid transparent;
+            border-top-color: #1A1A1A;
+        }
+
+        .info-hint:hover .info-tooltip,
+        .info-hint:focus .info-tooltip {
+            opacity: 1;
+            visibility: visible;
+        }
+
         .add-caso-btn {
             display: block;
             margin: 20px auto 0 auto;
@@ -833,7 +1020,18 @@
                 <img src="logos/bancoestado.svg" alt="BancoEstado" class="logo-bech">
                 <span class="logos-divider" aria-hidden="true"></span>
                 <img src="logos/salesforce.svg" alt="Salesforce" class="logo-sf">
+                <div class="header-actions">
+                    <button type="button" class="download-btn" onclick="descargarSimulacion()">
+                        <span class="download-btn-icon" aria-hidden="true">⬇</span>
+                        <span>Descargar simulación</span>
+                    </button>
+                    <span class="info-hint info-hint--right" tabindex="0" role="button" aria-label="Información adicional">
+                        <span class="info-icon" aria-hidden="true">i</span>
+                        <span class="info-tooltip" role="tooltip">Descarga un PDF con el estado actual de la simulación (los tres dashboards) y una marca de tiempo. Al hacer clic se abre el diálogo de impresión del navegador; selecciona "Guardar como PDF" como destino y elige la carpeta de descarga.</span>
+                    </span>
+                </div>
             </div>
+            <div class="print-timestamp" id="print-timestamp">Simulación generada el —</div>
             <h1>Proyección de Consumibles Marketing Cloud</h1>
             <p>Simulador de escenarios de crecimiento</p>
         </div>
@@ -879,7 +1077,7 @@
             </div>
 
             <div class="chart-container">
-                <h2>💼 Propuesta de Crecimiento</h2>
+                <h2>💼 Propuesta de Crecimiento <span class="info-hint" tabindex="0" role="button" aria-label="Información adicional"><span class="info-icon" aria-hidden="true">i</span><span class="info-tooltip" role="tooltip">Al seleccionar la propuesta, el gráfico muestra el escenario con la capacidad ampliada de Supermensajes.</span></span></h2>
                 <div class="metrics-grid" style="grid-template-columns: 1fr;">
                     <div class="metric-card success selectable" id="propuesta-super-2026" onclick="selectPropuestaSuper('2026')">
                         <h3 style="font-size: 1.5em; font-weight: 700;">PROPUESTA HASTA DICIEMBRE <span style="color: var(--value-green);">2026</span></h3>
@@ -920,7 +1118,7 @@
 
                 <div class="subsection confirmed">
                     <div class="subsection-title">
-                        ✅ Casos Confirmados
+                        ✅ Casos Confirmados <span class="info-hint" tabindex="0" role="button" aria-label="Información adicional"><span class="info-icon" aria-hidden="true">i</span><span class="info-tooltip" role="tooltip">Casos comprometidos con BancoEstado. Su volumen y tipo actúan como línea base del cálculo.</span></span>
                     </div>
 
                 <div class="control-group-with-toggle">
@@ -1088,7 +1286,7 @@
 
                 <div class="subsection projected">
                     <div class="subsection-title">
-                        🎯 Casos Proyectados
+                        🎯 Casos Proyectados <span class="info-hint" tabindex="0" role="button" aria-label="Información adicional"><span class="info-icon" aria-hidden="true">i</span><span class="info-tooltip" role="tooltip">Casos candidatos aún por validar. Sirven para explorar escenarios de crecimiento incremental.</span></span>
                     </div>
 
                 <div class="control-group-with-toggle">
@@ -1483,7 +1681,7 @@
             </div>
 
             <div class="chart-container">
-                <h2>💼 Propuestas de Crecimiento</h2>
+                <h2>💼 Propuestas de Crecimiento <span class="info-hint" tabindex="0" role="button" aria-label="Información adicional"><span class="info-icon" aria-hidden="true">i</span><span class="info-tooltip" role="tooltip">Al seleccionar una propuesta, el gráfico y los indicadores muestran el escenario con la capacidad ampliada. Se puede tener solo una activa por vez para comparar cada escenario por separado.</span></span></h2>
                 <div class="metrics-grid" style="grid-template-columns: repeat(2, 1fr);">
                     <div class="metric-card primary selectable" id="propuesta-2026" onclick="selectPropuesta('2026')">
                         <h3 style="font-size: 1.5em; font-weight: 700;">PROPUESTA 1: Junio <span style="color: var(--sf-blue);">2027</span> <span style="display: block; font-size: 0.55em; color: var(--text-gray); font-weight: 600; margin-top: 4px; letter-spacing: 0.5px;">12 MESES · JUN 26 → JUN 27</span></h3>
@@ -1544,7 +1742,7 @@
         <!-- Dashboard Consolidado -->
         <div id="consolidado-dashboard" class="dashboard">
             <div class="chart-container">
-                <h2>💼 Propuestas de Crecimiento Consolidadas</h2>
+                <h2>💼 Propuestas de Crecimiento Consolidadas <span class="info-hint" tabindex="0" role="button" aria-label="Información adicional"><span class="info-icon" aria-hidden="true">i</span><span class="info-tooltip" role="tooltip">Puedes activar una o más propuestas para ver el total de inversión combinado. Cada tarjeta refleja el escenario definido en su pestaña correspondiente.</span></span></h2>
                 <div class="metrics-grid" style="grid-template-columns: repeat(3, 1fr);">
                     <div class="metric-card success selectable" id="consolidado-wa-2027" onclick="selectConsolidado('wa-2027')">
                         <h3 style="font-size: 1.4em; font-weight: 700;">WhatsApp: <span id="cons-wa2027-titulo-mes" style="color: var(--value-green);">Junio 2028</span> <span id="cons-wa2027-subtitulo" style="display: block; font-size: 0.6em; color: var(--text-gray); font-weight: 600; margin-top: 4px; letter-spacing: 0.5px;">24 MESES · JUN 26 → JUN 28</span></h3>
@@ -1684,6 +1882,59 @@
             gas: 1, digital: 1, credito: 1, marketing: 1,
             caso1: 1, caso2: 1, caso3: 1, caso4: 1, caso5: 1, caso6: 1
         };
+
+        // Descarga la simulación completa como PDF usando el diálogo de impresión.
+        // El CSS @media print apila los tres dashboards, oculta la UI interactiva
+        // y muestra la marca de tiempo. document.title sugiere el nombre del archivo.
+        function descargarSimulacion() {
+            const now = new Date();
+            const pad = function(n) { return String(n).padStart(2, '0'); };
+            const stampArchivo =
+                now.getFullYear() +
+                pad(now.getMonth() + 1) +
+                pad(now.getDate()) + '-' +
+                pad(now.getHours()) +
+                pad(now.getMinutes());
+
+            const stampLegible = now.toLocaleString('es-CL', {
+                year: 'numeric', month: '2-digit', day: '2-digit',
+                hour: '2-digit', minute: '2-digit'
+            });
+
+            const stampEl = document.getElementById('print-timestamp');
+            if (stampEl) stampEl.textContent = 'Simulación generada el ' + stampLegible;
+
+            const originalTitle = document.title;
+            document.title = 'BECH-Simulacion-' + stampArchivo;
+
+            const restaurar = function() {
+                document.title = originalTitle;
+                window.removeEventListener('afterprint', restaurar);
+            };
+            window.addEventListener('afterprint', restaurar);
+
+            window.print();
+        }
+
+        // Crea un icono "i" con tooltip informativo. Accesible por hover y focus.
+        function makeInfoHint(text) {
+            const hint = document.createElement('span');
+            hint.className = 'info-hint';
+            hint.setAttribute('tabindex', '0');
+            hint.setAttribute('role', 'button');
+            hint.setAttribute('aria-label', 'Información adicional');
+            const icon = document.createElement('span');
+            icon.className = 'info-icon';
+            icon.setAttribute('aria-hidden', 'true');
+            icon.textContent = 'i';
+            const tip = document.createElement('span');
+            tip.className = 'info-tooltip';
+            tip.setAttribute('role', 'tooltip');
+            tip.textContent = text;
+            hint.appendChild(icon);
+            hint.appendChild(tip);
+            return hint;
+        }
 
         // Mensajes efectivos = valor tipeado × escala.
         function getMensajesEfectivos(cat) {
@@ -2383,25 +2634,56 @@
                 if (input) formatMensajesInput(input);
             });
 
-            // Inyectar slider de escala en cada bloque de caso y cablear listener
+            // Textos de los tooltips por-caso (idénticos para los 10 casos)
+            const INFO_TIPO = 'Meta aplica un multiplicador de créditos según el tipo: Promocional 109,76 · Transaccional 24,7 · Servicio 0. El SKU que compra BancoEstado incluye 1.000 créditos por paquete.';
+            const INFO_MENSAJES = 'Volumen máximo que este caso puede enviar. El slider debajo permite simular escenarios entre 0 y este valor.';
+            const INFO_TOGGLE = 'Recurrente: el volumen se envía cada mes, desde el mes de inicio hasta el fin del contrato. One-time: se envía una sola vez, en el mes seleccionado.';
+            const INFO_ESCALA = 'Escalá el volumen del caso entre 0% y el techo definido en "Mensajes", sin retipear. Útil para simular escenarios conservadores o parciales.';
+            const INFO_PAQUETES = 'Paquetes de 1.000 créditos requeridos = (mensajes efectivos × multiplicador Meta) / 1.000. Es el SKU que BancoEstado adquiere en el contrato.';
+
+            // Inyectar slider de escala + tooltips por caso
             WA_CATEGORIES.forEach(function(cat) {
                 const paquetesSpan = document.getElementById(`wa-${cat}-paquetes`);
                 if (!paquetesSpan) return;
                 const block = paquetesSpan.closest('.control-group-with-toggle');
-                if (!block || document.getElementById(`wa-${cat}-escala`)) return;
+                if (!block) return;
 
-                const row = document.createElement('div');
-                row.className = 'escala-row';
-                row.innerHTML =
-                    '<input type="range" id="wa-' + cat + '-escala" class="escala-slider" min="0" max="1000" value="1000">' +
-                    '<span class="escala-label"><strong id="wa-' + cat + '-escala-pct">100%</strong> · <span id="wa-' + cat + '-escala-mensajes">-</span> mensajes activos</span>';
-                block.appendChild(row);
+                // Tooltip #2 — Tipo (primer .mensajes-label del bloque)
+                // Tooltip #6 — Mensajes (segundo .mensajes-label)
+                const labels = block.querySelectorAll('.mensajes-label');
+                if (labels[0] && !labels[0].querySelector('.info-hint')) labels[0].appendChild(makeInfoHint(INFO_TIPO));
+                if (labels[1] && !labels[1].querySelector('.info-hint')) labels[1].appendChild(makeInfoHint(INFO_MENSAJES));
 
-                document.getElementById('wa-' + cat + '-escala').addEventListener('input', function() {
-                    waEscalas[cat] = parseInt(this.value, 10) / 1000;
-                    updatePaquetesDisplay(cat);
-                    updateWaProjection();
-                });
+                // Tooltip #3 — Toggle Recurrente/One-time (después del badge)
+                const badge = block.querySelector('.campaign-type-badge');
+                if (badge && !badge.parentNode.querySelector('.info-hint[data-slot="toggle"]')) {
+                    const hint = makeInfoHint(INFO_TOGGLE);
+                    hint.setAttribute('data-slot', 'toggle');
+                    badge.parentNode.insertBefore(hint, badge.nextSibling);
+                }
+
+                // Tooltip #5 — ≈ Paquetes derivados (dentro del span)
+                const paquetesWrapper = paquetesSpan.parentNode; // el span.paquetes-derivados
+                if (paquetesWrapper && !paquetesWrapper.querySelector('.info-hint')) {
+                    paquetesWrapper.appendChild(makeInfoHint(INFO_PAQUETES));
+                }
+
+                // Slider de escala + tooltip #4 (si aún no está inyectado)
+                if (!document.getElementById(`wa-${cat}-escala`)) {
+                    const row = document.createElement('div');
+                    row.className = 'escala-row';
+                    row.innerHTML =
+                        '<input type="range" id="wa-' + cat + '-escala" class="escala-slider" min="0" max="1000" value="1000">' +
+                        '<span class="escala-label"><strong id="wa-' + cat + '-escala-pct">100%</strong> · <span id="wa-' + cat + '-escala-mensajes">-</span> mensajes activos</span>';
+                    row.appendChild(makeInfoHint(INFO_ESCALA));
+                    block.appendChild(row);
+
+                    document.getElementById('wa-' + cat + '-escala').addEventListener('input', function() {
+                        waEscalas[cat] = parseInt(this.value, 10) / 1000;
+                        updatePaquetesDisplay(cat);
+                        updateWaProjection();
+                    });
+                }
             });
 
             // Poblado inicial de los labels de escala una vez inyectados los sliders
@@ -2892,7 +3174,7 @@
                             beginAtZero: true,
                             title: {
                                 display: true,
-                                text: 'Conversaciones WhatsApp',
+                                text: 'Paquetes de 1.000 créditos',
                                 font: {
                                     family: 'Montserrat',
                                     size: 13,
