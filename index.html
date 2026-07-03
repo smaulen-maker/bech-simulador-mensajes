@@ -680,6 +680,64 @@
             font-weight: 700;
         }
 
+        .escala-row {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            margin-top: 14px;
+            padding-top: 12px;
+            border-top: 1px dashed var(--border-line);
+        }
+
+        .escala-slider {
+            flex: 1;
+            -webkit-appearance: none;
+            appearance: none;
+            height: 4px;
+            background: var(--border-line);
+            border-radius: 2px;
+            outline: none;
+            cursor: pointer;
+        }
+
+        .escala-slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 16px;
+            height: 16px;
+            background: var(--sf-blue);
+            border-radius: 50%;
+            cursor: pointer;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+            transition: transform 0.15s ease;
+        }
+
+        .escala-slider::-webkit-slider-thumb:hover {
+            transform: scale(1.15);
+        }
+
+        .escala-slider::-moz-range-thumb {
+            width: 16px;
+            height: 16px;
+            background: var(--sf-blue);
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+        }
+
+        .escala-label {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.85em;
+            color: var(--text-gray);
+            white-space: nowrap;
+        }
+
+        .escala-label strong {
+            color: var(--sf-blue);
+            font-weight: 700;
+        }
+
         .add-caso-btn {
             display: block;
             margin: 20px auto 0 auto;
@@ -1620,23 +1678,48 @@
         // Slots ocultos que se revelan con el botón "+ Agregar caso" (en orden)
         const WA_HIDDEN_SLOTS = ['caso3', 'caso4', 'caso5', 'caso6'];
 
-        // Convierte mensajes+tipo del caso a paquetes de 1.000 créditos
-        // paquetes = (mensajes × multiplicador) / 1000
-        function getPaquetesFor(cat) {
+        // Escala de escenario por caso (0..1). 1 = objetivo completo, 0.5 = evaluar la mitad, etc.
+        // El input "Mensajes" define el techo; este factor lo ajusta hacia abajo sin retipear.
+        const waEscalas = {
+            gas: 1, digital: 1, credito: 1, marketing: 1,
+            caso1: 1, caso2: 1, caso3: 1, caso4: 1, caso5: 1, caso6: 1
+        };
+
+        // Mensajes efectivos = valor tipeado × escala.
+        function getMensajesEfectivos(cat) {
             const input = document.getElementById(`wa-${cat}-mensajes`);
             let mensajes = 0;
             if (input) {
                 const digitsOnly = String(input.value).replace(/\D/g, '');
                 mensajes = digitsOnly ? parseInt(digitsOnly, 10) : 0;
             }
+            const escala = waEscalas[cat] != null ? waEscalas[cat] : 1;
+            return mensajes * escala;
+        }
+
+        // Convierte mensajes+tipo del caso a paquetes de 1.000 créditos.
+        // Los mensajes usados en el cálculo son los efectivos (techo × escala).
+        // paquetes = (mensajes efectivos × multiplicador) / 1000
+        function getPaquetesFor(cat) {
             const tipo = waTipos[cat] || 'promocional';
             const mult = WA_MULTIPLIERS[tipo] || 0;
-            return (mensajes * mult) / 1000;
+            return (getMensajesEfectivos(cat) * mult) / 1000;
         }
 
         function updatePaquetesDisplay(cat) {
             const span = document.getElementById(`wa-${cat}-paquetes`);
             if (span) span.textContent = formatNumber(getPaquetesFor(cat));
+
+            const escalaPctSpan = document.getElementById(`wa-${cat}-escala-pct`);
+            if (escalaPctSpan) {
+                const pct = Math.round((waEscalas[cat] != null ? waEscalas[cat] : 1) * 100);
+                escalaPctSpan.textContent = pct + '%';
+            }
+
+            const escalaMensajesSpan = document.getElementById(`wa-${cat}-escala-mensajes`);
+            if (escalaMensajesSpan) {
+                escalaMensajesSpan.textContent = formatNumber(getMensajesEfectivos(cat));
+            }
         }
 
         // Revela el siguiente slot oculto (Caso 5, luego 6, luego 7).
@@ -2272,6 +2355,10 @@
                 if (mensajesInput) {
                     mensajesInput.addEventListener('input', function() {
                         formatMensajesInput(this);
+                        // Reset de escala a 100% cuando cambia el techo
+                        waEscalas[cat] = 1;
+                        const slider = document.getElementById(`wa-${cat}-escala`);
+                        if (slider) slider.value = 1000;
                         updatePaquetesDisplay(cat);
                         updateWaProjection();
                     });
@@ -2295,6 +2382,30 @@
                 const input = document.getElementById(`wa-${cat}-mensajes`);
                 if (input) formatMensajesInput(input);
             });
+
+            // Inyectar slider de escala en cada bloque de caso y cablear listener
+            WA_CATEGORIES.forEach(function(cat) {
+                const paquetesSpan = document.getElementById(`wa-${cat}-paquetes`);
+                if (!paquetesSpan) return;
+                const block = paquetesSpan.closest('.control-group-with-toggle');
+                if (!block || document.getElementById(`wa-${cat}-escala`)) return;
+
+                const row = document.createElement('div');
+                row.className = 'escala-row';
+                row.innerHTML =
+                    '<input type="range" id="wa-' + cat + '-escala" class="escala-slider" min="0" max="1000" value="1000">' +
+                    '<span class="escala-label"><strong id="wa-' + cat + '-escala-pct">100%</strong> · <span id="wa-' + cat + '-escala-mensajes">-</span> mensajes activos</span>';
+                block.appendChild(row);
+
+                document.getElementById('wa-' + cat + '-escala').addEventListener('input', function() {
+                    waEscalas[cat] = parseInt(this.value, 10) / 1000;
+                    updatePaquetesDisplay(cat);
+                    updateWaProjection();
+                });
+            });
+
+            // Poblado inicial de los labels de escala una vez inyectados los sliders
+            WA_CATEGORIES.forEach(updatePaquetesDisplay);
 
             // Sincronizar display inicial de paquetes derivados
             WA_CATEGORIES.forEach(updatePaquetesDisplay);
