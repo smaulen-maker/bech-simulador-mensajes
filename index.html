@@ -125,6 +125,18 @@
             transform: none;
         }
 
+        .info-hint.info-hint--below .info-tooltip {
+            bottom: auto;
+            top: calc(100% + 10px);
+        }
+
+        .info-hint.info-hint--below .info-tooltip::after {
+            top: auto;
+            bottom: 100%;
+            border-top-color: transparent;
+            border-bottom-color: #1A1A1A;
+        }
+
         .print-timestamp {
             display: none;
         }
@@ -1025,7 +1037,7 @@
                         <span class="download-btn-icon" aria-hidden="true">⬇</span>
                         <span>Descargar simulación</span>
                     </button>
-                    <span class="info-hint info-hint--right" tabindex="0" role="button" aria-label="Información adicional">
+                    <span class="info-hint info-hint--right info-hint--below" tabindex="0" role="button" aria-label="Información adicional">
                         <span class="info-icon" aria-hidden="true">i</span>
                         <span class="info-tooltip" role="tooltip">Descarga un PDF con el estado actual de la simulación (los tres dashboards) y una marca de tiempo. Al hacer clic se abre el diálogo de impresión del navegador; selecciona "Guardar como PDF" como destino y elige la carpeta de descarga.</span>
                     </span>
@@ -2638,7 +2650,7 @@
             const INFO_TIPO = 'Meta aplica un multiplicador de créditos según el tipo: Promocional 109,76 · Transaccional 24,7 · Servicio 0. El SKU que compra BancoEstado incluye 1.000 créditos por paquete.';
             const INFO_MENSAJES = 'Volumen máximo que este caso puede enviar. El slider debajo permite simular escenarios entre 0 y este valor.';
             const INFO_TOGGLE = 'Recurrente: el volumen se envía cada mes, desde el mes de inicio hasta el fin del contrato. One-time: se envía una sola vez, en el mes seleccionado.';
-            const INFO_ESCALA = 'Escalá el volumen del caso entre 0% y el techo definido en "Mensajes", sin retipear. Útil para simular escenarios conservadores o parciales.';
+            const INFO_ESCALA = 'Escala el volumen del caso entre 0% y el techo definido en "Mensajes", sin necesidad de escribirlo nuevamente. Útil para simular escenarios conservadores o parciales.';
             const INFO_PAQUETES = 'Paquetes de 1.000 créditos requeridos = (mensajes efectivos × multiplicador Meta) / 1.000. Es el SKU que BancoEstado adquiere en el contrato.';
 
             // Inyectar slider de escala + tooltips por caso
