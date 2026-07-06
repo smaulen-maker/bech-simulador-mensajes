@@ -234,12 +234,13 @@
                 display: none !important;
             }
 
+            /* Solo se imprime la sección WhatsApp. Supermensajes y Consolidado se ocultan. */
             .dashboard {
-                display: block !important;
-                page-break-after: always;
+                display: none !important;
             }
 
-            .dashboard:last-of-type {
+            #whatsapp-dashboard {
+                display: block !important;
                 page-break-after: auto;
             }
 
@@ -1174,7 +1175,7 @@
                     </button>
                     <span class="info-hint info-hint--right info-hint--below" tabindex="0" role="button" aria-label="Información adicional">
                         <span class="info-icon" aria-hidden="true">i</span>
-                        <span class="info-tooltip" role="tooltip">Descarga un PDF con el estado actual de la simulación (los tres dashboards) y una marca de tiempo. Al hacer clic se abre el diálogo de impresión del navegador; selecciona "Guardar como PDF" como destino y elige la carpeta de descarga.</span>
+                        <span class="info-tooltip" role="tooltip">Descarga un PDF con la simulación WhatsApp (KPIs, casos configurados, gráfico y propuestas) y una marca de tiempo. Al hacer clic se abre el diálogo de impresión del navegador; selecciona "Guardar como PDF" como destino y elige la carpeta de descarga.</span>
                     </span>
                 </div>
             </div>
@@ -1250,7 +1251,7 @@
                     <div class="subtext">5 años: 1 Jun 2025 - 31 May 2030</div>
                 </div>
                 <div class="metric-card warning">
-                    <h3>Consumo Proyectado a Junio 2027 <span class="info-hint" tabindex="0" role="button" aria-label="Información adicional"><span class="info-icon" aria-hidden="true">i</span><span class="info-tooltip" role="tooltip">Total de paquetes proyectados desde Junio 2026 hasta Junio 2027, sumando todos los casos de uso activos. Corresponde al horizonte de 12 meses de la Propuesta 1.</span></span></h3>
+                    <h3><span id="wa-proyeccion-prop1-titulo">Consumo Proyectado a Junio 2027</span> <span class="info-hint" tabindex="0" role="button" aria-label="Información adicional"><span class="info-icon" aria-hidden="true">i</span><span class="info-tooltip" role="tooltip" id="wa-proyeccion-prop1-tooltip">Total de paquetes proyectados desde Junio 2026 hasta Junio 2027, sumando todos los casos de uso activos. Corresponde al horizonte de 12 meses de la Propuesta 1.</span></span></h3>
                     <div class="value" id="wa-proyeccion-dic2026">-</div>
                     <div class="subtext">Paquetes acumulados · Horizonte Propuesta 1</div>
                 </div>
@@ -1599,7 +1600,7 @@
                     </div>
                 </div>
 
-                <div class="control-group-with-toggle" id="wa-caso3-slot" style="display: none;">
+                <div class="control-group-with-toggle">
                     <div class="toggle-container">
                         <span class="toggle-label" id="wa-caso3-type-label">Recurrente</span>
                         <label class="toggle-switch">
@@ -1653,7 +1654,7 @@
                     </div>
                 </div>
 
-                <div class="control-group-with-toggle" id="wa-caso4-slot" style="display: none;">
+                <div class="control-group-with-toggle">
                     <div class="toggle-container">
                         <span class="toggle-label" id="wa-caso4-type-label">Recurrente</span>
                         <label class="toggle-switch">
@@ -1707,7 +1708,7 @@
                     </div>
                 </div>
 
-                <div class="control-group-with-toggle" id="wa-caso5-slot" style="display: none;">
+                <div class="control-group-with-toggle">
                     <div class="toggle-container">
                         <span class="toggle-label" id="wa-caso5-type-label">Recurrente</span>
                         <label class="toggle-switch">
@@ -1761,7 +1762,7 @@
                     </div>
                 </div>
 
-                <div class="control-group-with-toggle" id="wa-caso6-slot" style="display: none;">
+                <div class="control-group-with-toggle">
                     <div class="toggle-container">
                         <span class="toggle-label" id="wa-caso6-type-label">Recurrente</span>
                         <label class="toggle-switch">
@@ -1832,7 +1833,7 @@
                 <h2>💼 Propuestas de Crecimiento <span class="info-hint" tabindex="0" role="button" aria-label="Información adicional"><span class="info-icon" aria-hidden="true">i</span><span class="info-tooltip" role="tooltip">Al seleccionar una propuesta, el gráfico y los indicadores muestran el escenario con la capacidad ampliada. Se puede tener solo una activa por vez para comparar cada escenario por separado.</span></span></h2>
                 <div class="metrics-grid" style="grid-template-columns: repeat(2, 1fr);">
                     <div class="metric-card primary selectable" id="propuesta-2026" onclick="selectPropuesta('2026')">
-                        <h3 style="font-size: 1.5em; font-weight: 700;">PROPUESTA 1: Junio <span style="color: var(--sf-blue);">2027</span> <span style="display: block; font-size: 0.55em; color: var(--text-gray); font-weight: 600; margin-top: 4px; letter-spacing: 0.5px;">12 MESES · JUN 26 → JUN 27</span></h3>
+                        <h3 style="font-size: 1.5em; font-weight: 700;">PROPUESTA 1: <span id="prop1-titulo-mes" style="color: var(--sf-blue);">Junio 2027</span> <span id="prop1-subtitulo" style="display: block; font-size: 0.55em; color: var(--text-gray); font-weight: 600; margin-top: 4px; letter-spacing: 0.5px;">12 MESES · JUN 26 → JUN 27</span></h3>
                         <div style="text-align: left; padding: 0 20px; margin-top: 16px;">
                             <p style="margin: 8px 0; font-size: 0.95em;"><strong>Consumo proyectado:</strong> <span id="prop1-consumo">-</span></p>
                             <p style="margin: 8px 0; font-size: 0.95em;"><strong>Capacidad actual:</strong> <span id="prop1-actual">-</span></p>
@@ -1902,7 +1903,7 @@
                         </div>
                     </div>
                     <div class="metric-card primary selectable" id="consolidado-wa-2026" onclick="selectConsolidado('wa-2026')">
-                        <h3 style="font-size: 1.4em; font-weight: 700;">WhatsApp: <span style="color: var(--sf-blue);">Junio 2027</span> <span style="display: block; font-size: 0.6em; color: var(--text-gray); font-weight: 600; margin-top: 4px; letter-spacing: 0.5px;">12 MESES · JUN 26 → JUN 27</span></h3>
+                        <h3 style="font-size: 1.4em; font-weight: 700;">WhatsApp: <span id="cons-wa2026-titulo-mes" style="color: var(--sf-blue);">Junio 2027</span> <span id="cons-wa2026-subtitulo" style="display: block; font-size: 0.6em; color: var(--text-gray); font-weight: 600; margin-top: 4px; letter-spacing: 0.5px;">12 MESES · JUN 26 → JUN 27</span></h3>
                         <div style="text-align: left; padding: 0 20px; margin-top: 16px;">
                             <p style="margin: 8px 0; font-size: 0.9em;"><strong>Consumo proyectado:</strong> <span id="cons-wa2026-consumo">-</span></p>
                             <p style="margin: 8px 0; font-size: 0.9em;"><strong>Capacidad actual:</strong> <span id="cons-wa2026-actual">-</span></p>
@@ -1973,30 +1974,40 @@
         // false = Recurrente (toggle OFF)
         // true = One-time (toggle ON)
         const waToggles = {
-            gas: true,        // One-time por defecto
-            digital: false,
-            credito: false,
-            marketing: true,  // Caso 1: One-time por defecto
-            caso1: false,     // Caso 2: Recurrente por defecto
-            caso2: false,     // Caso 3: Recurrente por defecto
-            caso3: false,     // Caso 4: Recurrente por defecto
-            caso4: false,     // Caso 5: Recurrente (slot oculto por defecto)
-            caso5: false,     // Caso 6: Recurrente (slot oculto por defecto)
-            caso6: false      // Caso 7: Recurrente (slot oculto por defecto)
+            gas: true,        // Beneficio Gas: One-time
+            digital: false,   // Casos Digital Engagement: Recurrente
+            credito: false,   // Tarjeta de Crédito y Consumo: Recurrente
+            marketing: false, // Caso 1 (Encuesta Sucursales): Recurrente
+            caso1: false,     // Caso 2 (BECO Encuestas): Recurrente
+            caso2: false,     // Caso 3 (BECO Cobranza): Recurrente
+            caso3: false,     // Caso 4 (Cuenta Corriente Digital): Recurrente
+            caso4: false,     // Caso 5 (Venta Auto Gestionada): Recurrente
+            caso5: false,     // Caso 6 (PYME): Recurrente
+            caso6: false,     // Caso 7 (Seguros): Recurrente
+            caso7: false,     // Caso 8 (slot oculto)
+            caso8: false,     // Caso 9 (slot oculto)
+            caso9: false,     // Caso 10 (slot oculto)
+            caso10: false,    // Caso 11 (slot oculto)
+            caso11: false,    // Caso 12 (slot oculto)
+            caso12: false,    // Caso 13 (slot oculto)
+            caso13: false     // Caso 14 (slot oculto)
         };
 
         // Mes de inicio para cada caso (índice 0 = Jun 26 ... 25 = Jul 28)
         const waMonths = {
-            gas: 0,
-            digital: 1,    // Jul 26 por defecto
-            credito: 0,
-            marketing: 1,  // Caso 1: Jul 26 por defecto
-            caso1: 1,      // Caso 2: Jul 26 por defecto
-            caso2: 2,      // Caso 3: Ago 26 por defecto
-            caso3: 0,      // Caso 4: Jun 26 por defecto
-            caso4: 0,      // Caso 5: Jun 26 por defecto
-            caso5: 0,      // Caso 6: Jun 26 por defecto
-            caso6: 0       // Caso 7: Jun 26 por defecto
+            gas: 0,        // Jun 26
+            digital: 1,    // Jul 26
+            credito: 2,    // Ago 26
+            marketing: 3,  // Caso 1: Sep 26
+            caso1: 3,      // Caso 2: Sep 26
+            caso2: 3,      // Caso 3: Sep 26
+            caso3: 4,      // Caso 4: Oct 26
+            caso4: 4,      // Caso 5: Oct 26
+            caso5: 4,      // Caso 6: Oct 26
+            caso6: 4,      // Caso 7 (Seguros): Oct 26
+            caso7: 4,      // Caso 8 (Mas Conectados): Oct 26
+            caso8: 0, caso9: 0, caso10: 0,
+            caso11: 0, caso12: 0, caso13: 0
         };
 
         // Multiplicadores Meta: créditos por mensaje según tipo
@@ -2006,33 +2017,142 @@
             servicio: 0            // Service
         };
 
-        // Tipo de mensaje por caso (default: promocional)
+        // Tipo de mensaje por caso
         const waTipos = {
             gas: 'promocional',
             digital: 'promocional',
             credito: 'promocional',
-            marketing: 'promocional',
-            caso1: 'promocional',
-            caso2: 'promocional',
-            caso3: 'promocional',
-            caso4: 'promocional',
-            caso5: 'promocional',
-            caso6: 'promocional'
+            marketing: 'transaccional',   // Encuesta Sucursales
+            caso1: 'transaccional',       // BECO Encuestas
+            caso2: 'promocional',         // BECO Cobranza
+            caso3: 'promocional',         // Cuenta Corriente Digital
+            caso4: 'promocional',         // Venta Auto Gestionada
+            caso5: 'promocional',         // PYME
+            caso6: 'promocional',         // Seguros
+            caso7: 'promocional', caso8: 'promocional', caso9: 'promocional',
+            caso10: 'promocional', caso11: 'promocional', caso12: 'promocional', caso13: 'promocional'
         };
 
-        const WA_CATEGORIES = ['gas', 'digital', 'credito', 'marketing', 'caso1', 'caso2', 'caso3', 'caso4', 'caso5', 'caso6'];
+        // Nombre editable por caso proyectado (los confirmados tienen nombre fijo en HTML)
+        const waNombres = {
+            marketing: 'Encuesta Sucursales',
+            caso1: 'BECO Encuestas',
+            caso2: 'BECO Cobranza',
+            caso3: 'Cuenta Corriente Digital',
+            caso4: 'Venta Auto Gestionada',
+            caso5: 'PYME',
+            caso6: 'Seguros',
+            caso7: 'Mas Conectados',
+            caso8: '', caso9: '', caso10: '',
+            caso11: '', caso12: '', caso13: ''
+        };
+
+        // Volumen "techo" por caso, en formato es-CL para el input
+        const waMensajesDefault = {
+            gas: '46.398',
+            digital: '66.664',
+            credito: '280.000',
+            marketing: '1.500.000',
+            caso1: '280.000',
+            caso2: '280.000',
+            caso3: '200.000',
+            caso4: '100.000',
+            caso5: '100.000',
+            caso6: '100.000',
+            caso7: '100.000',
+            caso8: '0', caso9: '0', caso10: '0',
+            caso11: '0', caso12: '0', caso13: '0'
+        };
+
+        const WA_CATEGORIES = ['gas', 'digital', 'credito', 'marketing', 'caso1', 'caso2', 'caso3', 'caso4', 'caso5', 'caso6', 'caso7', 'caso8', 'caso9', 'caso10', 'caso11', 'caso12', 'caso13'];
         // Slots ocultos que se revelan con el botón "+ Agregar caso" (en orden)
-        const WA_HIDDEN_SLOTS = ['caso3', 'caso4', 'caso5', 'caso6'];
+        const WA_HIDDEN_SLOTS = ['caso8', 'caso9', 'caso10', 'caso11', 'caso12', 'caso13'];
 
         // Escala de escenario por caso (0..1). 1 = objetivo completo, 0.5 = evaluar la mitad, etc.
         // El input "Mensajes" define el techo; este factor lo ajusta hacia abajo sin retipear.
+        // Default 0.8 (80%) para casos visibles proyectados y confirmados no-Gas.
+        // Gas queda en 1.0 (46.398 es consumo real, no proyección).
+        // Slots ocultos también en 1.0 (parten en 0 mensajes, no tienen sentido a 80%).
         const waEscalas = {
-            gas: 1, digital: 1, credito: 1, marketing: 1,
-            caso1: 1, caso2: 1, caso3: 1, caso4: 1, caso5: 1, caso6: 1
+            gas: 1,
+            digital: 0.8, credito: 0.8,
+            marketing: 0.8, caso1: 0.8, caso2: 0.8,
+            caso3: 0.8, caso4: 0.8, caso5: 0.8, caso6: 0.8,
+            caso7: 0.8,
+            caso8: 1, caso9: 1, caso10: 1,
+            caso11: 1, caso12: 1, caso13: 1
         };
 
+        // Meses en español para labels dinámicos.
+        // El array del simulador arranca en Junio 2026 (idx 0) y termina en Julio 2028 (idx 25).
+        const MESES_LARGO = [
+            'Junio 2026', 'Julio 2026', 'Agosto 2026', 'Septiembre 2026', 'Octubre 2026', 'Noviembre 2026', 'Diciembre 2026',
+            'Enero 2027', 'Febrero 2027', 'Marzo 2027', 'Abril 2027', 'Mayo 2027', 'Junio 2027',
+            'Julio 2027', 'Agosto 2027', 'Septiembre 2027', 'Octubre 2027', 'Noviembre 2027', 'Diciembre 2027',
+            'Enero 2028', 'Febrero 2028', 'Marzo 2028', 'Abril 2028', 'Mayo 2028', 'Junio 2028', 'Julio 2028'
+        ];
+        const MESES_CORTO_UPPER = [
+            'JUN 26', 'JUL 26', 'AGO 26', 'SEP 26', 'OCT 26', 'NOV 26', 'DIC 26',
+            'ENE 27', 'FEB 27', 'MAR 27', 'ABR 27', 'MAY 27', 'JUN 27',
+            'JUL 27', 'AGO 27', 'SEP 27', 'OCT 27', 'NOV 27', 'DIC 27',
+            'ENE 28', 'FEB 28', 'MAR 28', 'ABR 28', 'MAY 28', 'JUN 28', 'JUL 28'
+        ];
+
+        // Devuelve el idx del mes "hoy" dentro del array de 26 meses (Jun 26 = 0).
+        // Si hoy es anterior al inicio del contrato o posterior al fin del array, hace clamp.
+        function calcularIdxHoy() {
+            const now = new Date();
+            // Junio 2026 = año 2026, mes idx 5 (0-indexado).
+            const meses = (now.getFullYear() - 2026) * 12 + (now.getMonth() - 5);
+            if (meses < 0) return 0;
+            if (meses > 25) return 25;
+            return meses;
+        }
+
+        // Devuelve el idx del objetivo de Propuesta 1: "12 meses reales desde hoy".
+        // Hace clamp al último idx del array (Jul 28) si se pasa del rango.
+        function calcularIdxProp1() {
+            const idxHoy = calcularIdxHoy();
+            const target = idxHoy + 12;
+            return Math.min(target, 25);
+        }
+
+        // Sincroniza los labels dinámicos de Propuesta 1 (KPI card, propuesta, consolidado, resumen).
+        function actualizarLabelsProp1() {
+            const idxHoy = calcularIdxHoy();
+            const idxProp1 = calcularIdxProp1();
+            const mesesRealesEntreHoyYObjetivo = idxProp1 - idxHoy;
+            const mesFinLargo = MESES_LARGO[idxProp1];        // "Julio 2027"
+            const mesFinCorto = MESES_CORTO_UPPER[idxProp1];  // "JUL 27"
+            const mesHoyCorto = MESES_CORTO_UPPER[idxHoy];    // "JUL 26"
+
+            // KPI card (título y tooltip)
+            const kpi = document.getElementById('wa-proyeccion-prop1-titulo');
+            if (kpi) kpi.textContent = 'Consumo Proyectado a ' + mesFinLargo;
+            const kpiTip = document.getElementById('wa-proyeccion-prop1-tooltip');
+            if (kpiTip) {
+                kpiTip.textContent = 'Total de paquetes proyectados desde Junio 2026 hasta ' + mesFinLargo +
+                    ', sumando todos los casos de uso activos. Corresponde al horizonte de ' +
+                    mesesRealesEntreHoyYObjetivo + ' meses de la Propuesta 1 (contados desde hoy).';
+            }
+
+            // Propuesta 1 (h3): mes y subtítulo
+            const prop1Mes = document.getElementById('prop1-titulo-mes');
+            if (prop1Mes) prop1Mes.textContent = mesFinLargo;
+            const prop1Sub = document.getElementById('prop1-subtitulo');
+            if (prop1Sub) prop1Sub.textContent =
+                mesesRealesEntreHoyYObjetivo + ' MESES · ' + mesHoyCorto + ' → ' + mesFinCorto;
+
+            // Consolidado (card WA Propuesta 1)
+            const consMes = document.getElementById('cons-wa2026-titulo-mes');
+            if (consMes) consMes.textContent = mesFinLargo;
+            const consSub = document.getElementById('cons-wa2026-subtitulo');
+            if (consSub) consSub.textContent =
+                mesesRealesEntreHoyYObjetivo + ' MESES · ' + mesHoyCorto + ' → ' + mesFinCorto;
+        }
+
         // Descarga la simulación completa como PDF usando el diálogo de impresión.
-        // El CSS @media print apila los tres dashboards, oculta la UI interactiva
+        // El CSS @media print muestra solo la sección WhatsApp, oculta la UI interactiva
         // y muestra la marca de tiempo. document.title sugiere el nombre del archivo.
         function descargarSimulacion() {
             const now = new Date();
@@ -2142,6 +2262,62 @@
                 const btn = document.getElementById('btn-agregar-caso');
                 if (btn) btn.style.display = 'none';
             }
+        }
+
+        // Genera dinámicamente los slots proyectados adicionales (Caso 8-14) e inserta antes del botón "+ Agregar caso".
+        // Los que están en WA_HIDDEN_SLOTS se inyectan con display:none; el resto arranca visible.
+        // Se llama al inicio de initWhatsApp para que setupToggle y los listeners posteriores los encuentren.
+        function inyectarSlotsOcultosProyectados() {
+            // Todos los slots inyectados dinámicamente (visibles + ocultos), en orden de aparición.
+            const INJECTED_LABELS = {
+                caso7: 'Caso 8', caso8: 'Caso 9', caso9: 'Caso 10',
+                caso10: 'Caso 11', caso11: 'Caso 12', caso12: 'Caso 13', caso13: 'Caso 14'
+            };
+            const MESES = ['Jun 26','Jul 26','Ago 26','Sep 26','Oct 26','Nov 26','Dic 26',
+                'Ene 27','Feb 27','Mar 27','Abr 27','May 27','Jun 27','Jul 27',
+                'Ago 27','Sep 27','Oct 27','Nov 27','Dic 27','Ene 28','Feb 28',
+                'Mar 28','Abr 28','May 28','Jun 28','Jul 28'];
+            const monthOptionsHTML = MESES.map(function(m, i) {
+                return '<option value="' + i + '">' + m + '</option>';
+            }).join('');
+
+            const btn = document.getElementById('btn-agregar-caso');
+            if (!btn) return;
+
+            Object.keys(INJECTED_LABELS).forEach(function(cat) {
+                if (document.getElementById('wa-' + cat + '-slot')) return;
+                const label = INJECTED_LABELS[cat] || cat;
+                const isHidden = WA_HIDDEN_SLOTS.indexOf(cat) !== -1;
+                const styleAttr = isHidden ? ' style="display: none;"' : '';
+                const html =
+                    '<div class="control-group-with-toggle" id="wa-' + cat + '-slot"' + styleAttr + '>' +
+                        '<div class="toggle-container">' +
+                            '<span class="toggle-label" id="wa-' + cat + '-type-label">Recurrente</span>' +
+                            '<label class="toggle-switch">' +
+                                '<input type="checkbox" id="wa-' + cat + '-toggle">' +
+                                '<span class="toggle-slider"></span>' +
+                            '</label>' +
+                            '<span class="campaign-type-badge recurring" id="wa-' + cat + '-badge">Recurrente</span>' +
+                            '<div class="month-selector" id="wa-' + cat + '-month-selector" style="display: inline-flex;">' +
+                                '<label>Mes inicio:</label>' +
+                                '<select id="wa-' + cat + '-month">' + monthOptionsHTML + '</select>' +
+                            '</div>' +
+                        '</div>' +
+                        '<label>' + label + ' <input type="text" class="case-name-input" id="wa-' + cat + '-name" placeholder="Nombre del caso..."></label>' +
+                        '<div class="msg-controls">' +
+                            '<span class="mensajes-label">Tipo:</span>' +
+                            '<select id="wa-' + cat + '-tipo" class="tipo-select">' +
+                                '<option value="promocional">Promocional (×109,76)</option>' +
+                                '<option value="transaccional">Transaccional (×24,7)</option>' +
+                                '<option value="servicio">Servicio (×0)</option>' +
+                            '</select>' +
+                            '<span class="mensajes-label">Mensajes:</span>' +
+                            '<input type="text" inputmode="numeric" id="wa-' + cat + '-mensajes" class="mensajes-input" value="0">' +
+                            '<span class="paquetes-derivados">≈ <strong id="wa-' + cat + '-paquetes">0</strong> paquetes</span>' +
+                        '</div>' +
+                    '</div>';
+                btn.insertAdjacentHTML('beforebegin', html);
+            });
         }
 
         // Formatea el input de mensajes con separador de miles es-CL (1.234.567) y preserva el cursor
@@ -2740,17 +2916,48 @@
 
             document.getElementById('wa-contratado').textContent = formatNumber(wa.contratado);
 
-            // Inicializar toggles
-            setupToggle('gas');
-            setupToggle('digital');
-            setupToggle('credito');
-            setupToggle('marketing');
-            setupToggle('caso1');
-            setupToggle('caso2');
-            setupToggle('caso3');
-            setupToggle('caso4');
-            setupToggle('caso5');
-            setupToggle('caso6');
+            // Actualizar labels de Propuesta 1 (KPI, propuesta, consolidado) con base en la fecha actual
+            actualizarLabelsProp1();
+
+            // Inyectar slots ocultos (Casos 8-14) antes de configurar toggles y listeners
+            inyectarSlotsOcultosProyectados();
+
+            // Inicializar toggles (uno por categoría)
+            WA_CATEGORIES.forEach(setupToggle);
+
+            // Sincronizar el DOM inicial con los objetos de estado
+            // (nombres, mensajes, tipo, mes de inicio, toggle Recurrente/One-time)
+            WA_CATEGORIES.forEach(function(cat) {
+                const mensajesInput = document.getElementById(`wa-${cat}-mensajes`);
+                if (mensajesInput && waMensajesDefault[cat] != null) {
+                    mensajesInput.value = waMensajesDefault[cat];
+                }
+                const nameInput = document.getElementById(`wa-${cat}-name`);
+                if (nameInput && waNombres[cat] != null) {
+                    nameInput.value = waNombres[cat];
+                }
+                const tipoSelect = document.getElementById(`wa-${cat}-tipo`);
+                if (tipoSelect && waTipos[cat]) {
+                    tipoSelect.value = waTipos[cat];
+                }
+                const monthSelect = document.getElementById(`wa-${cat}-month`);
+                if (monthSelect && waMonths[cat] != null) {
+                    monthSelect.value = String(waMonths[cat]);
+                }
+                const toggle = document.getElementById(`wa-${cat}-toggle`);
+                const label = document.getElementById(`wa-${cat}-type-label`);
+                const badge = document.getElementById(`wa-${cat}-badge`);
+                const isOnetime = !!waToggles[cat];
+                if (toggle) toggle.checked = isOnetime;
+                if (label) {
+                    label.textContent = isOnetime ? 'One-time' : 'Recurrente';
+                    label.classList.toggle('active', isOnetime);
+                }
+                if (badge) {
+                    badge.textContent = isOnetime ? 'One-time' : 'Recurrente';
+                    badge.className = 'campaign-type-badge ' + (isOnetime ? 'onetime' : 'recurring');
+                }
+            });
 
             updateWaProjection();
 
@@ -2824,11 +3031,13 @@
 
                 // Slider de escala + tooltip #4 (si aún no está inyectado)
                 if (!document.getElementById(`wa-${cat}-escala`)) {
+                    const escalaInicial = waEscalas[cat] != null ? waEscalas[cat] : 1;
+                    const sliderValue = Math.round(escalaInicial * 1000);
                     const row = document.createElement('div');
                     row.className = 'escala-row';
                     row.innerHTML =
-                        '<input type="range" id="wa-' + cat + '-escala" class="escala-slider" min="0" max="1000" value="1000">' +
-                        '<span class="escala-label"><strong id="wa-' + cat + '-escala-pct">100%</strong> · <span id="wa-' + cat + '-escala-mensajes">-</span> mensajes activos</span>';
+                        '<input type="range" id="wa-' + cat + '-escala" class="escala-slider" min="0" max="1000" value="' + sliderValue + '">' +
+                        '<span class="escala-label"><strong id="wa-' + cat + '-escala-pct">' + Math.round(escalaInicial * 100) + '%</strong> · <span id="wa-' + cat + '-escala-mensajes">-</span> mensajes activos</span>';
                     row.appendChild(makeInfoHint(INFO_ESCALA));
                     block.appendChild(row);
 
@@ -3024,6 +3233,16 @@
             const caso4 = getPaquetesFor('caso4');
             const caso5 = getPaquetesFor('caso5');
             const caso6 = getPaquetesFor('caso6');
+            const caso7 = getPaquetesFor('caso7');
+            const caso8 = getPaquetesFor('caso8');
+            const caso9 = getPaquetesFor('caso9');
+            const caso10 = getPaquetesFor('caso10');
+            const caso11 = getPaquetesFor('caso11');
+            const caso12 = getPaquetesFor('caso12');
+            const caso13 = getPaquetesFor('caso13');
+
+            // Idx del objetivo dinámico de Propuesta 1 (12 meses reales desde hoy).
+            const idxProp1 = calcularIdxProp1();
 
             // Calcular desde Junio 2026 hasta Diciembre 2027 (19 meses)
             const meses = ['Jun 26', 'Jul 26', 'Ago 26', 'Sep 26', 'Oct 26', 'Nov 26', 'Dic 26',
@@ -3078,6 +3297,27 @@
                 if (!waToggles.caso6 && i >= waMonths.caso6) consumoMes += caso6;
                 else if (waToggles.caso6 && i === waMonths.caso6) consumoMes += caso6;
 
+                if (!waToggles.caso7 && i >= waMonths.caso7) consumoMes += caso7;
+                else if (waToggles.caso7 && i === waMonths.caso7) consumoMes += caso7;
+
+                if (!waToggles.caso8 && i >= waMonths.caso8) consumoMes += caso8;
+                else if (waToggles.caso8 && i === waMonths.caso8) consumoMes += caso8;
+
+                if (!waToggles.caso9 && i >= waMonths.caso9) consumoMes += caso9;
+                else if (waToggles.caso9 && i === waMonths.caso9) consumoMes += caso9;
+
+                if (!waToggles.caso10 && i >= waMonths.caso10) consumoMes += caso10;
+                else if (waToggles.caso10 && i === waMonths.caso10) consumoMes += caso10;
+
+                if (!waToggles.caso11 && i >= waMonths.caso11) consumoMes += caso11;
+                else if (waToggles.caso11 && i === waMonths.caso11) consumoMes += caso11;
+
+                if (!waToggles.caso12 && i >= waMonths.caso12) consumoMes += caso12;
+                else if (waToggles.caso12 && i === waMonths.caso12) consumoMes += caso12;
+
+                if (!waToggles.caso13 && i >= waMonths.caso13) consumoMes += caso13;
+                else if (waToggles.caso13 && i === waMonths.caso13) consumoMes += caso13;
+
                 acumulado += consumoMes;
 
                 consumoMensual.push(consumoMes);
@@ -3092,10 +3332,12 @@
                     alertShown = true;
                 }
 
-                // Guardar acumulados a Junio 2027 (índice 12) y Junio 2028 (índice 24) — hitos anuales
-                if (i === 12) {
+                // Propuesta 1: hito dinámico = "hoy + 12 meses reales" (calculado con calcularIdxProp1()).
+                // La variable interna acumuladoDic2026 conserva su nombre legado por compatibilidad con el consolidado.
+                if (i === idxProp1) {
                     acumuladoDic2026 = acumulado;
                 }
+                // Propuesta 2: hito Jun 28 (idx 24) — usado por defecto en el dashboard consolidado.
                 if (i === 24) {
                     acumuladoDic2027 = acumulado;
                 }
@@ -3451,11 +3693,12 @@
                 propuestasActivas.push('WA ' + (mesLabel ? mesLabel.textContent : 'Jun 2028'));
             }
 
-            // WhatsApp Propuesta 1 (Junio 2027)
+            // WhatsApp Propuesta 1 (mes dinámico según calcularIdxProp1)
             if (propuestasConsolidadas['wa-2026']) {
                 const monto = parseMonto(document.getElementById('cons-wa2026-precio').textContent);
                 totalInversion += monto;
-                propuestasActivas.push('WA Junio 2027');
+                const mesLabelProp1 = document.getElementById('prop1-titulo-mes');
+                propuestasActivas.push('WA ' + (mesLabelProp1 ? mesLabelProp1.textContent : 'Julio 2027'));
             }
 
             // Supermensajes 2026
