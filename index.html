@@ -2020,7 +2020,7 @@
         // Tipo de mensaje por caso
         const waTipos = {
             gas: 'promocional',
-            digital: 'promocional',
+            digital: 'transaccional',
             credito: 'promocional',
             marketing: 'transaccional',   // Encuesta Sucursales
             caso1: 'transaccional',       // BECO Encuestas
@@ -2050,7 +2050,7 @@
         // Volumen "techo" por caso, en formato es-CL para el input
         const waMensajesDefault = {
             gas: '46.398',
-            digital: '66.664',
+            digital: '296.235',
             credito: '280.000',
             marketing: '1.500.000',
             caso1: '280.000',
@@ -2075,7 +2075,7 @@
         // Slots ocultos también en 1.0 (parten en 0 mensajes, no tienen sentido a 80%).
         const waEscalas = {
             gas: 1,
-            digital: 0.8, credito: 0.8,
+            digital: 1, credito: 0.8,
             marketing: 0.8, caso1: 0.8, caso2: 0.8,
             caso3: 0.8, caso4: 0.8, caso5: 0.8, caso6: 0.8,
             caso7: 0.8,
