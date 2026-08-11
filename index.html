@@ -1016,6 +1016,23 @@
             font-weight: 700;
         }
 
+        .outbound-derivado {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.85em;
+            color: var(--text-secondary);
+            background: rgba(56, 189, 248, 0.14);
+            border: 1px solid rgba(56, 189, 248, 0.28);
+            padding: 5px 12px;
+            border-radius: 14px;
+            white-space: nowrap;
+            margin-left: auto;
+        }
+
+        .outbound-derivado strong {
+            color: var(--accent-cyan);
+            font-weight: 700;
+        }
+
         .escala-row {
             display: flex;
             align-items: center;
@@ -3357,8 +3374,8 @@
                         '<span class="escala-label">' +
                             '<input type="text" inputmode="numeric" id="wa-' + cat + '-escala-pct-input" class="escala-pct-input" value="' + pctInicial + '">' +
                             '<span class="escala-suffix">%</span>' +
-                            ' · <span id="wa-' + cat + '-escala-mensajes">-</span> mensajes activos' +
-                        '</span>';
+                        '</span>' +
+                        '<span class="outbound-derivado">Mensajes de outbound: <strong id="wa-' + cat + '-escala-mensajes">0</strong></span>';
                     row.appendChild(makeInfoHint(INFO_ESCALA));
                     block.appendChild(row);
 
