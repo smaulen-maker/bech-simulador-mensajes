@@ -938,6 +938,84 @@
             font-weight: 700;
         }
 
+        .paquetes-desglose {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.9em;
+            color: var(--text-gray);
+            font-weight: 500;
+            margin-left: 2px;
+        }
+
+        .inbound-row {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-top: 10px;
+            padding-top: 10px;
+            border-top: 1px dashed var(--border-line);
+        }
+
+        .inbound-row .mensajes-label {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.75em;
+            font-weight: 600;
+            color: var(--text-gray);
+            text-transform: uppercase;
+            letter-spacing: 0.4px;
+        }
+
+        .tasa-input,
+        .msg-input {
+            padding: 6px 10px;
+            border: 2px solid var(--border-line);
+            border-radius: 6px;
+            background: var(--bg-input);
+            font-family: 'Inter', sans-serif;
+            font-size: 0.9em;
+            color: var(--text-primary);
+            width: 72px;
+            transition: all 0.3s;
+            text-align: right;
+        }
+
+        .tasa-input:hover,
+        .msg-input:hover {
+            border-color: var(--sf-blue);
+        }
+
+        .tasa-input:focus,
+        .msg-input:focus {
+            outline: none;
+            border-color: var(--sf-blue);
+            box-shadow: 0 0 0 3px rgba(0, 161, 224, 0.1);
+        }
+
+        .tasa-suffix {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.9em;
+            color: var(--text-gray);
+            margin-left: -6px;
+            margin-right: 4px;
+        }
+
+        .inbound-derivado {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.85em;
+            color: var(--text-secondary);
+            background: rgba(251, 191, 36, 0.12);
+            border: 1px solid rgba(251, 191, 36, 0.28);
+            padding: 5px 12px;
+            border-radius: 14px;
+            white-space: nowrap;
+            margin-left: auto;
+        }
+
+        .inbound-derivado strong {
+            color: var(--accent-amber);
+            font-weight: 700;
+        }
+
         .escala-row {
             display: flex;
             align-items: center;
@@ -994,6 +1072,38 @@
         .escala-label strong {
             color: var(--accent-cyan);
             font-weight: 700;
+        }
+
+        .escala-pct-input {
+            display: inline-block;
+            width: 48px;
+            padding: 2px 6px;
+            border: 1.5px solid var(--border-line);
+            border-radius: 4px;
+            background: var(--bg-input);
+            font-family: 'Inter', sans-serif;
+            font-size: 0.95em;
+            font-weight: 700;
+            color: var(--accent-cyan);
+            text-align: right;
+            transition: all 0.2s ease;
+            vertical-align: middle;
+        }
+
+        .escala-pct-input:hover {
+            border-color: var(--accent-cyan);
+        }
+
+        .escala-pct-input:focus {
+            outline: none;
+            border-color: var(--accent-cyan);
+            box-shadow: 0 0 0 3px rgba(34, 211, 238, 0.18);
+        }
+
+        .escala-suffix {
+            color: var(--accent-cyan);
+            font-weight: 700;
+            margin-left: 2px;
         }
 
         .info-hint {
@@ -1250,25 +1360,15 @@
                     <div class="value" id="wa-contratado">-</div>
                     <div class="subtext">5 años: 1 Jun 2025 - 31 May 2030</div>
                 </div>
-                <div class="metric-card warning">
-                    <h3><span id="wa-proyeccion-prop1-titulo">Consumo Proyectado a Junio 2027</span> <span class="info-hint" tabindex="0" role="button" aria-label="Información adicional"><span class="info-icon" aria-hidden="true">i</span><span class="info-tooltip" role="tooltip" id="wa-proyeccion-prop1-tooltip">Total de paquetes proyectados desde Junio 2026 hasta Junio 2027, sumando todos los casos de uso activos. Corresponde al horizonte de 12 meses de la Propuesta 1.</span></span></h3>
-                    <div class="value" id="wa-proyeccion-dic2026">-</div>
-                    <div class="subtext">Paquetes acumulados · Horizonte Propuesta 1</div>
-                </div>
                 <div class="metric-card success">
-                    <h3>Consumo Proyectado a Junio 2028 <span class="info-hint" tabindex="0" role="button" aria-label="Información adicional"><span class="info-icon" aria-hidden="true">i</span><span class="info-tooltip" role="tooltip">Total de paquetes proyectados desde Junio 2026 hasta Junio 2028, sumando todos los casos de uso activos. Corresponde al horizonte de 24 meses de la Propuesta 2.</span></span></h3>
+                    <h3>Consumo Proyectado a Diciembre 2027 <span class="info-hint" tabindex="0" role="button" aria-label="Información adicional"><span class="info-icon" aria-hidden="true">i</span><span class="info-tooltip" role="tooltip">Total de paquetes proyectados desde Junio 2026 hasta Diciembre 2027, sumando todos los casos de uso activos. Corresponde al horizonte de 19 meses de la Propuesta.</span></span></h3>
                     <div class="value" id="wa-proyeccion-dic2027">-</div>
-                    <div class="subtext">Paquetes acumulados · Horizonte Propuesta 2</div>
+                    <div class="subtext">Paquetes acumulados · Objetivo de la Propuesta</div>
                 </div>
             </div>
 
             <div class="controls">
                 <h3>⚙️ Simulador de Casos de Uso de WhatsApp</h3>
-
-                <div class="subsection confirmed">
-                    <div class="subsection-title">
-                        ✅ Casos Confirmados <span class="info-hint" tabindex="0" role="button" aria-label="Información adicional"><span class="info-icon" aria-hidden="true">i</span><span class="info-tooltip" role="tooltip">Casos comprometidos con BancoEstado. Su volumen y tipo actúan como línea base del cálculo.</span></span>
-                    </div>
 
                 <div class="control-group-with-toggle">
                     <div class="toggle-container">
@@ -1300,13 +1400,6 @@
                                 <option value="16">Oct 27</option>
                                 <option value="17">Nov 27</option>
                                 <option value="18">Dic 27</option>
-                                <option value="19">Ene 28</option>
-                                <option value="20">Feb 28</option>
-                                <option value="21">Mar 28</option>
-                                <option value="22">Abr 28</option>
-                                <option value="23">May 28</option>
-                                <option value="24">Jun 28</option>
-                                <option value="25">Jul 28</option>
                             </select>
                         </div>
                     </div>
@@ -1354,27 +1447,114 @@
                                 <option value="16">Oct 27</option>
                                 <option value="17">Nov 27</option>
                                 <option value="18">Dic 27</option>
-                                <option value="19">Ene 28</option>
-                                <option value="20">Feb 28</option>
-                                <option value="21">Mar 28</option>
-                                <option value="22">Abr 28</option>
-                                <option value="23">May 28</option>
-                                <option value="24">Jun 28</option>
-                                <option value="25">Jul 28</option>
                             </select>
                         </div>
                     </div>
-                    <label>Casos Digital Engagement</label>
+                    <label>Cierre de casos - Notificación respuesta Req.</label>
                     <div class="msg-controls">
                         <span class="mensajes-label">Tipo:</span>
                         <select id="wa-digital-tipo" class="tipo-select">
-                            <option value="promocional" selected>Promocional (×109,76)</option>
-                            <option value="transaccional">Transaccional (×24,7)</option>
+                            <option value="promocional">Promocional (×109,76)</option>
+                            <option value="transaccional" selected>Transaccional (×24,7)</option>
                             <option value="servicio">Servicio (×0)</option>
                         </select>
                         <span class="mensajes-label">Mensajes:</span>
-                        <input type="text" inputmode="numeric" id="wa-digital-mensajes" class="mensajes-input" value="66.664">
-                        <span class="paquetes-derivados">≈ <strong id="wa-digital-paquetes">7.317</strong> paquetes</span>
+                        <input type="text" inputmode="numeric" id="wa-digital-mensajes" class="mensajes-input" value="19.800">
+                        <span class="paquetes-derivados">≈ <strong id="wa-digital-paquetes">0</strong> paquetes</span>
+                    </div>
+                </div>
+
+                <div class="control-group-with-toggle">
+                    <div class="toggle-container">
+                        <span class="toggle-label" id="wa-fraudes-type-label">Recurrente</span>
+                        <label class="toggle-switch">
+                            <input type="checkbox" id="wa-fraudes-toggle">
+                            <span class="toggle-slider"></span>
+                        </label>
+                        <span class="campaign-type-badge recurring" id="wa-fraudes-badge">Recurrente</span>
+                        <div class="month-selector" id="wa-fraudes-month-selector" style="display: inline-flex;">
+                            <label>Mes inicio:</label>
+                            <select id="wa-fraudes-month">
+                                <option value="0">Jun 26</option>
+                                <option value="1">Jul 26</option>
+                                <option value="2">Ago 26</option>
+                                <option value="3" selected>Sep 26</option>
+                                <option value="4">Oct 26</option>
+                                <option value="5">Nov 26</option>
+                                <option value="6">Dic 26</option>
+                                <option value="7">Ene 27</option>
+                                <option value="8">Feb 27</option>
+                                <option value="9">Mar 27</option>
+                                <option value="10">Abr 27</option>
+                                <option value="11">May 27</option>
+                                <option value="12">Jun 27</option>
+                                <option value="13">Jul 27</option>
+                                <option value="14">Ago 27</option>
+                                <option value="15">Sep 27</option>
+                                <option value="16">Oct 27</option>
+                                <option value="17">Nov 27</option>
+                                <option value="18">Dic 27</option>
+                            </select>
+                        </div>
+                    </div>
+                    <label>Fraudes - Notificaciones preventivas</label>
+                    <div class="msg-controls">
+                        <span class="mensajes-label">Tipo:</span>
+                        <select id="wa-fraudes-tipo" class="tipo-select">
+                            <option value="promocional">Promocional (×109,76)</option>
+                            <option value="transaccional" selected>Transaccional (×24,7)</option>
+                            <option value="servicio">Servicio (×0)</option>
+                        </select>
+                        <span class="mensajes-label">Mensajes:</span>
+                        <input type="text" inputmode="numeric" id="wa-fraudes-mensajes" class="mensajes-input" value="23.800">
+                        <span class="paquetes-derivados">≈ <strong id="wa-fraudes-paquetes">0</strong> paquetes</span>
+                    </div>
+                </div>
+
+                <div class="control-group-with-toggle">
+                    <div class="toggle-container">
+                        <span class="toggle-label" id="wa-epa-type-label">Recurrente</span>
+                        <label class="toggle-switch">
+                            <input type="checkbox" id="wa-epa-toggle">
+                            <span class="toggle-slider"></span>
+                        </label>
+                        <span class="campaign-type-badge recurring" id="wa-epa-badge">Recurrente</span>
+                        <div class="month-selector" id="wa-epa-month-selector" style="display: inline-flex;">
+                            <label>Mes inicio:</label>
+                            <select id="wa-epa-month">
+                                <option value="0">Jun 26</option>
+                                <option value="1">Jul 26</option>
+                                <option value="2">Ago 26</option>
+                                <option value="3" selected>Sep 26</option>
+                                <option value="4">Oct 26</option>
+                                <option value="5">Nov 26</option>
+                                <option value="6">Dic 26</option>
+                                <option value="7">Ene 27</option>
+                                <option value="8">Feb 27</option>
+                                <option value="9">Mar 27</option>
+                                <option value="10">Abr 27</option>
+                                <option value="11">May 27</option>
+                                <option value="12">Jun 27</option>
+                                <option value="13">Jul 27</option>
+                                <option value="14">Ago 27</option>
+                                <option value="15">Sep 27</option>
+                                <option value="16">Oct 27</option>
+                                <option value="17">Nov 27</option>
+                                <option value="18">Dic 27</option>
+                            </select>
+                        </div>
+                    </div>
+                    <label>Encuesta Post Atención (EPA)</label>
+                    <div class="msg-controls">
+                        <span class="mensajes-label">Tipo:</span>
+                        <select id="wa-epa-tipo" class="tipo-select">
+                            <option value="promocional">Promocional (×109,76)</option>
+                            <option value="transaccional" selected>Transaccional (×24,7)</option>
+                            <option value="servicio">Servicio (×0)</option>
+                        </select>
+                        <span class="mensajes-label">Mensajes:</span>
+                        <input type="text" inputmode="numeric" id="wa-epa-mensajes" class="mensajes-input" value="32.400">
+                        <span class="paquetes-derivados">≈ <strong id="wa-epa-paquetes">0</strong> paquetes</span>
                     </div>
                 </div>
 
@@ -1408,13 +1588,6 @@
                                 <option value="16">Oct 27</option>
                                 <option value="17">Nov 27</option>
                                 <option value="18">Dic 27</option>
-                                <option value="19">Ene 28</option>
-                                <option value="20">Feb 28</option>
-                                <option value="21">Mar 28</option>
-                                <option value="22">Abr 28</option>
-                                <option value="23">May 28</option>
-                                <option value="24">Jun 28</option>
-                                <option value="25">Jul 28</option>
                             </select>
                         </div>
                     </div>
@@ -1431,12 +1604,6 @@
                         <span class="paquetes-derivados">≈ <strong id="wa-credito-paquetes">30.733</strong> paquetes</span>
                     </div>
                 </div>
-                </div>
-
-                <div class="subsection projected">
-                    <div class="subsection-title">
-                        🎯 Casos Proyectados <span class="info-hint" tabindex="0" role="button" aria-label="Información adicional"><span class="info-icon" aria-hidden="true">i</span><span class="info-tooltip" role="tooltip">Casos candidatos aún por validar. Sirven para explorar escenarios de crecimiento incremental.</span></span>
-                    </div>
 
                 <div class="control-group-with-toggle">
                     <div class="toggle-container">
@@ -1468,17 +1635,10 @@
                                 <option value="16">Oct 27</option>
                                 <option value="17">Nov 27</option>
                                 <option value="18">Dic 27</option>
-                                <option value="19">Ene 28</option>
-                                <option value="20">Feb 28</option>
-                                <option value="21">Mar 28</option>
-                                <option value="22">Abr 28</option>
-                                <option value="23">May 28</option>
-                                <option value="24">Jun 28</option>
-                                <option value="25">Jul 28</option>
                             </select>
                         </div>
                     </div>
-                    <label>Caso 1 <input type="text" class="case-name-input" id="wa-marketing-name" placeholder="Nombre del caso..."></label>
+                    <label>Encuestas Sucursal - primeros 3m</label>
                     <div class="msg-controls">
                         <span class="mensajes-label">Tipo:</span>
                         <select id="wa-marketing-tipo" class="tipo-select">
@@ -1522,17 +1682,10 @@
                                 <option value="16">Oct 27</option>
                                 <option value="17">Nov 27</option>
                                 <option value="18">Dic 27</option>
-                                <option value="19">Ene 28</option>
-                                <option value="20">Feb 28</option>
-                                <option value="21">Mar 28</option>
-                                <option value="22">Abr 28</option>
-                                <option value="23">May 28</option>
-                                <option value="24">Jun 28</option>
-                                <option value="25">Jul 28</option>
                             </select>
                         </div>
                     </div>
-                    <label>Caso 2 <input type="text" class="case-name-input" id="wa-caso1-name" placeholder="Nombre del caso..."></label>
+                    <label>Encuestas Sucursal - siguientes 3m</label>
                     <div class="msg-controls">
                         <span class="mensajes-label">Tipo:</span>
                         <select id="wa-caso1-tipo" class="tipo-select">
@@ -1576,17 +1729,10 @@
                                 <option value="16">Oct 27</option>
                                 <option value="17">Nov 27</option>
                                 <option value="18">Dic 27</option>
-                                <option value="19">Ene 28</option>
-                                <option value="20">Feb 28</option>
-                                <option value="21">Mar 28</option>
-                                <option value="22">Abr 28</option>
-                                <option value="23">May 28</option>
-                                <option value="24">Jun 28</option>
-                                <option value="25">Jul 28</option>
                             </select>
                         </div>
                     </div>
-                    <label>Caso 3 <input type="text" class="case-name-input" id="wa-caso2-name" placeholder="Nombre del caso..."></label>
+                    <label>Encuestas Sucursal - regimen</label>
                     <div class="msg-controls">
                         <span class="mensajes-label">Tipo:</span>
                         <select id="wa-caso2-tipo" class="tipo-select">
@@ -1630,17 +1776,10 @@
                                 <option value="16">Oct 27</option>
                                 <option value="17">Nov 27</option>
                                 <option value="18">Dic 27</option>
-                                <option value="19">Ene 28</option>
-                                <option value="20">Feb 28</option>
-                                <option value="21">Mar 28</option>
-                                <option value="22">Abr 28</option>
-                                <option value="23">May 28</option>
-                                <option value="24">Jun 28</option>
-                                <option value="25">Jul 28</option>
                             </select>
                         </div>
                     </div>
-                    <label>Caso 4 <input type="text" class="case-name-input" id="wa-caso3-name" placeholder="Nombre del caso..."></label>
+                    <label>Renovación Tarjeta de Debito</label>
                     <div class="msg-controls">
                         <span class="mensajes-label">Tipo:</span>
                         <select id="wa-caso3-tipo" class="tipo-select">
@@ -1684,17 +1823,10 @@
                                 <option value="16">Oct 27</option>
                                 <option value="17">Nov 27</option>
                                 <option value="18">Dic 27</option>
-                                <option value="19">Ene 28</option>
-                                <option value="20">Feb 28</option>
-                                <option value="21">Mar 28</option>
-                                <option value="22">Abr 28</option>
-                                <option value="23">May 28</option>
-                                <option value="24">Jun 28</option>
-                                <option value="25">Jul 28</option>
                             </select>
                         </div>
                     </div>
-                    <label>Caso 5 <input type="text" class="case-name-input" id="wa-caso4-name" placeholder="Nombre del caso..."></label>
+                    <label>Seguros notificación siniestro</label>
                     <div class="msg-controls">
                         <span class="mensajes-label">Tipo:</span>
                         <select id="wa-caso4-tipo" class="tipo-select">
@@ -1738,17 +1870,10 @@
                                 <option value="16">Oct 27</option>
                                 <option value="17">Nov 27</option>
                                 <option value="18">Dic 27</option>
-                                <option value="19">Ene 28</option>
-                                <option value="20">Feb 28</option>
-                                <option value="21">Mar 28</option>
-                                <option value="22">Abr 28</option>
-                                <option value="23">May 28</option>
-                                <option value="24">Jun 28</option>
-                                <option value="25">Jul 28</option>
                             </select>
                         </div>
                     </div>
-                    <label>Caso 6 <input type="text" class="case-name-input" id="wa-caso5-name" placeholder="Nombre del caso..."></label>
+                    <label>Cobranzas</label>
                     <div class="msg-controls">
                         <span class="mensajes-label">Tipo:</span>
                         <select id="wa-caso5-tipo" class="tipo-select">
@@ -1792,17 +1917,10 @@
                                 <option value="16">Oct 27</option>
                                 <option value="17">Nov 27</option>
                                 <option value="18">Dic 27</option>
-                                <option value="19">Ene 28</option>
-                                <option value="20">Feb 28</option>
-                                <option value="21">Mar 28</option>
-                                <option value="22">Abr 28</option>
-                                <option value="23">May 28</option>
-                                <option value="24">Jun 28</option>
-                                <option value="25">Jul 28</option>
                             </select>
                         </div>
                     </div>
-                    <label>Caso 7 <input type="text" class="case-name-input" id="wa-caso6-name" placeholder="Nombre del caso..."></label>
+                    <label>Microempresas - primeros 6m</label>
                     <div class="msg-controls">
                         <span class="mensajes-label">Tipo:</span>
                         <select id="wa-caso6-tipo" class="tipo-select">
@@ -1817,70 +1935,27 @@
                 </div>
 
                 <button type="button" class="add-caso-btn" id="btn-agregar-caso" onclick="agregarCaso()">+ Agregar caso</button>
-                </div>
             </div>
 
             <div id="wa-alert"></div>
 
             <div class="chart-container">
-                <h2>📈 Proyección de Consumo WhatsApp (hasta Julio 2028)</h2>
+                <h2>📈 Proyección de Consumo WhatsApp (hasta Diciembre 2027)</h2>
                 <div class="chart-wrapper">
                     <canvas id="wa-projection-chart"></canvas>
                 </div>
             </div>
 
             <div class="chart-container">
-                <h2>💼 Propuestas de Crecimiento <span class="info-hint" tabindex="0" role="button" aria-label="Información adicional"><span class="info-icon" aria-hidden="true">i</span><span class="info-tooltip" role="tooltip">Al seleccionar una propuesta, el gráfico y los indicadores muestran el escenario con la capacidad ampliada. Se puede tener solo una activa por vez para comparar cada escenario por separado.</span></span></h2>
-                <div class="metrics-grid" style="grid-template-columns: repeat(2, 1fr);">
-                    <div class="metric-card primary selectable" id="propuesta-2026" onclick="selectPropuesta('2026')">
-                        <h3 style="font-size: 1.5em; font-weight: 700;">PROPUESTA 1: <span id="prop1-titulo-mes" style="color: var(--sf-blue);">Junio 2027</span> <span id="prop1-subtitulo" style="display: block; font-size: 0.55em; color: var(--text-gray); font-weight: 600; margin-top: 4px; letter-spacing: 0.5px;">12 MESES · JUN 26 → JUN 27</span></h3>
-                        <div style="text-align: left; padding: 0 20px; margin-top: 16px;">
-                            <p style="margin: 8px 0; font-size: 0.95em;"><strong>Consumo proyectado:</strong> <span id="prop1-consumo">-</span></p>
-                            <p style="margin: 8px 0; font-size: 0.95em;"><strong>Capacidad actual:</strong> <span id="prop1-actual">-</span></p>
-                            <p style="margin: 8px 0; font-size: 0.95em;"><strong>Capacidad adicional:</strong> <span id="prop1-adicional">-</span></p>
-                            <p style="margin: 16px 0 8px 0; font-size: 1.1em; color: var(--sf-blue);"><strong>Inversión (USD):</strong> <span id="prop1-precio" style="font-size: 1.3em;">-</span></p>
-                        </div>
-                    </div>
+                <h2>💼 Propuesta de Crecimiento <span class="info-hint" tabindex="0" role="button" aria-label="Información adicional"><span class="info-icon" aria-hidden="true">i</span><span class="info-tooltip" role="tooltip">Al seleccionar la propuesta, el gráfico y los indicadores muestran el escenario con la capacidad ampliada de WhatsApp hasta Diciembre 2027.</span></span></h2>
+                <div class="metrics-grid" style="grid-template-columns: 1fr;">
                     <div class="metric-card success selectable" id="propuesta-2027" onclick="selectPropuesta('2027')">
-                        <h3 style="font-size: 1.5em; font-weight: 700;">PROPUESTA 2: <span id="prop2-titulo-mes" style="color: var(--value-green);">Junio 2028</span> <span id="prop2-subtitulo" style="display: block; font-size: 0.55em; color: var(--text-gray); font-weight: 600; margin-top: 4px; letter-spacing: 0.5px;">24 MESES · JUN 26 → JUN 28</span></h3>
+                        <h3 style="font-size: 1.5em; font-weight: 700;">PROPUESTA: <span style="color: var(--value-green);">Diciembre 2027</span> <span style="display: block; font-size: 0.55em; color: var(--text-gray); font-weight: 600; margin-top: 4px; letter-spacing: 0.5px;">19 MESES · JUN 26 → DIC 27</span></h3>
                         <div style="text-align: left; padding: 0 20px; margin-top: 16px;">
                             <p style="margin: 8px 0; font-size: 0.95em;"><strong>Consumo proyectado:</strong> <span id="prop2-consumo">-</span></p>
                             <p style="margin: 8px 0; font-size: 0.95em;"><strong>Capacidad actual:</strong> <span id="prop2-actual">-</span></p>
                             <p style="margin: 8px 0; font-size: 0.95em;"><strong>Capacidad adicional:</strong> <span id="prop2-adicional">-</span></p>
                             <p style="margin: 16px 0 8px 0; font-size: 1.1em; color: var(--value-green);"><strong>Inversión (USD):</strong> <span id="prop2-precio" style="font-size: 1.3em;">-</span></p>
-                            <div style="margin-top: 18px; padding-top: 14px; border-top: 1px solid #e0e0e0;">
-                                <p style="margin: 6px 0; font-size: 0.9em;"><strong>Hasta:</strong>
-                                    <select id="prop2-hasta-mes" onclick="event.stopPropagation()"
-                                        style="margin-left: 8px; padding: 4px 8px; border: 1px solid #ccc; border-radius: 4px; font-size: 0.9em;">
-                                        <option value="0">Jun 26</option>
-                                        <option value="1">Jul 26</option>
-                                        <option value="2">Ago 26</option>
-                                        <option value="3">Sep 26</option>
-                                        <option value="4">Oct 26</option>
-                                        <option value="5">Nov 26</option>
-                                        <option value="6">Dic 26</option>
-                                        <option value="7">Ene 27</option>
-                                        <option value="8">Feb 27</option>
-                                        <option value="9">Mar 27</option>
-                                        <option value="10">Abr 27</option>
-                                        <option value="11">May 27</option>
-                                        <option value="12">Jun 27</option>
-                                        <option value="13">Jul 27</option>
-                                        <option value="14">Ago 27</option>
-                                        <option value="15">Sep 27</option>
-                                        <option value="16">Oct 27</option>
-                                        <option value="17">Nov 27</option>
-                                        <option value="18">Dic 27</option>
-                                        <option value="19">Ene 28</option>
-                                        <option value="20">Feb 28</option>
-                                        <option value="21">Mar 28</option>
-                                        <option value="22">Abr 28</option>
-                                        <option value="23">May 28</option>
-                                        <option value="24" selected>Jun 28</option>
-                                        <option value="25">Jul 28</option>
-                                    </select>
-                                </p>
-                            </div>
                         </div>
                     </div>
                 </div>
@@ -1892,23 +1967,14 @@
         <div id="consolidado-dashboard" class="dashboard">
             <div class="chart-container">
                 <h2>💼 Propuestas de Crecimiento Consolidadas <span class="info-hint" tabindex="0" role="button" aria-label="Información adicional"><span class="info-icon" aria-hidden="true">i</span><span class="info-tooltip" role="tooltip">Puedes activar una o más propuestas para ver el total de inversión combinado. Cada tarjeta refleja el escenario definido en su pestaña correspondiente.</span></span></h2>
-                <div class="metrics-grid" style="grid-template-columns: repeat(3, 1fr);">
+                <div class="metrics-grid" style="grid-template-columns: repeat(2, 1fr);">
                     <div class="metric-card success selectable" id="consolidado-wa-2027" onclick="selectConsolidado('wa-2027')">
-                        <h3 style="font-size: 1.4em; font-weight: 700;">WhatsApp: <span id="cons-wa2027-titulo-mes" style="color: var(--value-green);">Junio 2028</span> <span id="cons-wa2027-subtitulo" style="display: block; font-size: 0.6em; color: var(--text-gray); font-weight: 600; margin-top: 4px; letter-spacing: 0.5px;">24 MESES · JUN 26 → JUN 28</span></h3>
+                        <h3 style="font-size: 1.4em; font-weight: 700;">WhatsApp: <span style="color: var(--value-green);">Diciembre 2027</span> <span style="display: block; font-size: 0.6em; color: var(--text-gray); font-weight: 600; margin-top: 4px; letter-spacing: 0.5px;">19 MESES · JUN 26 → DIC 27</span></h3>
                         <div style="text-align: left; padding: 0 20px; margin-top: 16px;">
                             <p style="margin: 8px 0; font-size: 0.9em;"><strong>Consumo proyectado:</strong> <span id="cons-wa2027-consumo">-</span></p>
                             <p style="margin: 8px 0; font-size: 0.9em;"><strong>Capacidad actual:</strong> <span id="cons-wa2027-actual">-</span></p>
                             <p style="margin: 8px 0; font-size: 0.9em;"><strong>Capacidad adicional:</strong> <span id="cons-wa2027-adicional">-</span></p>
                             <p style="margin: 12px 0 8px 0; font-size: 1em; color: var(--value-green);"><strong>Inversión:</strong> <span id="cons-wa2027-precio" style="font-size: 1.2em;">-</span></p>
-                        </div>
-                    </div>
-                    <div class="metric-card primary selectable" id="consolidado-wa-2026" onclick="selectConsolidado('wa-2026')">
-                        <h3 style="font-size: 1.4em; font-weight: 700;">WhatsApp: <span id="cons-wa2026-titulo-mes" style="color: var(--sf-blue);">Junio 2027</span> <span id="cons-wa2026-subtitulo" style="display: block; font-size: 0.6em; color: var(--text-gray); font-weight: 600; margin-top: 4px; letter-spacing: 0.5px;">12 MESES · JUN 26 → JUN 27</span></h3>
-                        <div style="text-align: left; padding: 0 20px; margin-top: 16px;">
-                            <p style="margin: 8px 0; font-size: 0.9em;"><strong>Consumo proyectado:</strong> <span id="cons-wa2026-consumo">-</span></p>
-                            <p style="margin: 8px 0; font-size: 0.9em;"><strong>Capacidad actual:</strong> <span id="cons-wa2026-actual">-</span></p>
-                            <p style="margin: 8px 0; font-size: 0.9em;"><strong>Capacidad adicional:</strong> <span id="cons-wa2026-adicional">-</span></p>
-                            <p style="margin: 12px 0 8px 0; font-size: 1em; color: var(--sf-blue);"><strong>Inversión:</strong> <span id="cons-wa2026-precio" style="font-size: 1.2em;">-</span></p>
                         </div>
                     </div>
                     <div class="metric-card warning selectable" id="consolidado-super-2026" onclick="selectConsolidado('super-2026')">
@@ -1975,12 +2041,14 @@
         // true = One-time (toggle ON)
         const waToggles = {
             gas: true,         // Beneficio Gas: One-time
-            digital: false,    // Casos Digital Engagement: Recurrente
+            digital: false,    // Cierre de casos - Notificación respuesta Req.: Recurrente
+            fraudes: false,    // Fraudes - Notificaciones preventivas: Recurrente
+            epa: false,        // Encuesta Post Atención (EPA): Recurrente
             credito: false,    // Tarjeta de Crédito y Consumo: Recurrente
             marketing: false,  // Caso 1 (Encuesta Sucursales 3M): Recurrente
             caso1: false,      // Caso 2 (Encuesta Sucursales 3M Siguientes): Recurrente
             caso2: false,      // Caso 3 (Encuesta Sucursales Regimen): Recurrente
-            caso3: true,       // Caso 4 (Renovación Tarjeta Debito): One-time
+            caso3: false,      // Caso 4 (Renovación Tarjeta Debito): Recurrente Sep 26 → Ene 27 (5 meses según Excel)
             caso4: false,      // Caso 5 (Seguros Notificación Siniestro): Recurrente
             caso5: false,      // Caso 6 (Cobranzas): Recurrente
             caso6: false,      // Caso 7 (Microempresas 6M): Recurrente
@@ -1993,10 +2061,35 @@
             caso13: false      // Caso 14 (slot oculto)
         };
 
-        // Mes de inicio para cada caso (índice 0 = Jun 26 ... 25 = Jul 28)
+        // Mes de finalización para cada caso (aplicable solo a Recurrente).
+        // Valores tomados de la planilla del banco (columnas J y L).
+        // Para One-time, este valor se ignora en el cálculo (solo cuenta el mes de inicio).
+        const waMonthsFin = {
+            gas: 18,         // Beneficio Gas: no aplica (One-time)
+            digital: 18,     // Cierre de casos: Dic 27 (Excel J=4, L=12)
+            fraudes: 18,     // Fraudes - Notificaciones preventivas: Dic 27 (Excel J=4, L=12)
+            epa: 18,         // Encuesta Post Atención: Dic 27 (Excel J=4, L=12)
+            credito: 18,     // Tarjeta de Crédito: cobertura completa 2026-2027 (Dic 27)
+            marketing: 5,    // Caso 1 (Encuesta Sucursales 3M): Nov 26 (Excel J=3)
+            caso1: 8,        // Caso 2 (Encuesta Sucursales 3M Siguientes): Feb 27 (Excel J=1, L=2)
+            caso2: 18,       // Caso 3 (Encuesta Sucursales Regimen): Dic 27 (Excel L=10)
+            caso3: 7,        // Caso 4 (Renovación Tarjeta Debito): Ene 27 (One-time actualmente, aplica si pasa a Recurrente)
+            caso4: 18,       // Caso 5 (Seguros Notificación Siniestro): Dic 27
+            caso5: 18,       // Caso 6 (Cobranzas): Dic 27
+            caso6: 12,       // Caso 7 (Microempresas 6M): Jun 27 (Excel L=6)
+            caso7: 17,       // Caso 8 (Microempresas): Nov 27 (Excel L=5)
+            caso8: 17,       // Caso 9 (My Pyme): Nov 27 (Excel J=3, L=11)
+            caso9: 18,       // Caso 10 (Interacciones Inbound Bot): Dic 27
+            caso10: 18,      // Caso 11 (Interacciones Inbound Casos): Dic 27
+            caso11: 18, caso12: 18, caso13: 18
+        };
+
+        // Mes de inicio para cada caso (índice 0 = Jun 26 ... 18 = Dic 27)
         const waMonths = {
             gas: 0,        // Jun 26
-            digital: 3,    // Sep 26
+            digital: 3,    // Sep 26 (Cierre de casos)
+            fraudes: 3,    // Sep 26
+            epa: 3,        // Sep 26
             credito: 2,    // Ago 26
             marketing: 3,  // Caso 1 (Encuesta Sucursales 3M): Sep 26
             caso1: 6,      // Caso 2 (Encuesta Sucursales 3M Siguientes): Dic 26
@@ -2022,7 +2115,9 @@
         // Tipo de mensaje por caso
         const waTipos = {
             gas: 'promocional',
-            digital: 'transaccional',
+            digital: 'transaccional',      // Cierre de casos
+            fraudes: 'transaccional',
+            epa: 'transaccional',
             credito: 'promocional',
             marketing: 'transaccional',    // Encuesta Sucursales 3M
             caso1: 'transaccional',        // Encuesta Sucursales 3M Siguientes
@@ -2033,23 +2128,25 @@
             caso6: 'promocional',          // Microempresas 6M
             caso7: 'promocional',          // Microempresas
             caso8: 'promocional',          // My Pyme
-            caso9: 'transaccional',        // Interacciones Inbound Bot
-            caso10: 'transaccional',       // Interacciones Inbound Casos
+            caso9: 'servicio',             // Interacciones Inbound Bot (Excel V18 = Servicio, K18 vacío → outbound gratis)
+            caso10: 'servicio',            // Interacciones Inbound Casos (consistencia con caso9)
             caso11: 'promocional', caso12: 'promocional', caso13: 'promocional'
         };
 
-        // Nombre editable por caso proyectado (los confirmados tienen nombre fijo en HTML)
+        // Nombre por caso — para casos visibles se usa como label fijo (no editable).
+        // Los ocultos (caso10-caso13) reciben el label como pre-llenado del input editable.
+        // Textos alineados con la hoja de cálculo del banco (columna A).
         const waNombres = {
-            marketing: 'Encuesta Sucursales 3M',
-            caso1: 'Encuesta Sucursales 3M Siguientes',
-            caso2: 'Encuesta Sucursales Regimen',
-            caso3: 'Renovación Tarjeta Debito',
-            caso4: 'Seguros Notificación Siniestro',
+            marketing: 'Encuestas Sucursal - primeros 3m',
+            caso1: 'Encuestas Sucursal - siguientes 3m',
+            caso2: 'Encuestas Sucursal - regimen',
+            caso3: 'Renovación Tarjeta de Debito',
+            caso4: 'Seguros notificación siniestro',
             caso5: 'Cobranzas',
-            caso6: 'Microempresas 6M',
-            caso7: 'Microempresas',
-            caso8: 'My Pyme',
-            caso9: 'Interacciones Inbound Bot',
+            caso6: 'Microempresas - primeros 6m',
+            caso7: 'Microempresas - desde mes 7',
+            caso8: 'Mi PyME',
+            caso9: 'Interacciones Inbound',
             caso10: 'Interacciones Inbound Casos',
             caso11: '', caso12: '', caso13: ''
         };
@@ -2057,23 +2154,25 @@
         // Volumen "techo" por caso, en formato es-CL para el input
         const waMensajesDefault = {
             gas: '219.985',
-            digital: '74.000',
+            digital: '19.800',      // Cierre de casos (Excel F row 6)
+            fraudes: '23.800',      // Fraudes (Excel F row 7)
+            epa: '32.400',          // EPA (Excel F row 8)
             credito: '200.000',
             marketing: '17.600',
-            caso1: '14.900',
-            caso2: '20.300',
+            caso1: '32.500',
+            caso2: '52.800',
             caso3: '118.335',
             caso4: '20.000',
             caso5: '15.000',
             caso6: '90.000',
-            caso7: '90.000',
+            caso7: '180.000',
             caso8: '30.000',
-            caso9: '963.000',
+            caso9: '107.000',
             caso10: '0',
             caso11: '0', caso12: '0', caso13: '0'
         };
 
-        const WA_CATEGORIES = ['gas', 'digital', 'credito', 'marketing', 'caso1', 'caso2', 'caso3', 'caso4', 'caso5', 'caso6', 'caso7', 'caso8', 'caso9', 'caso10', 'caso11', 'caso12', 'caso13'];
+        const WA_CATEGORIES = ['gas', 'digital', 'fraudes', 'epa', 'credito', 'marketing', 'caso1', 'caso2', 'caso3', 'caso4', 'caso5', 'caso6', 'caso7', 'caso8', 'caso9', 'caso10', 'caso11', 'caso12', 'caso13'];
         // Slots ocultos que se revelan con el botón "+ Agregar caso" (en orden)
         const WA_HIDDEN_SLOTS = ['caso10', 'caso11', 'caso12', 'caso13'];
 
@@ -2084,7 +2183,9 @@
         // Slots ocultos también en 1.0 (parten en 0 mensajes, no tienen sentido a 80%).
         const waEscalas = {
             gas: 1,          // 100%
-            digital: 0.95,   // 95%
+            digital: 0.95,   // 95% (Cierre de casos)
+            fraudes: 0.95,   // 95% (Excel Y row 7)
+            epa: 0.95,       // 95% (Excel Y row 8)
             credito: 0.8,    // 80%
             marketing: 0.9,  // Caso 1: 90%
             caso1: 0.9,      // Caso 2: 90%
@@ -2100,38 +2201,83 @@
             caso11: 1, caso12: 1, caso13: 1
         };
 
+        // Meta cobrará por mensajes inbound a partir de octubre 2026 con multiplicador 24.7.
+        // Fórmula: inbound = outbound_raw × tasa_respuesta × #_mensajes_respuesta
+        // Valores base tomados de la planilla del banco (col G y H).
+        const WA_INBOUND_MULTIPLICADOR = 24.7;
+
+        // Tasa de respuesta por caso (decimal, 0 a 1)
+        const waTasaRespuesta = {
+            gas: 0,          // Beneficio Gas: sin inbound
+            digital: 0,      // Cierre de casos: sin inbound (Excel G row 6 = 0)
+            fraudes: 0.6,    // Fraudes (Excel G row 7 = 0.6)
+            epa: 0.55,       // EPA (Excel G row 8 = 0.55)
+            credito: 0.3,    // Tarjeta de Crédito y Crédito de Consumo
+            marketing: 0.3,  // Caso 1: Encuesta Sucursales 3M
+            caso1: 0.3,      // Caso 2: Encuesta Sucursales 3M Siguientes
+            caso2: 0.3,      // Caso 3: Encuesta Sucursales Regimen
+            caso3: 0.3,      // Caso 4: Renovación Tarjeta Debito
+            caso4: 0.3,      // Caso 5: Seguros Notificación Siniestro
+            caso5: 0.5,      // Caso 6: Cobranzas
+            caso6: 0.3,      // Caso 7: Microempresas 6M
+            caso7: 0.3,      // Caso 8: Microempresas
+            caso8: 0.3,      // Caso 9: My Pyme
+            caso9: 1.0,      // Caso 10: Interacciones Inbound Bot
+            caso10: 1.0,     // Caso 11: Interacciones Inbound Casos
+            caso11: 0, caso12: 0, caso13: 0
+        };
+
+        // # de mensajes de respuesta por conversación inbound (entero)
+        const waMsgRespuesta = {
+            gas: 0,
+            digital: 0,      // Cierre de casos: 0
+            fraudes: 2,      // Fraudes (Excel H row 7 = 2)
+            epa: 2,          // EPA (Excel H row 8 = 2)
+            credito: 2,
+            marketing: 2,
+            caso1: 2,
+            caso2: 2,
+            caso3: 2,
+            caso4: 2,
+            caso5: 2,
+            caso6: 2,
+            caso7: 2,
+            caso8: 2,
+            caso9: 9,        // Interacciones Inbound Bot
+            caso10: 9,       // Interacciones Inbound Casos
+            caso11: 0, caso12: 0, caso13: 0
+        };
+
         // Meses en español para labels dinámicos.
-        // El array del simulador arranca en Junio 2026 (idx 0) y termina en Julio 2028 (idx 25).
+        // El array del simulador arranca en Junio 2026 (idx 0) y termina en Diciembre 2027 (idx 18).
         const MESES_LARGO = [
             'Junio 2026', 'Julio 2026', 'Agosto 2026', 'Septiembre 2026', 'Octubre 2026', 'Noviembre 2026', 'Diciembre 2026',
             'Enero 2027', 'Febrero 2027', 'Marzo 2027', 'Abril 2027', 'Mayo 2027', 'Junio 2027',
-            'Julio 2027', 'Agosto 2027', 'Septiembre 2027', 'Octubre 2027', 'Noviembre 2027', 'Diciembre 2027',
-            'Enero 2028', 'Febrero 2028', 'Marzo 2028', 'Abril 2028', 'Mayo 2028', 'Junio 2028', 'Julio 2028'
+            'Julio 2027', 'Agosto 2027', 'Septiembre 2027', 'Octubre 2027', 'Noviembre 2027', 'Diciembre 2027'
         ];
         const MESES_CORTO_UPPER = [
             'JUN 26', 'JUL 26', 'AGO 26', 'SEP 26', 'OCT 26', 'NOV 26', 'DIC 26',
             'ENE 27', 'FEB 27', 'MAR 27', 'ABR 27', 'MAY 27', 'JUN 27',
-            'JUL 27', 'AGO 27', 'SEP 27', 'OCT 27', 'NOV 27', 'DIC 27',
-            'ENE 28', 'FEB 28', 'MAR 28', 'ABR 28', 'MAY 28', 'JUN 28', 'JUL 28'
+            'JUL 27', 'AGO 27', 'SEP 27', 'OCT 27', 'NOV 27', 'DIC 27'
         ];
 
-        // Devuelve el idx del mes "hoy" dentro del array de 26 meses (Jun 26 = 0).
+        // Devuelve el idx del mes "hoy" dentro del array de 19 meses (Jun 26 = 0, Dic 27 = 18).
         // Si hoy es anterior al inicio del contrato o posterior al fin del array, hace clamp.
         function calcularIdxHoy() {
             const now = new Date();
             // Junio 2026 = año 2026, mes idx 5 (0-indexado).
             const meses = (now.getFullYear() - 2026) * 12 + (now.getMonth() - 5);
             if (meses < 0) return 0;
-            if (meses > 25) return 25;
+            if (meses > 18) return 18;
             return meses;
         }
 
         // Devuelve el idx del objetivo de Propuesta 1: "12 meses reales desde hoy".
-        // Hace clamp al último idx del array (Jul 28) si se pasa del rango.
+        // Hace clamp al último idx del array (Dic 27 = 18) si se pasa del rango.
         function calcularIdxProp1() {
             const idxHoy = calcularIdxHoy();
             const target = idxHoy + 12;
-            return Math.min(target, 25);
+            return Math.min(target, 18);
         }
 
         // Sincroniza los labels dinámicos de Propuesta 1 (KPI card, propuesta, consolidado, resumen).
@@ -2233,23 +2379,68 @@
             return mensajes * escala;
         }
 
-        // Convierte mensajes+tipo del caso a paquetes de 1.000 créditos.
-        // Los mensajes usados en el cálculo son los efectivos (techo × escala).
-        // paquetes = (mensajes efectivos × multiplicador) / 1000
-        function getPaquetesFor(cat) {
+        // Mensajes outbound crudos (sin escala aplicada). Se usan para calcular inbound.
+        function getMensajesOutboundRaw(cat) {
+            const input = document.getElementById(`wa-${cat}-mensajes`);
+            let mensajes = 0;
+            if (input) {
+                const digitsOnly = String(input.value).replace(/\D/g, '');
+                mensajes = digitsOnly ? parseInt(digitsOnly, 10) : 0;
+            }
+            return mensajes;
+        }
+
+        // Mensajes inbound = outbound_raw × tasa_respuesta × #_mensajes_respuesta
+        // Fórmula tomada de la planilla del banco (columna Q). No aplica escala.
+        function getMensajesInbound(cat) {
+            const tasa = waTasaRespuesta[cat] != null ? waTasaRespuesta[cat] : 0;
+            const msgResp = waMsgRespuesta[cat] != null ? waMsgRespuesta[cat] : 0;
+            return getMensajesOutboundRaw(cat) * tasa * msgResp;
+        }
+
+        // Paquetes outbound = mensajes efectivos × multiplicador del tipo / 1000
+        function getPaquetesOutbound(cat) {
             const tipo = waTipos[cat] || 'promocional';
             const mult = WA_MULTIPLIERS[tipo] || 0;
             return (getMensajesEfectivos(cat) * mult) / 1000;
         }
 
-        function updatePaquetesDisplay(cat) {
-            const span = document.getElementById(`wa-${cat}-paquetes`);
-            if (span) span.textContent = formatNumber(getPaquetesFor(cat));
+        // Paquetes inbound = mensajes inbound × 24.7 / 1000 (Meta cobra inbound a 24.7 desde octubre)
+        function getPaquetesInbound(cat) {
+            return (getMensajesInbound(cat) * WA_INBOUND_MULTIPLICADOR) / 1000;
+        }
 
-            const escalaPctSpan = document.getElementById(`wa-${cat}-escala-pct`);
-            if (escalaPctSpan) {
+        // Paquetes totales por caso = outbound + inbound
+        function getPaquetesFor(cat) {
+            return getPaquetesOutbound(cat) + getPaquetesInbound(cat);
+        }
+
+        function updatePaquetesDisplay(cat) {
+            const totalSpan = document.getElementById(`wa-${cat}-paquetes`);
+            if (totalSpan) totalSpan.textContent = formatNumber(getPaquetesFor(cat));
+
+            // Desglose out + in (solo si hay inbound)
+            const desgloseSpan = document.getElementById(`wa-${cat}-paquetes-desglose`);
+            if (desgloseSpan) {
+                const inbound = getPaquetesInbound(cat);
+                if (inbound > 0) {
+                    const outbound = getPaquetesOutbound(cat);
+                    desgloseSpan.textContent = ' · ' + formatNumber(outbound) + ' out + ' + formatNumber(inbound) + ' in';
+                } else {
+                    desgloseSpan.textContent = '';
+                }
+            }
+
+            // Mensajes inbound derivado (visible en la fila de inbound)
+            const inboundMsgSpan = document.getElementById(`wa-${cat}-mensajes-inbound`);
+            if (inboundMsgSpan) {
+                inboundMsgSpan.textContent = formatNumber(getMensajesInbound(cat));
+            }
+
+            const escalaPctInput = document.getElementById(`wa-${cat}-escala-pct-input`);
+            if (escalaPctInput && document.activeElement !== escalaPctInput) {
                 const pct = Math.round((waEscalas[cat] != null ? waEscalas[cat] : 1) * 100);
-                escalaPctSpan.textContent = pct + '%';
+                escalaPctInput.value = pct;
             }
 
             const escalaMensajesSpan = document.getElementById(`wa-${cat}-escala-mensajes`);
@@ -2292,8 +2483,7 @@
             };
             const MESES = ['Jun 26','Jul 26','Ago 26','Sep 26','Oct 26','Nov 26','Dic 26',
                 'Ene 27','Feb 27','Mar 27','Abr 27','May 27','Jun 27','Jul 27',
-                'Ago 27','Sep 27','Oct 27','Nov 27','Dic 27','Ene 28','Feb 28',
-                'Mar 28','Abr 28','May 28','Jun 28','Jul 28'];
+                'Ago 27','Sep 27','Oct 27','Nov 27','Dic 27'];
             const monthOptionsHTML = MESES.map(function(m, i) {
                 return '<option value="' + i + '">' + m + '</option>';
             }).join('');
@@ -2303,9 +2493,15 @@
 
             Object.keys(INJECTED_LABELS).forEach(function(cat) {
                 if (document.getElementById('wa-' + cat + '-slot')) return;
-                const label = INJECTED_LABELS[cat] || cat;
+                const numeroLabel = INJECTED_LABELS[cat] || cat;
                 const isHidden = WA_HIDDEN_SLOTS.indexOf(cat) !== -1;
                 const styleAttr = isHidden ? ' style="display: none;"' : '';
+                // Casos visibles: label fijo con el nombre del Excel (sin input).
+                // Casos ocultos: mantienen input editable con placeholder para permitir naming custom.
+                const nombreFijo = waNombres[cat] || '';
+                const labelHTML = isHidden
+                    ? '<label>' + numeroLabel + ' <input type="text" class="case-name-input" id="wa-' + cat + '-name" placeholder="Nombre del caso..."></label>'
+                    : '<label>' + nombreFijo + '</label>';
                 const html =
                     '<div class="control-group-with-toggle" id="wa-' + cat + '-slot"' + styleAttr + '>' +
                         '<div class="toggle-container">' +
@@ -2320,7 +2516,7 @@
                                 '<select id="wa-' + cat + '-month">' + monthOptionsHTML + '</select>' +
                             '</div>' +
                         '</div>' +
-                        '<label>' + label + ' <input type="text" class="case-name-input" id="wa-' + cat + '-name" placeholder="Nombre del caso..."></label>' +
+                        labelHTML +
                         '<div class="msg-controls">' +
                             '<span class="mensajes-label">Tipo:</span>' +
                             '<select id="wa-' + cat + '-tipo" class="tipo-select">' +
@@ -2377,7 +2573,6 @@
         // Propuestas consolidadas seleccionadas
         const propuestasConsolidadas = {
             'wa-2027': false,
-            'wa-2026': false,
             'super-2026': false
         };
 
@@ -2939,11 +3134,40 @@
             // Inyectar slots ocultos (Casos 8-14) antes de configurar toggles y listeners
             inyectarSlotsOcultosProyectados();
 
+            // Inyectar dropdown de Mes fin al lado del Mes inicio (para todos los casos)
+            const MESES_CORTO = ['Jun 26','Jul 26','Ago 26','Sep 26','Oct 26','Nov 26','Dic 26',
+                'Ene 27','Feb 27','Mar 27','Abr 27','May 27','Jun 27','Jul 27',
+                'Ago 27','Sep 27','Oct 27','Nov 27','Dic 27'];
+            const monthOptionsHTML = MESES_CORTO.map(function(m, i) {
+                return '<option value="' + i + '">' + m + '</option>';
+            }).join('');
+            WA_CATEGORIES.forEach(function(cat) {
+                if (document.getElementById(`wa-${cat}-month-fin`)) return;
+                const inicioSelector = document.getElementById(`wa-${cat}-month-selector`);
+                if (!inicioSelector) return;
+
+                const finSelector = document.createElement('div');
+                finSelector.className = 'month-selector';
+                finSelector.id = `wa-${cat}-month-fin-selector`;
+                finSelector.style.display = 'inline-flex';
+                finSelector.innerHTML =
+                    '<label>Mes fin:</label>' +
+                    '<select id="wa-' + cat + '-month-fin">' + monthOptionsHTML + '</select>';
+
+                inicioSelector.parentNode.insertBefore(finSelector, inicioSelector.nextSibling);
+
+                // Listener para cambio de mes fin
+                document.getElementById(`wa-${cat}-month-fin`).addEventListener('change', function() {
+                    waMonthsFin[cat] = parseInt(this.value, 10);
+                    updateWaProjection();
+                });
+            });
+
             // Inicializar toggles (uno por categoría)
             WA_CATEGORIES.forEach(setupToggle);
 
             // Sincronizar el DOM inicial con los objetos de estado
-            // (nombres, mensajes, tipo, mes de inicio, toggle Recurrente/One-time)
+            // (nombres, mensajes, tipo, mes de inicio/fin, toggle Recurrente/One-time)
             WA_CATEGORIES.forEach(function(cat) {
                 const mensajesInput = document.getElementById(`wa-${cat}-mensajes`);
                 if (mensajesInput && waMensajesDefault[cat] != null) {
@@ -2961,9 +3185,14 @@
                 if (monthSelect && waMonths[cat] != null) {
                     monthSelect.value = String(waMonths[cat]);
                 }
+                const monthFinSelect = document.getElementById(`wa-${cat}-month-fin`);
+                if (monthFinSelect && waMonthsFin[cat] != null) {
+                    monthFinSelect.value = String(waMonthsFin[cat]);
+                }
                 const toggle = document.getElementById(`wa-${cat}-toggle`);
                 const label = document.getElementById(`wa-${cat}-type-label`);
                 const badge = document.getElementById(`wa-${cat}-badge`);
+                const monthFinSelector = document.getElementById(`wa-${cat}-month-fin-selector`);
                 const isOnetime = !!waToggles[cat];
                 if (toggle) toggle.checked = isOnetime;
                 if (label) {
@@ -2973,6 +3202,10 @@
                 if (badge) {
                     badge.textContent = isOnetime ? 'One-time' : 'Recurrente';
                     badge.className = 'campaign-type-badge ' + (isOnetime ? 'onetime' : 'recurring');
+                }
+                // Mes fin solo aplica a Recurrente
+                if (monthFinSelector) {
+                    monthFinSelector.style.display = isOnetime ? 'none' : 'inline-flex';
                 }
             });
 
@@ -2988,6 +3221,8 @@
                         waEscalas[cat] = 1;
                         const slider = document.getElementById(`wa-${cat}-escala`);
                         if (slider) slider.value = 1000;
+                        const pctInput = document.getElementById(`wa-${cat}-escala-pct-input`);
+                        if (pctInput) pctInput.value = 100;
                         updatePaquetesDisplay(cat);
                         updateWaProjection();
                     });
@@ -3014,10 +3249,12 @@
 
             // Textos de los tooltips por-caso (idénticos para los 10 casos)
             const INFO_TIPO = 'Meta aplica un multiplicador de créditos según el tipo: Promocional 109,76 · Transaccional 24,7 · Servicio 0. El SKU que compra BancoEstado incluye 1.000 créditos por paquete.';
-            const INFO_MENSAJES = 'Volumen máximo que este caso puede enviar. El slider debajo permite simular escenarios entre 0 y este valor.';
+            const INFO_MENSAJES = 'Volumen máximo de mensajes outbound que este caso puede enviar. El slider debajo permite simular escenarios entre 0 y este valor.';
             const INFO_TOGGLE = 'Recurrente: el volumen se envía cada mes, desde el mes de inicio hasta el fin del contrato. One-time: se envía una sola vez, en el mes seleccionado.';
             const INFO_ESCALA = 'Escala el volumen del caso entre 0% y el techo definido en "Mensajes", sin necesidad de escribirlo nuevamente. Útil para simular escenarios conservadores o parciales.';
-            const INFO_PAQUETES = 'Paquetes de 1.000 créditos requeridos = (mensajes efectivos × multiplicador Meta) / 1.000. Es el SKU que BancoEstado adquiere en el contrato.';
+            const INFO_PAQUETES = 'Paquetes de 1.000 créditos totales requeridos, calculado como (mensajes efectivos outbound × multiplicador Meta + mensajes inbound × 24,7) / 1.000. Es el SKU que BancoEstado adquiere en el contrato.';
+            const INFO_TASA_RESP = 'Porcentaje de mensajes outbound que generan una conversación inbound del usuario. Ej: 30% significa que 3 de cada 10 mensajes reciben respuesta.';
+            const INFO_MSG_RESP = 'Cantidad promedio de mensajes que se intercambian en cada conversación inbound. Ej: si un usuario responde 2 veces, se ingresa 2.';
 
             // Inyectar slider de escala + tooltips por caso
             WA_CATEGORIES.forEach(function(cat) {
@@ -3040,28 +3277,113 @@
                     badge.parentNode.insertBefore(hint, badge.nextSibling);
                 }
 
-                // Tooltip #5 — ≈ Paquetes derivados (dentro del span)
+                // Span de desglose de paquetes (out + in) — se popula en updatePaquetesDisplay
                 const paquetesWrapper = paquetesSpan.parentNode; // el span.paquetes-derivados
+                if (paquetesWrapper && !document.getElementById(`wa-${cat}-paquetes-desglose`)) {
+                    const desgloseSpan = document.createElement('span');
+                    desgloseSpan.id = `wa-${cat}-paquetes-desglose`;
+                    desgloseSpan.className = 'paquetes-desglose';
+                    // Insertar antes del info-hint si existe, o al final si no
+                    const paquetesHint = paquetesWrapper.querySelector('.info-hint');
+                    if (paquetesHint) {
+                        paquetesWrapper.insertBefore(desgloseSpan, paquetesHint);
+                    } else {
+                        paquetesWrapper.appendChild(desgloseSpan);
+                    }
+                }
+
+                // Tooltip #5 — ≈ Paquetes derivados (dentro del span)
                 if (paquetesWrapper && !paquetesWrapper.querySelector('.info-hint')) {
                     paquetesWrapper.appendChild(makeInfoHint(INFO_PAQUETES));
                 }
 
-                // Slider de escala + tooltip #4 (si aún no está inyectado)
+                // Fila de inbound: Tasa Respuesta + # MSG Respuesta + Mensajes Inbound (derivado)
+                if (!document.getElementById(`wa-${cat}-tasa-resp`)) {
+                    const tasaInicial = Math.round((waTasaRespuesta[cat] != null ? waTasaRespuesta[cat] : 0) * 100);
+                    const msgInicial = waMsgRespuesta[cat] != null ? waMsgRespuesta[cat] : 0;
+                    const inboundRow = document.createElement('div');
+                    inboundRow.className = 'inbound-row';
+                    inboundRow.innerHTML =
+                        '<span class="mensajes-label">Tasa resp.:</span>' +
+                        '<input type="text" inputmode="numeric" id="wa-' + cat + '-tasa-resp" class="tasa-input" value="' + tasaInicial + '"><span class="tasa-suffix">%</span>' +
+                        '<span class="mensajes-label"># MSG resp.:</span>' +
+                        '<input type="text" inputmode="numeric" id="wa-' + cat + '-msg-resp" class="msg-input" value="' + msgInicial + '">' +
+                        '<span class="inbound-derivado">Mensajes inbound: <strong id="wa-' + cat + '-mensajes-inbound">0</strong></span>';
+
+                    const tasaLabel = inboundRow.querySelector('.mensajes-label');
+                    if (tasaLabel) tasaLabel.appendChild(makeInfoHint(INFO_TASA_RESP));
+                    const msgLabel = inboundRow.querySelectorAll('.mensajes-label')[1];
+                    if (msgLabel) msgLabel.appendChild(makeInfoHint(INFO_MSG_RESP));
+
+                    // Insertar la fila después de msg-controls
+                    const msgControls = block.querySelector('.msg-controls');
+                    if (msgControls) {
+                        msgControls.parentNode.insertBefore(inboundRow, msgControls.nextSibling);
+                    } else {
+                        block.appendChild(inboundRow);
+                    }
+
+                    // Listener del input de tasa (acepta números con o sin coma, se parsea como %)
+                    document.getElementById('wa-' + cat + '-tasa-resp').addEventListener('input', function() {
+                        const raw = this.value.replace(',', '.').replace(/[^\d.]/g, '');
+                        const num = parseFloat(raw);
+                        const pct = isNaN(num) ? 0 : Math.max(0, Math.min(100, num));
+                        waTasaRespuesta[cat] = pct / 100;
+                        updatePaquetesDisplay(cat);
+                        updateWaProjection();
+                    });
+
+                    // Listener del input de #MSG resp
+                    document.getElementById('wa-' + cat + '-msg-resp').addEventListener('input', function() {
+                        const raw = this.value.replace(/\D/g, '');
+                        const num = raw === '' ? 0 : parseInt(raw, 10);
+                        waMsgRespuesta[cat] = num;
+                        // Reformatear el input para que solo tenga dígitos
+                        this.value = num > 0 ? String(num) : (this.value === '' ? '' : '0');
+                        updatePaquetesDisplay(cat);
+                        updateWaProjection();
+                    });
+                }
+
+                // Slider de escala + campo editable de % + tooltip #4 (si aún no está inyectado)
                 if (!document.getElementById(`wa-${cat}-escala`)) {
                     const escalaInicial = waEscalas[cat] != null ? waEscalas[cat] : 1;
                     const sliderValue = Math.round(escalaInicial * 1000);
+                    const pctInicial = Math.round(escalaInicial * 100);
                     const row = document.createElement('div');
                     row.className = 'escala-row';
                     row.innerHTML =
                         '<input type="range" id="wa-' + cat + '-escala" class="escala-slider" min="0" max="1000" value="' + sliderValue + '">' +
-                        '<span class="escala-label"><strong id="wa-' + cat + '-escala-pct">' + Math.round(escalaInicial * 100) + '%</strong> · <span id="wa-' + cat + '-escala-mensajes">-</span> mensajes activos</span>';
+                        '<span class="escala-label">' +
+                            '<input type="text" inputmode="numeric" id="wa-' + cat + '-escala-pct-input" class="escala-pct-input" value="' + pctInicial + '">' +
+                            '<span class="escala-suffix">%</span>' +
+                            ' · <span id="wa-' + cat + '-escala-mensajes">-</span> mensajes activos' +
+                        '</span>';
                     row.appendChild(makeInfoHint(INFO_ESCALA));
                     block.appendChild(row);
 
+                    // Slider → estado + input
                     document.getElementById('wa-' + cat + '-escala').addEventListener('input', function() {
                         waEscalas[cat] = parseInt(this.value, 10) / 1000;
                         updatePaquetesDisplay(cat);
                         updateWaProjection();
+                    });
+
+                    // Input % → estado + slider
+                    document.getElementById('wa-' + cat + '-escala-pct-input').addEventListener('input', function() {
+                        const raw = this.value.replace(',', '.').replace(/[^\d.]/g, '');
+                        const num = parseFloat(raw);
+                        const pct = isNaN(num) ? 0 : Math.max(0, Math.min(100, num));
+                        waEscalas[cat] = pct / 100;
+                        const slider = document.getElementById(`wa-${cat}-escala`);
+                        if (slider) slider.value = Math.round(pct * 10);
+                        updatePaquetesDisplay(cat);
+                        updateWaProjection();
+                    });
+
+                    document.getElementById('wa-' + cat + '-escala-pct-input').addEventListener('blur', function() {
+                        // Al perder foco, reformatear al valor limpio en entero
+                        this.value = Math.round((waEscalas[cat] != null ? waEscalas[cat] : 1) * 100);
                     });
                 }
             });
@@ -3084,23 +3406,16 @@
         }
 
         function selectPropuesta(propuesta) {
-            // Toggle selection
+            // Toggle selection — solo hay una propuesta ('2027' = hasta Dic 27)
+            const card = document.getElementById('propuesta-2027');
+            if (!card) return;
             if (propuestaSeleccionada === propuesta) {
                 propuestaSeleccionada = null;
-                document.getElementById('propuesta-2027').classList.remove('selected');
-                document.getElementById('propuesta-2026').classList.remove('selected');
+                card.classList.remove('selected');
             } else {
                 propuestaSeleccionada = propuesta;
-                document.getElementById('propuesta-2027').classList.remove('selected');
-                document.getElementById('propuesta-2026').classList.remove('selected');
-
-                if (propuesta === '2027') {
-                    document.getElementById('propuesta-2027').classList.add('selected');
-                } else if (propuesta === '2026') {
-                    document.getElementById('propuesta-2026').classList.add('selected');
-                }
+                card.classList.add('selected');
             }
-
             updateWaProjection();
         }
 
@@ -3114,18 +3429,25 @@
             toggle.addEventListener('change', function() {
                 waToggles[category] = this.checked;
 
+                // Se re-consulta aquí porque el mes-fin se inyecta dinámicamente
+                const monthFinSelector = document.getElementById(`wa-${category}-month-fin-selector`);
+
                 if (this.checked) {
                     // Toggle ON = One-time
                     label.textContent = 'One-time';
                     label.classList.add('active');
                     badge.textContent = 'One-time';
                     badge.className = 'campaign-type-badge onetime';
+                    // Mes fin no aplica a One-time — se oculta
+                    if (monthFinSelector) monthFinSelector.style.display = 'none';
                 } else {
                     // Toggle OFF = Recurrente
                     label.textContent = 'Recurrente';
                     label.classList.remove('active');
                     badge.textContent = 'Recurrente';
                     badge.className = 'campaign-type-badge recurring';
+                    // Mes fin aplica a Recurrente — se muestra
+                    if (monthFinSelector) monthFinSelector.style.display = 'inline-flex';
                 }
                 // Mes de inicio aplica a ambos modos: One-time = mes único; Recurrente = mes desde el cual empieza
                 monthSelector.style.display = 'inline-flex';
@@ -3133,7 +3455,7 @@
                 updateWaProjection();
             });
 
-            // Event listener para cambio de mes
+            // Event listener para cambio de mes de inicio
             monthSelect.addEventListener('change', function() {
                 waMonths[category] = parseInt(this.value);
                 updateWaProjection();
@@ -3238,25 +3560,12 @@
 
         function updateWaProjection() {
             const wa = data.whatsapp;
-            // Los volúmenes internos siguen siendo paquetes de 1.000 créditos.
-            // Se derivan de mensajes × multiplicador / 1000 según el tipo de cada caso.
-            const gas = getPaquetesFor('gas');
-            const digital = getPaquetesFor('digital');
-            const credito = getPaquetesFor('credito');
-            const marketing = getPaquetesFor('marketing');
-            const caso1 = getPaquetesFor('caso1');
-            const caso2 = getPaquetesFor('caso2');
-            const caso3 = getPaquetesFor('caso3');
-            const caso4 = getPaquetesFor('caso4');
-            const caso5 = getPaquetesFor('caso5');
-            const caso6 = getPaquetesFor('caso6');
-            const caso7 = getPaquetesFor('caso7');
-            const caso8 = getPaquetesFor('caso8');
-            const caso9 = getPaquetesFor('caso9');
-            const caso10 = getPaquetesFor('caso10');
-            const caso11 = getPaquetesFor('caso11');
-            const caso12 = getPaquetesFor('caso12');
-            const caso13 = getPaquetesFor('caso13');
+            // Paquetes por caso (outbound + inbound), pre-computados una sola vez.
+            // Se derivan de mensajes × multiplicador / 1000 según el tipo de cada caso, más el inbound.
+            const paquetesPorCat = {};
+            WA_CATEGORIES.forEach(function(cat) {
+                paquetesPorCat[cat] = getPaquetesFor(cat);
+            });
 
             // Idx del objetivo dinámico de Propuesta 1 (12 meses reales desde hoy).
             const idxProp1 = calcularIdxProp1();
@@ -3264,9 +3573,8 @@
             // Calcular desde Junio 2026 hasta Diciembre 2027 (19 meses)
             const meses = ['Jun 26', 'Jul 26', 'Ago 26', 'Sep 26', 'Oct 26', 'Nov 26', 'Dic 26',
                            'Ene 27', 'Feb 27', 'Mar 27', 'Abr 27', 'May 27', 'Jun 27',
-                           'Jul 27', 'Ago 27', 'Sep 27', 'Oct 27', 'Nov 27', 'Dic 27',
-                           'Ene 28', 'Feb 28', 'Mar 28', 'Abr 28', 'May 28', 'Jun 28', 'Jul 28'];
-            const HIGHLIGHT_MONTHS = [13, 25]; // Jul 27 y Jul 28 — propuestas anuales
+                           'Jul 27', 'Ago 27', 'Sep 27', 'Oct 27', 'Nov 27', 'Dic 27'];
+            const HIGHLIGHT_MONTHS = [idxProp1, 18]; // hito Prop 1 (dinámico) y Dic 27 (fin del período)
 
             const consumoMensual = [];
             const consumoAcumulado = [];
@@ -3276,64 +3584,25 @@
             let acumulado = 0;
             let alertShown = false;
             let mesOverage = null;
-            let acumuladoDic2026 = 0;
             let acumuladoDic2027 = 0;
 
-            for (let i = 0; i < 26; i++) {
+            for (let i = 0; i < 19; i++) {
                 let consumoMes = 0;
 
-                // Toggle OFF (false) = Recurrente desde el mes de inicio en adelante
+                // Toggle OFF (false) = Recurrente entre mes inicio y mes fin (inclusive)
                 // Toggle ON  (true)  = One-time, solo en el mes de inicio
-                if (!waToggles.gas && i >= waMonths.gas) consumoMes += gas;
-                else if (waToggles.gas && i === waMonths.gas) consumoMes += gas;
-
-                if (!waToggles.digital && i >= waMonths.digital) consumoMes += digital;
-                else if (waToggles.digital && i === waMonths.digital) consumoMes += digital;
-
-                if (!waToggles.credito && i >= waMonths.credito) consumoMes += credito;
-                else if (waToggles.credito && i === waMonths.credito) consumoMes += credito;
-
-                if (!waToggles.marketing && i >= waMonths.marketing) consumoMes += marketing;
-                else if (waToggles.marketing && i === waMonths.marketing) consumoMes += marketing;
-
-                if (!waToggles.caso1 && i >= waMonths.caso1) consumoMes += caso1;
-                else if (waToggles.caso1 && i === waMonths.caso1) consumoMes += caso1;
-
-                if (!waToggles.caso2 && i >= waMonths.caso2) consumoMes += caso2;
-                else if (waToggles.caso2 && i === waMonths.caso2) consumoMes += caso2;
-
-                if (!waToggles.caso3 && i >= waMonths.caso3) consumoMes += caso3;
-                else if (waToggles.caso3 && i === waMonths.caso3) consumoMes += caso3;
-
-                if (!waToggles.caso4 && i >= waMonths.caso4) consumoMes += caso4;
-                else if (waToggles.caso4 && i === waMonths.caso4) consumoMes += caso4;
-
-                if (!waToggles.caso5 && i >= waMonths.caso5) consumoMes += caso5;
-                else if (waToggles.caso5 && i === waMonths.caso5) consumoMes += caso5;
-
-                if (!waToggles.caso6 && i >= waMonths.caso6) consumoMes += caso6;
-                else if (waToggles.caso6 && i === waMonths.caso6) consumoMes += caso6;
-
-                if (!waToggles.caso7 && i >= waMonths.caso7) consumoMes += caso7;
-                else if (waToggles.caso7 && i === waMonths.caso7) consumoMes += caso7;
-
-                if (!waToggles.caso8 && i >= waMonths.caso8) consumoMes += caso8;
-                else if (waToggles.caso8 && i === waMonths.caso8) consumoMes += caso8;
-
-                if (!waToggles.caso9 && i >= waMonths.caso9) consumoMes += caso9;
-                else if (waToggles.caso9 && i === waMonths.caso9) consumoMes += caso9;
-
-                if (!waToggles.caso10 && i >= waMonths.caso10) consumoMes += caso10;
-                else if (waToggles.caso10 && i === waMonths.caso10) consumoMes += caso10;
-
-                if (!waToggles.caso11 && i >= waMonths.caso11) consumoMes += caso11;
-                else if (waToggles.caso11 && i === waMonths.caso11) consumoMes += caso11;
-
-                if (!waToggles.caso12 && i >= waMonths.caso12) consumoMes += caso12;
-                else if (waToggles.caso12 && i === waMonths.caso12) consumoMes += caso12;
-
-                if (!waToggles.caso13 && i >= waMonths.caso13) consumoMes += caso13;
-                else if (waToggles.caso13 && i === waMonths.caso13) consumoMes += caso13;
+                WA_CATEGORIES.forEach(function(cat) {
+                    const value = paquetesPorCat[cat];
+                    if (!value) return;
+                    const isOnetime = !!waToggles[cat];
+                    const inicio = waMonths[cat] != null ? waMonths[cat] : 0;
+                    const fin = waMonthsFin[cat] != null ? waMonthsFin[cat] : 18;
+                    if (!isOnetime) {
+                        if (i >= inicio && i <= fin) consumoMes += value;
+                    } else if (i === inicio) {
+                        consumoMes += value;
+                    }
+                });
 
                 acumulado += consumoMes;
 
@@ -3349,62 +3618,30 @@
                     alertShown = true;
                 }
 
-                // Propuesta 1: hito dinámico = "hoy + 12 meses reales" (calculado con calcularIdxProp1()).
-                // La variable interna acumuladoDic2026 conserva su nombre legado por compatibilidad con el consolidado.
-                if (i === idxProp1) {
-                    acumuladoDic2026 = acumulado;
-                }
-                // Propuesta 2: hito Jun 28 (idx 24) — usado por defecto en el dashboard consolidado.
-                if (i === 24) {
+                // Hito único: Dic 27 (idx 18, último del array). Base del cálculo de la Propuesta.
+                if (i === 18) {
                     acumuladoDic2027 = acumulado;
                 }
             }
 
-            // Actualizar indicadores de proyección con 1 decimal
-            document.getElementById('wa-proyeccion-dic2026').textContent = formatNumber(acumuladoDic2026, 1);
-            document.getElementById('wa-proyeccion-dic2027').textContent = formatNumber(acumuladoDic2027, 1);
+            // Actualizar indicador de proyección con 1 decimal
+            const kpiDic2027 = document.getElementById('wa-proyeccion-dic2027');
+            if (kpiDic2027) kpiDic2027.textContent = formatNumber(acumuladoDic2027, 1);
 
 
-            // Calcular propuestas de crecimiento
-            const precioPorPaquete = 0.9; // USD por paquete de créditos (Propuesta 1 - default)
-            const prop2SkuInput = document.getElementById('prop2-sku-precio');
-            const precioPorPaqueteProp2 = prop2SkuInput && !isNaN(parseFloat(prop2SkuInput.value))
-                ? parseFloat(prop2SkuInput.value)
-                : 0.9;
+            // Calcular Propuesta de Crecimiento (única, hasta Dic 27)
+            const precioPorPaquete = 0.9; // USD por paquete de créditos
+            const adicional2027 = Math.max(0, acumuladoDic2027 - wa.contratado);
+            const inversion2027 = adicional2027 * precioPorPaquete;
 
-            // Propuesta 1: Capacidad hasta Diciembre 2026
-            const adicional2026 = Math.max(0, acumuladoDic2026 - wa.contratado);
-            const inversion2026 = adicional2026 * precioPorPaquete;
-
-            document.getElementById('prop1-consumo').textContent = formatNumber(acumuladoDic2026);
-            document.getElementById('prop1-actual').textContent = formatNumber(wa.contratado);
-            document.getElementById('prop1-adicional').textContent = formatNumber(adicional2026);
-            document.getElementById('prop1-precio').textContent = '$' + formatNumber(inversion2026, 2);
-
-            // Propuesta 2: hasta el mes seleccionado (default Jun 28, índice 24)
-            const prop2HastaSelect = document.getElementById('prop2-hasta-mes');
-            const prop2HastaIdx = prop2HastaSelect ? parseInt(prop2HastaSelect.value, 10) : 24;
-            const acumuladoProp2 = consumoAcumulado[prop2HastaIdx] || 0;
-            const adicional2027 = Math.max(0, acumuladoProp2 - wa.contratado);
-            const inversion2027 = adicional2027 * precioPorPaqueteProp2;
-
-            const mesesNombre = ['Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre',
-                                 'Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio',
-                                 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre',
-                                 'Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio'];
-            const aniosFull = ['2026', '2026', '2026', '2026', '2026', '2026', '2026',
-                               '2027', '2027', '2027', '2027', '2027', '2027',
-                               '2027', '2027', '2027', '2027', '2027', '2027',
-                               '2028', '2028', '2028', '2028', '2028', '2028', '2028'];
-            const tituloProp2 = document.getElementById('prop2-titulo-mes');
-            const subtituloProp2 = document.getElementById('prop2-subtitulo');
-            if (tituloProp2) tituloProp2.textContent = `${mesesNombre[prop2HastaIdx]} ${aniosFull[prop2HastaIdx]}`;
-            if (subtituloProp2) subtituloProp2.textContent = `${prop2HastaIdx + 1} ${prop2HastaIdx + 1 === 1 ? 'MES' : 'MESES'} · JUN 26 → ${meses[prop2HastaIdx].toUpperCase()}`;
-
-            document.getElementById('prop2-consumo').textContent = formatNumber(acumuladoProp2);
-            document.getElementById('prop2-actual').textContent = formatNumber(wa.contratado);
-            document.getElementById('prop2-adicional').textContent = formatNumber(adicional2027);
-            document.getElementById('prop2-precio').textContent = '$' + formatNumber(inversion2027, 2);
+            const prop2Consumo = document.getElementById('prop2-consumo');
+            const prop2Actual = document.getElementById('prop2-actual');
+            const prop2Adicional = document.getElementById('prop2-adicional');
+            const prop2Precio = document.getElementById('prop2-precio');
+            if (prop2Consumo) prop2Consumo.textContent = formatNumber(acumuladoDic2027);
+            if (prop2Actual) prop2Actual.textContent = formatNumber(wa.contratado);
+            if (prop2Adicional) prop2Adicional.textContent = formatNumber(adicional2027);
+            if (prop2Precio) prop2Precio.textContent = '$' + formatNumber(inversion2027, 2);
 
             // Actualizar datos consolidados
             if (typeof updateConsolidadoData === 'function') {
@@ -3413,16 +3650,14 @@
 
             // Determinar capacidad efectiva según propuesta seleccionada
             let capacidadEfectiva = wa.contratado;
-            if (propuestaSeleccionada === '2026') {
-                capacidadEfectiva = acumuladoDic2026;
-            } else if (propuestaSeleccionada === '2027') {
-                capacidadEfectiva = acumuladoProp2;
+            if (propuestaSeleccionada === '2027') {
+                capacidadEfectiva = acumuladoDic2027;
             }
 
             // Recalcular overage con capacidad efectiva
             let mesOverageEfectivo = null;
             let alertShownEfectivo = false;
-            for (let i = 0; i < 26; i++) {
+            for (let i = 0; i < 19; i++) {
                 const overageMes = consumoAcumulado[i] - capacidadEfectiva;
                 if (overageMes > 0 && !alertShownEfectivo && i < 12) {
                     mesOverageEfectivo = i + 1;
@@ -3439,19 +3674,18 @@
                     <div class="alert danger">
                         <h4>⚠️ Alerta: Sobrepaso de Capacidad WhatsApp</h4>
                         <p><strong>Se alcanzará el límite en el mes ${mesOverageEfectivo}</strong> (${meses[mesOverageEfectivo - 1]})</p>
-                        <p>Proyección Dic 2026: <strong>${formatNumber(acumuladoDic2026)}</strong> | Dic 2027: <strong>${formatNumber(acumuladoDic2027)}</strong></p>
-                        <p>Capacidad ${propuestaSeleccionada ? 'con propuesta ' + propuestaSeleccionada : 'contratada'}: <strong>${formatNumber(capacidadEfectiva)}</strong></p>
+                        <p>Proyección a Diciembre 2027: <strong>${formatNumber(acumuladoDic2027)}</strong> paquetes</p>
+                        <p>Capacidad ${propuestaSeleccionada ? 'con propuesta' : 'contratada'}: <strong>${formatNumber(capacidadEfectiva)}</strong></p>
                         <p><strong>Ampliar capacidad contratada</strong></p>
                     </div>
                 `;
             } else {
-                const pctUtilizadoDic2026 = ((acumuladoDic2026 / capacidadEfectiva) * 100).toFixed(1);
                 const pctUtilizadoDic2027 = ((acumuladoDic2027 / capacidadEfectiva) * 100).toFixed(1);
                 alertDiv.innerHTML = `
                     <div class="alert success">
                         <h4>✅ Capacidad Suficiente WhatsApp</h4>
-                        <p>Dic 2026: <strong>${formatNumber(acumuladoDic2026)}</strong> (${pctUtilizadoDic2026}%) | Dic 2027: <strong>${formatNumber(acumuladoDic2027)}</strong> (${pctUtilizadoDic2027}%)</p>
-                        <p>Capacidad ${propuestaSeleccionada ? 'con propuesta ' + propuestaSeleccionada : 'actual'}: <strong>${formatNumber(capacidadEfectiva)}</strong></p>
+                        <p>Proyección a Diciembre 2027: <strong>${formatNumber(acumuladoDic2027)}</strong> paquetes (${pctUtilizadoDic2027}%)</p>
+                        <p>Capacidad ${propuestaSeleccionada ? 'con propuesta' : 'actual'}: <strong>${formatNumber(capacidadEfectiva)}</strong></p>
                     </div>
                 `;
             }
@@ -3466,12 +3700,12 @@
             // Línea de capacidad (usa capacidad efectiva según propuesta seleccionada)
             const capacidadLinea = new Array(26).fill(capacidadEfectiva);
 
-            // Colores de barras: resaltar Jul 27 (índice 13) y Jul 28 (índice 25) — hitos de propuestas anuales
+            // Colores de barras: resaltar el hito de Propuesta 1 (idx dinámico) y Dic 27 (idx 18)
             const barBgColors = consumoMensual.map((_, i) => HIGHLIGHT_MONTHS.includes(i) ? 'rgba(244, 161, 0, 0.85)' : 'rgba(0, 161, 224, 0.6)');
             const barBorderColors = consumoMensual.map((_, i) => HIGHLIGHT_MONTHS.includes(i) ? '#F4A100' : '#00A1E0');
             const barBorderWidth = consumoMensual.map((_, i) => HIGHLIGHT_MONTHS.includes(i) ? 3 : 1);
 
-            // Anotaciones (líneas verticales) en Jul 27 y Jul 28
+            // Anotaciones (líneas verticales) en los hitos de las propuestas
             const highlightAnnotations = {};
             HIGHLIGHT_MONTHS.forEach((idx, n) => {
                 highlightAnnotations['hitoLine' + n] = {
@@ -3647,32 +3881,15 @@
         }
 
         function updateConsolidadoData() {
-            // Mirror directo de las propuestas WhatsApp — asegura congruencia total
-            // (mismos números, mismos labels de mes, incluye la selección dinámica de Propuesta 2).
-
-            // Propuesta 1 (blue / cons-wa2026) → mirror de prop1-*
-            const prop1Consumo = document.getElementById('prop1-consumo');
-            const prop1Actual = document.getElementById('prop1-actual');
-            const prop1Adicional = document.getElementById('prop1-adicional');
-            const prop1Precio = document.getElementById('prop1-precio');
-            if (prop1Consumo) document.getElementById('cons-wa2026-consumo').textContent = prop1Consumo.textContent;
-            if (prop1Actual) document.getElementById('cons-wa2026-actual').textContent = prop1Actual.textContent;
-            if (prop1Adicional) document.getElementById('cons-wa2026-adicional').textContent = prop1Adicional.textContent;
-            if (prop1Precio) document.getElementById('cons-wa2026-precio').textContent = prop1Precio.textContent;
-
-            // Propuesta 2 (green / cons-wa2027) → mirror de prop2-*
+            // Mirror directo de la Propuesta WhatsApp → tarjeta consolidada (mismos números).
             const prop2Consumo = document.getElementById('prop2-consumo');
             const prop2Actual = document.getElementById('prop2-actual');
             const prop2Adicional = document.getElementById('prop2-adicional');
             const prop2Precio = document.getElementById('prop2-precio');
-            const prop2TituloMes = document.getElementById('prop2-titulo-mes');
-            const prop2Subtitulo = document.getElementById('prop2-subtitulo');
             if (prop2Consumo) document.getElementById('cons-wa2027-consumo').textContent = prop2Consumo.textContent;
             if (prop2Actual) document.getElementById('cons-wa2027-actual').textContent = prop2Actual.textContent;
             if (prop2Adicional) document.getElementById('cons-wa2027-adicional').textContent = prop2Adicional.textContent;
             if (prop2Precio) document.getElementById('cons-wa2027-precio').textContent = prop2Precio.textContent;
-            if (prop2TituloMes) document.getElementById('cons-wa2027-titulo-mes').textContent = prop2TituloMes.textContent;
-            if (prop2Subtitulo) document.getElementById('cons-wa2027-subtitulo').textContent = prop2Subtitulo.textContent;
 
             // Supermensajes 2026 - diferencia vs proyección BE
             // Parsear correctamente el formato chileno (puntos como separadores de miles, coma como decimal)
@@ -3702,20 +3919,11 @@
                 return parseFloat(texto.replace('$', '').replace(/\./g, '').replace(',', '.')) || 0;
             }
 
-            // WhatsApp Propuesta 2 (mes dinámico según prop2-hasta-mes)
+            // WhatsApp Propuesta (Diciembre 2027)
             if (propuestasConsolidadas['wa-2027']) {
                 const monto = parseMonto(document.getElementById('cons-wa2027-precio').textContent);
                 totalInversion += monto;
-                const mesLabel = document.getElementById('prop2-titulo-mes');
-                propuestasActivas.push('WA ' + (mesLabel ? mesLabel.textContent : 'Jun 2028'));
-            }
-
-            // WhatsApp Propuesta 1 (mes dinámico según calcularIdxProp1)
-            if (propuestasConsolidadas['wa-2026']) {
-                const monto = parseMonto(document.getElementById('cons-wa2026-precio').textContent);
-                totalInversion += monto;
-                const mesLabelProp1 = document.getElementById('prop1-titulo-mes');
-                propuestasActivas.push('WA ' + (mesLabelProp1 ? mesLabelProp1.textContent : 'Julio 2027'));
+                propuestasActivas.push('WA Diciembre 2027');
             }
 
             // Supermensajes 2026
