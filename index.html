@@ -1974,39 +1974,41 @@
         // false = Recurrente (toggle OFF)
         // true = One-time (toggle ON)
         const waToggles = {
-            gas: true,        // Beneficio Gas: One-time
-            digital: false,   // Casos Digital Engagement: Recurrente
-            credito: false,   // Tarjeta de Crédito y Consumo: Recurrente
-            marketing: false, // Caso 1 (Encuesta Sucursales): Recurrente
-            caso1: false,     // Caso 2 (BECO Encuestas): Recurrente
-            caso2: false,     // Caso 3 (BECO Cobranza): Recurrente
-            caso3: false,     // Caso 4 (Cuenta Corriente Digital): Recurrente
-            caso4: false,     // Caso 5 (Venta Auto Gestionada): Recurrente
-            caso5: false,     // Caso 6 (PYME): Recurrente
-            caso6: false,     // Caso 7 (Seguros): Recurrente
-            caso7: false,     // Caso 8 (slot oculto)
-            caso8: false,     // Caso 9 (slot oculto)
-            caso9: false,     // Caso 10 (slot oculto)
-            caso10: false,    // Caso 11 (slot oculto)
-            caso11: false,    // Caso 12 (slot oculto)
-            caso12: false,    // Caso 13 (slot oculto)
-            caso13: false     // Caso 14 (slot oculto)
+            gas: true,         // Beneficio Gas: One-time
+            digital: false,    // Casos Digital Engagement: Recurrente
+            credito: false,    // Tarjeta de Crédito y Consumo: Recurrente
+            marketing: false,  // Caso 1 (Encuesta Sucursales 3M): Recurrente
+            caso1: false,      // Caso 2 (Encuesta Sucursales 3M Siguientes): Recurrente
+            caso2: false,      // Caso 3 (Encuesta Sucursales Regimen): Recurrente
+            caso3: true,       // Caso 4 (Renovación Tarjeta Debito): One-time
+            caso4: false,      // Caso 5 (Seguros Notificación Siniestro): Recurrente
+            caso5: false,      // Caso 6 (Cobranzas): Recurrente
+            caso6: false,      // Caso 7 (Microempresas 6M): Recurrente
+            caso7: false,      // Caso 8 (Microempresas): Recurrente
+            caso8: false,      // Caso 9 (My Pyme): Recurrente
+            caso9: false,      // Caso 10 (Interacciones Inbound Bot): Recurrente
+            caso10: false,     // Caso 11 (Interacciones Inbound Casos): Recurrente
+            caso11: false,     // Caso 12 (slot oculto)
+            caso12: false,     // Caso 13 (slot oculto)
+            caso13: false      // Caso 14 (slot oculto)
         };
 
         // Mes de inicio para cada caso (índice 0 = Jun 26 ... 25 = Jul 28)
         const waMonths = {
             gas: 0,        // Jun 26
-            digital: 1,    // Jul 26
+            digital: 3,    // Sep 26
             credito: 2,    // Ago 26
-            marketing: 3,  // Caso 1: Sep 26
-            caso1: 3,      // Caso 2: Sep 26
-            caso2: 3,      // Caso 3: Sep 26
-            caso3: 4,      // Caso 4: Oct 26
-            caso4: 4,      // Caso 5: Oct 26
-            caso5: 4,      // Caso 6: Oct 26
-            caso6: 4,      // Caso 7 (Seguros): Oct 26
-            caso7: 4,      // Caso 8 (Mas Conectados): Oct 26
-            caso8: 0, caso9: 0, caso10: 0,
+            marketing: 3,  // Caso 1 (Encuesta Sucursales 3M): Sep 26
+            caso1: 6,      // Caso 2 (Encuesta Sucursales 3M Siguientes): Dic 26
+            caso2: 9,      // Caso 3 (Encuesta Sucursales Regimen): Mar 27
+            caso3: 3,      // Caso 4 (Renovación Tarjeta Debito): Sep 26
+            caso4: 3,      // Caso 5 (Seguros Notificación Siniestro): Sep 26
+            caso5: 4,      // Caso 6 (Cobranzas): Oct 26
+            caso6: 7,      // Caso 7 (Microempresas 6M): Ene 27
+            caso7: 13,     // Caso 8 (Microempresas): Jul 27
+            caso8: 4,      // Caso 9 (My Pyme): Oct 26
+            caso9: 4,      // Caso 10 (Interacciones Inbound Bot): Oct 26
+            caso10: 0,     // Caso 11 (Interacciones Inbound Casos): Jun 26
             caso11: 0, caso12: 0, caso13: 0
         };
 
@@ -2022,51 +2024,58 @@
             gas: 'promocional',
             digital: 'transaccional',
             credito: 'promocional',
-            marketing: 'transaccional',   // Encuesta Sucursales
-            caso1: 'transaccional',       // BECO Encuestas
-            caso2: 'promocional',         // BECO Cobranza
-            caso3: 'promocional',         // Cuenta Corriente Digital
-            caso4: 'promocional',         // Venta Auto Gestionada
-            caso5: 'promocional',         // PYME
-            caso6: 'promocional',         // Seguros
-            caso7: 'promocional', caso8: 'promocional', caso9: 'promocional',
-            caso10: 'promocional', caso11: 'promocional', caso12: 'promocional', caso13: 'promocional'
+            marketing: 'transaccional',    // Encuesta Sucursales 3M
+            caso1: 'transaccional',        // Encuesta Sucursales 3M Siguientes
+            caso2: 'transaccional',        // Encuesta Sucursales Regimen
+            caso3: 'promocional',          // Renovación Tarjeta Debito
+            caso4: 'transaccional',        // Seguros Notificación Siniestro
+            caso5: 'promocional',          // Cobranzas
+            caso6: 'promocional',          // Microempresas 6M
+            caso7: 'promocional',          // Microempresas
+            caso8: 'promocional',          // My Pyme
+            caso9: 'transaccional',        // Interacciones Inbound Bot
+            caso10: 'transaccional',       // Interacciones Inbound Casos
+            caso11: 'promocional', caso12: 'promocional', caso13: 'promocional'
         };
 
         // Nombre editable por caso proyectado (los confirmados tienen nombre fijo en HTML)
         const waNombres = {
-            marketing: 'Encuesta Sucursales',
-            caso1: 'BECO Encuestas',
-            caso2: 'BECO Cobranza',
-            caso3: 'Cuenta Corriente Digital',
-            caso4: 'Venta Auto Gestionada',
-            caso5: 'PYME',
-            caso6: 'Seguros',
-            caso7: 'Mas Conectados',
-            caso8: '', caso9: '', caso10: '',
+            marketing: 'Encuesta Sucursales 3M',
+            caso1: 'Encuesta Sucursales 3M Siguientes',
+            caso2: 'Encuesta Sucursales Regimen',
+            caso3: 'Renovación Tarjeta Debito',
+            caso4: 'Seguros Notificación Siniestro',
+            caso5: 'Cobranzas',
+            caso6: 'Microempresas 6M',
+            caso7: 'Microempresas',
+            caso8: 'My Pyme',
+            caso9: 'Interacciones Inbound Bot',
+            caso10: 'Interacciones Inbound Casos',
             caso11: '', caso12: '', caso13: ''
         };
 
         // Volumen "techo" por caso, en formato es-CL para el input
         const waMensajesDefault = {
-            gas: '46.398',
-            digital: '296.235',
-            credito: '280.000',
-            marketing: '1.500.000',
-            caso1: '280.000',
-            caso2: '280.000',
-            caso3: '200.000',
-            caso4: '100.000',
-            caso5: '100.000',
-            caso6: '100.000',
-            caso7: '100.000',
-            caso8: '0', caso9: '0', caso10: '0',
+            gas: '219.985',
+            digital: '74.000',
+            credito: '200.000',
+            marketing: '17.600',
+            caso1: '14.900',
+            caso2: '20.300',
+            caso3: '118.335',
+            caso4: '20.000',
+            caso5: '15.000',
+            caso6: '90.000',
+            caso7: '90.000',
+            caso8: '30.000',
+            caso9: '963.000',
+            caso10: '0',
             caso11: '0', caso12: '0', caso13: '0'
         };
 
         const WA_CATEGORIES = ['gas', 'digital', 'credito', 'marketing', 'caso1', 'caso2', 'caso3', 'caso4', 'caso5', 'caso6', 'caso7', 'caso8', 'caso9', 'caso10', 'caso11', 'caso12', 'caso13'];
         // Slots ocultos que se revelan con el botón "+ Agregar caso" (en orden)
-        const WA_HIDDEN_SLOTS = ['caso8', 'caso9', 'caso10', 'caso11', 'caso12', 'caso13'];
+        const WA_HIDDEN_SLOTS = ['caso10', 'caso11', 'caso12', 'caso13'];
 
         // Escala de escenario por caso (0..1). 1 = objetivo completo, 0.5 = evaluar la mitad, etc.
         // El input "Mensajes" define el techo; este factor lo ajusta hacia abajo sin retipear.
@@ -2074,12 +2083,20 @@
         // Gas queda en 1.0 (46.398 es consumo real, no proyección).
         // Slots ocultos también en 1.0 (parten en 0 mensajes, no tienen sentido a 80%).
         const waEscalas = {
-            gas: 1,
-            digital: 1, credito: 0.8,
-            marketing: 0.8, caso1: 0.8, caso2: 0.8,
-            caso3: 0.8, caso4: 0.8, caso5: 0.8, caso6: 0.8,
-            caso7: 0.8,
-            caso8: 1, caso9: 1, caso10: 1,
+            gas: 1,          // 100%
+            digital: 0.95,   // 95%
+            credito: 0.8,    // 80%
+            marketing: 0.9,  // Caso 1: 90%
+            caso1: 0.9,      // Caso 2: 90%
+            caso2: 0.9,      // Caso 3: 90%
+            caso3: 0.8,      // Caso 4: 80%
+            caso4: 0.9,      // Caso 5: 90%
+            caso5: 0.8,      // Caso 6: 80%
+            caso6: 0.8,      // Caso 7: 80%
+            caso7: 0.8,      // Caso 8: 80%
+            caso8: 0.8,      // Caso 9: 80%
+            caso9: 1,        // Caso 10: 100%
+            caso10: 1,       // Caso 11: 100%
             caso11: 1, caso12: 1, caso13: 1
         };
 
