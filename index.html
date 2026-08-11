@@ -3375,8 +3375,10 @@
                             '<input type="text" inputmode="numeric" id="wa-' + cat + '-escala-pct-input" class="escala-pct-input" value="' + pctInicial + '">' +
                             '<span class="escala-suffix">%</span>' +
                         '</span>' +
-                        '<span class="outbound-derivado">Mensajes de outbound: <strong id="wa-' + cat + '-escala-mensajes">0</strong></span>';
-                    row.appendChild(makeInfoHint(INFO_ESCALA));
+                        '<span class="outbound-derivado">Mensajes outbound: <strong id="wa-' + cat + '-escala-mensajes">0</strong></span>';
+                    // Info-hint dentro de la escala-label (junto al %) para que el outbound-derivado quede como último elemento y alinee su borde derecho con inbound-derivado.
+                    const escalaLabelSpan = row.querySelector('.escala-label');
+                    if (escalaLabelSpan) escalaLabelSpan.appendChild(makeInfoHint(INFO_ESCALA));
                     block.appendChild(row);
 
                     // Slider → estado + input
