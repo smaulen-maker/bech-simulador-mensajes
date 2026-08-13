@@ -1,0 +1,1146 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Business Case — Canal WhatsApp para Cobranza BancoEstado</title>
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+    --sf-blue: #0176D3;
+    --sf-blue-dark: #032E61;
+    --sf-blue-darker: #032D60;
+    --sf-blue-hover: #014486;
+    --sf-green: #2E844A;
+    --sf-green-bg: #E8F7EE;
+    --sf-orange: #FE9339;
+    --sf-orange-bg: #FEF0DC;
+    --sf-red: #EA001E;
+    --sf-red-bg: #FEE0E1;
+    --sf-text: #181818;
+    --sf-text-muted: #706E6B;
+    --sf-border: #DDDBDA;
+    --sf-bg: #F3F3F3;
+    --sf-bg-subtle: #FAFAFA;
+    --sf-white: #FFFFFF;
+    --sf-callout-bg: #EEF4FA;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+    font-family: 'Salesforce Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background: var(--sf-bg);
+    color: var(--sf-text);
+    line-height: 1.55;
+    font-size: 14px;
+}
+
+.layout {
+    display: grid;
+    grid-template-columns: 260px 1fr;
+    min-height: 100vh;
+}
+
+/* Sidebar */
+.sidebar {
+    background: var(--sf-blue-dark);
+    color: white;
+    padding: 28px 22px;
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    overflow-y: auto;
+}
+
+.sidebar-brand {
+    padding-bottom: 20px;
+    border-bottom: 1px solid rgba(255,255,255,0.15);
+    margin-bottom: 24px;
+}
+
+.sidebar-brand .logo {
+    font-weight: 700;
+    font-size: 18px;
+    color: white;
+    letter-spacing: -0.3px;
+}
+
+.sidebar-brand .team {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: rgba(255,255,255,0.7);
+    margin-top: 4px;
+}
+
+.nav-title {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: rgba(255,255,255,0.5);
+    margin-bottom: 10px;
+    padding-left: 12px;
+}
+
+.sidebar-nav {
+    list-style: none;
+    margin-bottom: 20px;
+}
+
+.sidebar-nav li a {
+    display: block;
+    padding: 7px 12px;
+    color: rgba(255,255,255,0.85);
+    text-decoration: none;
+    border-radius: 4px;
+    font-size: 13px;
+    margin-bottom: 2px;
+    transition: background 0.15s;
+    border-left: 2px solid transparent;
+}
+
+.sidebar-nav li a:hover {
+    background: rgba(255,255,255,0.08);
+    color: white;
+    border-left-color: var(--sf-blue);
+}
+
+.print-btn {
+    display: block;
+    margin: 20px auto 0 auto;
+    padding: 10px 16px;
+    background: var(--sf-blue);
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    width: 100%;
+    transition: background 0.15s;
+}
+
+.print-btn:hover { background: var(--sf-blue-hover); }
+
+/* Main content */
+.content {
+    padding: 40px 56px;
+    max-width: 1050px;
+}
+
+/* Header */
+.header {
+    border-bottom: 3px solid var(--sf-blue);
+    padding-bottom: 24px;
+    margin-bottom: 32px;
+}
+
+.header .eyebrow {
+    color: var(--sf-blue);
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1.2px;
+    margin-bottom: 10px;
+}
+
+.header h1 {
+    font-size: 30px;
+    color: var(--sf-blue-darker);
+    font-weight: 700;
+    margin-bottom: 12px;
+    letter-spacing: -0.5px;
+    line-height: 1.2;
+}
+
+.header .subtitle {
+    color: var(--sf-text-muted);
+    font-size: 15px;
+    max-width: 720px;
+}
+
+.header .meta {
+    display: flex;
+    gap: 24px;
+    margin-top: 16px;
+    font-size: 12px;
+    color: var(--sf-text-muted);
+}
+
+.header .meta strong { color: var(--sf-blue-darker); }
+
+/* Sections */
+.section { margin-bottom: 48px; }
+
+.section h2 {
+    font-size: 22px;
+    color: var(--sf-blue-darker);
+    font-weight: 700;
+    margin-bottom: 12px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--sf-border);
+    letter-spacing: -0.3px;
+}
+
+.section h3 {
+    font-size: 16px;
+    color: var(--sf-blue-darker);
+    font-weight: 600;
+    margin: 20px 0 10px 0;
+}
+
+.section p { margin-bottom: 12px; }
+
+.section p.intro { color: var(--sf-text-muted); font-size: 14px; }
+
+/* Hero card */
+.hero-card {
+    background: linear-gradient(135deg, var(--sf-blue) 0%, var(--sf-blue-dark) 100%);
+    color: white;
+    border-radius: 12px;
+    padding: 40px 44px;
+    margin-bottom: 36px;
+    box-shadow: 0 4px 20px rgba(1, 118, 211, 0.15);
+}
+
+.hero-eyebrow {
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    opacity: 0.85;
+    margin-bottom: 12px;
+}
+
+.hero-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    gap: 32px;
+    align-items: end;
+}
+
+.hero-primary .value {
+    font-size: 56px;
+    font-weight: 700;
+    line-height: 1;
+    letter-spacing: -1.5px;
+    margin-bottom: 6px;
+}
+
+.hero-primary .subtext {
+    font-size: 14px;
+    opacity: 0.9;
+    max-width: 400px;
+}
+
+.hero-secondary .label {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    opacity: 0.75;
+    margin-bottom: 6px;
+}
+
+.hero-secondary .value {
+    font-size: 26px;
+    font-weight: 700;
+    line-height: 1.1;
+}
+
+/* Ideas fuerza */
+.ideas-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    margin: 20px 0;
+}
+
+.idea-card {
+    background: white;
+    border-radius: 10px;
+    border: 1px solid var(--sf-border);
+    padding: 24px;
+    text-align: left;
+    transition: box-shadow 0.2s;
+}
+
+.idea-card:hover {
+    box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+}
+
+.idea-num {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    background: var(--sf-callout-bg);
+    color: var(--sf-blue);
+    border-radius: 50%;
+    font-size: 16px;
+    font-weight: 700;
+    margin-bottom: 14px;
+}
+
+.idea-title {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--sf-blue-darker);
+    margin-bottom: 8px;
+}
+
+.idea-desc {
+    font-size: 13px;
+    color: var(--sf-text-muted);
+    line-height: 1.55;
+}
+
+/* Tables */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background: white;
+    margin: 14px 0;
+    border-radius: 8px;
+    overflow: hidden;
+    border: 1px solid var(--sf-border);
+    font-size: 13.5px;
+}
+
+thead { background: var(--sf-blue); color: white; }
+
+thead th {
+    padding: 12px 16px;
+    text-align: left;
+    font-weight: 600;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    white-space: nowrap;
+}
+
+thead th.number { text-align: right; }
+
+tbody td {
+    padding: 12px 16px;
+    border-bottom: 1px solid var(--sf-border);
+    vertical-align: top;
+}
+
+tbody tr:nth-child(even) { background: var(--sf-bg-subtle); }
+tbody tr:last-child td { border-bottom: none; }
+
+td.number, th.number {
+    text-align: right;
+    font-variant-numeric: tabular-nums;
+    white-space: nowrap;
+}
+
+td.strong { font-weight: 600; color: var(--sf-blue-darker); }
+
+.table-source {
+    font-size: 11px;
+    color: var(--sf-text-muted);
+    font-style: italic;
+    margin: 8px 0 20px 0;
+}
+
+/* Palancas */
+.palancas {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    margin: 20px 0;
+}
+
+.palanca {
+    background: white;
+    border: 1px solid var(--sf-border);
+    border-top: 4px solid var(--sf-blue);
+    border-radius: 8px;
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+}
+
+.palanca .label {
+    font-size: 11px;
+    color: var(--sf-blue);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 8px;
+}
+
+.palanca .title {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--sf-blue-darker);
+    margin-bottom: 4px;
+}
+
+.palanca .subtitle {
+    font-size: 12px;
+    color: var(--sf-text-muted);
+    margin-bottom: 16px;
+}
+
+.palanca .value {
+    font-size: 26px;
+    font-weight: 700;
+    color: var(--sf-green);
+    margin-top: auto;
+    padding-top: 12px;
+    border-top: 1px dashed var(--sf-border);
+    line-height: 1.1;
+}
+
+.palanca .value-note {
+    font-size: 11px;
+    color: var(--sf-text-muted);
+    margin-top: 2px;
+}
+
+.palanca ul {
+    font-size: 12.5px;
+    color: var(--sf-text-muted);
+    margin-left: 16px;
+    margin-bottom: 12px;
+}
+
+.palanca ul li { margin-bottom: 4px; }
+
+/* Callouts */
+.callout {
+    background: var(--sf-callout-bg);
+    border-left: 4px solid var(--sf-blue);
+    padding: 18px 22px;
+    border-radius: 6px;
+    margin: 20px 0;
+    font-size: 13.5px;
+}
+
+.callout strong { color: var(--sf-blue-darker); }
+
+.callout.orange {
+    background: var(--sf-orange-bg);
+    border-left-color: var(--sf-orange);
+}
+
+.callout.green {
+    background: var(--sf-green-bg);
+    border-left-color: var(--sf-green);
+}
+
+.callout .title {
+    display: block;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 700;
+    color: var(--sf-blue-darker);
+    margin-bottom: 8px;
+}
+
+.callout.orange .title { color: var(--sf-orange); }
+.callout.green .title { color: var(--sf-green); }
+
+/* Formula */
+.formula {
+    background: #1B2735;
+    color: #F5F5F5;
+    border-radius: 6px;
+    padding: 16px 20px;
+    font-family: 'SF Mono', Monaco, 'Cascadia Code', 'Courier New', monospace;
+    font-size: 12.5px;
+    margin: 14px 0;
+    line-height: 1.7;
+    overflow-x: auto;
+}
+
+.formula .comment { color: #9DA5B4; }
+.formula .var { color: #61AFEF; }
+
+/* Scenarios table */
+table.scenarios tbody tr.recommended {
+    background: var(--sf-green-bg) !important;
+    font-weight: 600;
+}
+
+table.scenarios tbody tr.recommended td {
+    color: var(--sf-blue-darker);
+}
+
+table.scenarios tbody tr.recommended td:first-child::before {
+    content: "★ ";
+    color: var(--sf-green);
+    font-weight: 900;
+}
+
+/* Roadmap */
+.roadmap {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin: 20px 0;
+    position: relative;
+}
+
+.phase {
+    background: white;
+    border: 1px solid var(--sf-border);
+    border-radius: 8px;
+    padding: 20px;
+    position: relative;
+}
+
+.phase-num {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--sf-blue);
+    color: white;
+    border-radius: 50%;
+    width: 26px;
+    height: 26px;
+    font-size: 12px;
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+.phase-title {
+    font-weight: 700;
+    color: var(--sf-blue-darker);
+    margin-bottom: 8px;
+    font-size: 14px;
+}
+
+.phase-timeline {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    color: var(--sf-blue);
+    margin-bottom: 10px;
+}
+
+.phase-body {
+    font-size: 12.5px;
+    color: var(--sf-text-muted);
+    line-height: 1.55;
+}
+
+.phase-body ul {
+    margin-left: 16px;
+    margin-top: 4px;
+}
+
+/* Two column layout for supuestos/data */
+.two-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+}
+
+/* CTA card */
+.cta-card {
+    background: linear-gradient(135deg, var(--sf-blue-dark) 0%, var(--sf-blue-darker) 100%);
+    color: white;
+    border-radius: 12px;
+    padding: 32px 40px;
+    margin: 32px 0;
+}
+
+.cta-card h3 {
+    color: white !important;
+    font-size: 20px;
+    margin-bottom: 12px;
+}
+
+.cta-card ol {
+    margin-left: 20px;
+    margin-top: 12px;
+}
+
+.cta-card ol li {
+    margin-bottom: 8px;
+    font-size: 14px;
+}
+
+/* Cover / footer */
+.cover-footer {
+    margin-top: 60px;
+    padding-top: 32px;
+    border-top: 1px solid var(--sf-border);
+    text-align: center;
+}
+
+.cover-footer .brand {
+    font-weight: 700;
+    color: var(--sf-blue-darker);
+    font-size: 15px;
+    margin-bottom: 4px;
+}
+
+.cover-footer .role {
+    color: var(--sf-text-muted);
+    font-size: 13px;
+    margin-bottom: 16px;
+}
+
+.cover-footer .confidential {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--sf-text-muted);
+}
+
+/* Fuentes */
+.sources ul {
+    list-style: none;
+    padding: 0;
+}
+
+.sources li {
+    padding: 8px 0;
+    border-bottom: 1px solid var(--sf-border);
+    font-size: 13px;
+    color: var(--sf-text-muted);
+}
+
+.sources li:last-child { border-bottom: none; }
+
+.sources li strong { color: var(--sf-blue-darker); }
+
+/* Print */
+@media print {
+    .sidebar { display: none; }
+    .content { max-width: none; padding: 20px; }
+    .hero-card, .cta-card { break-inside: avoid; }
+    .idea-card, .palanca, .phase { break-inside: avoid; }
+    table { break-inside: auto; page-break-inside: auto; }
+    thead { display: table-header-group; }
+    tr { break-inside: avoid; }
+    body { background: white; }
+    .section { break-inside: avoid-page; }
+}
+
+@media (max-width: 900px) {
+    .layout { grid-template-columns: 1fr; }
+    .sidebar { position: static; height: auto; }
+    .content { padding: 24px; }
+    .ideas-grid, .palancas, .roadmap, .two-col, .hero-grid {
+        grid-template-columns: 1fr;
+    }
+    .hero-primary .value { font-size: 40px; }
+}
+</style>
+</head>
+<body>
+<div class="layout">
+    <aside class="sidebar">
+        <div class="sidebar-brand">
+            <div class="logo">Salesforce · BVS</div>
+            <div class="team">Business Value Services Chile</div>
+        </div>
+        <div class="nav-title">Contenido</div>
+        <ul class="sidebar-nav">
+            <li><a href="#resumen">1. Resumen ejecutivo</a></li>
+            <li><a href="#ideas">2. Ideas fuerza</a></li>
+            <li><a href="#casos">3. Casos de éxito</a></li>
+            <li><a href="#costos">4. Costos por canal</a></li>
+            <li><a href="#efectividad">5. Efectividad comparada</a></li>
+            <li><a href="#supuestos">6. Supuestos base</a></li>
+            <li><a href="#palancas">7. Tres palancas</a></li>
+            <li><a href="#metodologia">8. Nota metodológica</a></li>
+            <li><a href="#economico">9. Resumen económico</a></li>
+            <li><a href="#escenarios">10. Escenarios de volumen</a></li>
+            <li><a href="#contexto">11. Contexto BancoEstado</a></li>
+            <li><a href="#pasos">12. Próximos pasos</a></li>
+            <li><a href="#fuentes">13. Fuentes</a></li>
+        </ul>
+        <button class="print-btn" onclick="window.print()">Imprimir / Guardar PDF</button>
+    </aside>
+
+    <main class="content">
+        <div class="header">
+            <div class="eyebrow">Business Case · Preparado por Salesforce Chile</div>
+            <h1>Canal WhatsApp para Cobranza BancoEstado</h1>
+            <div class="subtitle">Análisis de volumetría e impacto sobre los 150.000 clientes en mora bajo gestión de la Filial de Cobranzas.</div>
+            <div class="meta">
+                <div><strong>Preparado para:</strong> Filial de Cobranzas BancoEstado</div>
+                <div><strong>Fecha:</strong> 13 de agosto de 2026</div>
+                <div><strong>Versión:</strong> 3.1</div>
+            </div>
+        </div>
+
+        <!-- HERO -->
+        <div class="hero-card" id="resumen">
+            <div class="hero-eyebrow">Beneficio neto proyectado — Escenario de alto impacto</div>
+            <div class="hero-grid">
+                <div class="hero-primary">
+                    <div class="value">USD 19,8M</div>
+                    <div class="subtext">Retorno anual al operar el canal sobre los 150.000 clientes en mora bajo gestión de la filial.</div>
+                </div>
+                <div class="hero-secondary">
+                    <div class="label">ROI mensual</div>
+                    <div class="value">109×</div>
+                </div>
+                <div class="hero-secondary">
+                    <div class="label">Payback</div>
+                    <div class="value">&lt; 1 día</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <p><strong>El objetivo de este documento</strong> es responder una pregunta concreta: ¿cuál debería ser el volumen de envío por WhatsApp para conseguir un proceso de cobranza de alto impacto sobre los 150.000 clientes en mora que gestiona la filial?</p>
+            <p class="intro">Adaptamos el framework de Value Engineering de Salesforce (aplicado en casos como Banco Ripley, Payway y Pefisa) al contexto operativo actual de la filial: canal WhatsApp operado por el equipo humano de cobranza, sin componente de agente autónomo. Para el análisis se trabaja con USD 55 por PTP, equivalente a los CLP 50.000 de saldo de cuota vencida promedio en consumo (validar con equipo Beco).</p>
+        </div>
+
+        <!-- IDEAS FUERZA -->
+        <div class="section" id="ideas">
+            <h2>2. Ideas fuerza — ¿Por qué transformar Cobranzas hoy?</h2>
+            <div class="ideas-grid">
+                <div class="idea-card">
+                    <div class="idea-num">1</div>
+                    <div class="idea-title">Mayor recupero</div>
+                    <div class="idea-desc">Segmentación inteligente y timing óptimo capturan la ventana de voluntad de pago del cliente, incluyendo horarios fuera de la operación tradicional.</div>
+                </div>
+                <div class="idea-card">
+                    <div class="idea-num">2</div>
+                    <div class="idea-title">Más contactabilidad</div>
+                    <div class="idea-desc">80% de tasa de lectura en WhatsApp versus 40% en SMS y 10-20% en Email. El canal alcanza a clientes que hoy no responden por otros medios.</div>
+                </div>
+                <div class="idea-card">
+                    <div class="idea-num">3</div>
+                    <div class="idea-title">Eficiencia de FTEs</div>
+                    <div class="idea-desc">Menor TMO por gestión bidireccional libera capacidad de los 685 ejecutivos actuales para negociaciones de mayor valor y complejidad.</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- CASOS DE ÉXITO -->
+        <div class="section" id="casos">
+            <h2>3. Casos de éxito en la industria</h2>
+            <p class="intro">Datos verificables sobre clientes con canales digitales de cobranza (Salesforce Customer Success Stories).</p>
+            <table>
+                <thead>
+                    <tr>
+                        <th class="number">Métrica</th>
+                        <th>Cliente</th>
+                        <th>Detalle</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="number strong">80%</td>
+                        <td>Pefisa (Pernambucanas, Brasil)</td>
+                        <td>Deflexión digital en cobranza WhatsApp. Resolución de FAQs sin intervención de ejecutivo humano.</td>
+                    </tr>
+                    <tr>
+                        <td class="number strong">+55%</td>
+                        <td>PenFed Credit Union (USA)</td>
+                        <td>Mejora en eficiencia de agentes de cobranza con canal digital y contexto 360 del cliente.</td>
+                    </tr>
+                    <tr>
+                        <td class="number strong">+35%</td>
+                        <td>Payway SAU (Argentina)</td>
+                        <td>Mejora en tasa de Promise-to-Pay con seguimiento automatizado y segmentación de campañas.</td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="table-source">Fuente: Salesforce Customer Success Stories.</div>
+        </div>
+
+        <!-- COSTOS POR CANAL -->
+        <div class="section" id="costos">
+            <h2>4. Costo unitario por canal — Precios contractuales</h2>
+            <p class="intro">Precios netos vigentes según Contrato 04339910 (2025-06-01 → 2030-05-31), validados contra el Usage Summary de facturación real de BancoEstado (statement noviembre 2025).</p>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Canal</th>
+                        <th class="number">Costo por mensaje (USD neto)</th>
+                        <th class="number">Costo por 100.000 envíos</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Email</td>
+                        <td class="number">$0,00004</td>
+                        <td class="number">$4</td>
+                    </tr>
+                    <tr>
+                        <td>SMS</td>
+                        <td class="number">$0,000765</td>
+                        <td class="number">$76,50</td>
+                    </tr>
+                    <tr>
+                        <td class="strong">WhatsApp Marketing</td>
+                        <td class="number strong">$0,098784</td>
+                        <td class="number strong">$9.878</td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="callout orange">
+                <span class="title">Consideración</span>
+                WhatsApp es efectivamente el canal más caro <strong>por envío individual</strong>. Ese dato aislado genera la intuición inicial de contener volumen. El análisis correcto, sin embargo, es <strong>costo por conversión</strong>, no costo por envío, y es exactamente ahí donde el canal muestra su ventaja competitiva (ver sección 5).
+            </div>
+        </div>
+
+        <!-- EFECTIVIDAD -->
+        <div class="section" id="efectividad">
+            <h2>5. Efectividad comparada — Benchmarks verificables</h2>
+            <p class="intro">Datos de industria sobre +10 millones de conversaciones en cobranzas digitales (Connectly, 2025).</p>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Métrica</th>
+                        <th class="number">Email</th>
+                        <th class="number">SMS</th>
+                        <th class="number">WhatsApp</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Read rate</td>
+                        <td class="number">10-20%</td>
+                        <td class="number">40%</td>
+                        <td class="number strong">80%+</td>
+                    </tr>
+                    <tr>
+                        <td>Click rate</td>
+                        <td class="number">1-3%</td>
+                        <td class="number">5-7%</td>
+                        <td class="number strong">50%+ (promedio 65%)</td>
+                    </tr>
+                    <tr>
+                        <td>Conversion</td>
+                        <td class="number">0,5%</td>
+                        <td class="number">1-3%</td>
+                        <td class="number strong">30%+</td>
+                    </tr>
+                    <tr>
+                        <td>Response rate</td>
+                        <td class="number">N/A</td>
+                        <td class="number">N/A</td>
+                        <td class="number strong">20-40%</td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="callout green">
+                <span class="title">Insight comercial</span>
+                WhatsApp es <strong>3-4× más caro por envío que SMS</strong>, pero convierte <strong>15-30× más</strong>. En consecuencia, el costo por PTP en WhatsApp es dramáticamente menor que en los canales tradicionales.
+            </div>
+        </div>
+
+        <!-- SUPUESTOS -->
+        <div class="section" id="supuestos">
+            <h2>6. Supuestos base del modelo</h2>
+            <p class="intro">Variables usadas para modelar los tres escenarios de volumen. Todos los valores marcados "Estimación" deben validarse con el equipo de la filial durante el workshop de dimensionamiento.</p>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Variable</th>
+                        <th class="number">Valor</th>
+                        <th>Fuente</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Base de clientes en mora</td>
+                        <td class="number strong">150.000</td>
+                        <td>Filial de Cobranzas BE</td>
+                    </tr>
+                    <tr>
+                        <td>Valor promedio por PTP</td>
+                        <td class="number strong">USD 55 (~CLP 50.000)</td>
+                        <td>Validar con equipo Beco</td>
+                    </tr>
+                    <tr>
+                        <td>Contactabilidad canal actual (SMS + llamada)</td>
+                        <td class="number">30%</td>
+                        <td>Estimación conservadora industria</td>
+                    </tr>
+                    <tr>
+                        <td>PTP rate canal actual</td>
+                        <td class="number">15%</td>
+                        <td>Estimación conservadora industria</td>
+                    </tr>
+                    <tr>
+                        <td>Contactabilidad WhatsApp</td>
+                        <td class="number">80%</td>
+                        <td>Benchmarks Connectly + Pefisa</td>
+                    </tr>
+                    <tr>
+                        <td>PTP rate WhatsApp</td>
+                        <td class="number">29%</td>
+                        <td>Dato real Banco Ripley, canal comparable</td>
+                    </tr>
+                    <tr>
+                        <td>Dotación filial (FTEs)</td>
+                        <td class="number">685</td>
+                        <td>Memoria Integrada BE 2025</td>
+                    </tr>
+                    <tr>
+                        <td>Costo FTE mensual</td>
+                        <td class="number">USD 1.200</td>
+                        <td>Estimación mercado Chile</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- PALANCAS -->
+        <div class="section" id="palancas">
+            <h2>7. Tres palancas de valor — Cobertura 100% (150.000 clientes)</h2>
+            <p class="intro">Adaptación del framework de Value Engineering de Salesforce para operación humana. Cada palanca opera sobre una dimensión distinta sin solapamiento matemático.</p>
+            <div class="palancas">
+                <div class="palanca">
+                    <div class="label">Palanca 1</div>
+                    <div class="title">Contactabilidad</div>
+                    <div class="subtitle">Contactos nuevos que hoy no se logran</div>
+                    <ul>
+                        <li>Nuevos contactos: 150.000 × (80% − 30%) = <strong>75.000</strong></li>
+                        <li>PTPs derivados al rate WhatsApp (29%): <strong>21.750</strong></li>
+                        <li>Valor por PTP: USD 55</li>
+                    </ul>
+                    <div class="value">USD 1.196.000</div>
+                    <div class="value-note">por mes</div>
+                </div>
+                <div class="palanca">
+                    <div class="label">Palanca 2</div>
+                    <div class="title">Mejora de PTP</div>
+                    <div class="subtitle">Mismo volumen, mejor conversión</div>
+                    <ul>
+                        <li>Contactos base ya alcanzables: <strong>45.000</strong></li>
+                        <li>Delta PTP rate: 29% − 15% = <strong>14 pts</strong></li>
+                        <li>PTPs adicionales: <strong>6.300</strong></li>
+                    </ul>
+                    <div class="value">USD 346.500</div>
+                    <div class="value-note">por mes</div>
+                </div>
+                <div class="palanca">
+                    <div class="label">Palanca 3</div>
+                    <div class="title">Productividad de FTEs</div>
+                    <div class="subtitle">Reducción TMO en gestión bidireccional</div>
+                    <ul>
+                        <li>Dotación: <strong>685 ejecutivos</strong></li>
+                        <li>Costo FTE: USD 1.200/mes</li>
+                        <li>Reducción TMO conservadora: <strong>15%</strong></li>
+                    </ul>
+                    <div class="value">USD 123.000</div>
+                    <div class="value-note">por mes</div>
+                </div>
+            </div>
+            <div class="callout">
+                <span class="title">No duplicación entre palancas</span>
+                <strong>P1</strong> agrega contactos <em>nuevos</em> al rate WhatsApp. <strong>P2</strong> mejora el rate sobre el volumen que ya era contactado por otros canales. <strong>P3</strong> mide ahorro operativo en FTEs. Cada palanca opera sobre una dimensión distinta (volumen · conversión · costo operativo).
+            </div>
+        </div>
+
+        <!-- METODOLOGÍA -->
+        <div class="section" id="metodologia">
+            <h2>8. Nota metodológica — Cálculo del costo del canal WhatsApp</h2>
+            <p>El costo real del canal WhatsApp <strong>no es lineal al número de mensajes enviados</strong>. Meta aplica multiplicadores distintos según el tipo de conversación, lo que hace que el cálculo correcto sea una fórmula compuesta:</p>
+            <ul style="margin: 12px 0 12px 24px; font-size: 13.5px;">
+                <li><strong>Outbound tipo Marketing</strong> (mensaje iniciado por el banco): 109,76 créditos por conversación.</li>
+                <li><strong>Inbound tipo Servicio</strong> (respuesta del cliente): 24,7 créditos por conversación — <strong>4,4× más económico</strong> que Marketing.</li>
+            </ul>
+            <h3>Fórmula aplicada</h3>
+            <div class="formula"><span class="comment"># Componente outbound (Marketing)</span>
+créditos_outbound = mensajes_outbound × <span class="var">109,76</span> × %_entrega
+
+<span class="comment"># Componente inbound (Servicio)</span>
+créditos_inbound  = mensajes_outbound × tasa_respuesta × N°_msg_respuesta × <span class="var">24,7</span>
+
+<span class="comment"># Costo total</span>
+créditos_totales  = créditos_outbound + créditos_inbound
+costo_USD         = créditos_totales × <span class="var">$0,0009</span></div>
+
+            <h3>Parámetros usados (consistentes con la proyección Excel del cliente)</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Parámetro</th>
+                        <th class="number">Valor</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>Tasa de respuesta esperada del cliente</td><td class="number">80%</td></tr>
+                    <tr><td>Nº de mensajes de respuesta por cliente que responde</td><td class="number">2</td></tr>
+                    <tr><td>% de entrega outbound</td><td class="number">75%</td></tr>
+                    <tr><td>Precio por crédito (Contrato 04339910)</td><td class="number">$0,0009 USD</td></tr>
+                </tbody>
+            </table>
+            <div class="callout orange">
+                <span class="title">Aclaración importante</span>
+                Con los parámetros anteriores, el costo del canal sobre los 150.000 clientes es de <strong>~USD 15.187/mes</strong> — no el costo simplificado de "envíos × precio por conversación", que sobre-estima el gasto en aproximadamente 2×.
+            </div>
+        </div>
+
+        <!-- RESUMEN ECONÓMICO -->
+        <div class="section" id="economico">
+            <h2>9. Resumen económico mensual — Cobertura 100%</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Concepto</th>
+                        <th class="number">Monto (USD/mes)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>Palanca 1 · Contactabilidad</td><td class="number">1.196.000</td></tr>
+                    <tr><td>Palanca 2 · Mejora PTP</td><td class="number">346.500</td></tr>
+                    <tr><td>Palanca 3 · Productividad FTEs</td><td class="number">123.000</td></tr>
+                    <tr><td class="strong">Beneficio bruto total</td><td class="number strong">1.665.500</td></tr>
+                    <tr><td>Costo WhatsApp (fórmula compuesta, sección 8)</td><td class="number">(15.187)</td></tr>
+                    <tr style="background: var(--sf-green-bg);">
+                        <td class="strong">Beneficio neto mensual</td>
+                        <td class="number strong">1.650.313</td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="callout green">
+                <span class="title">Anualizado</span>
+                El beneficio neto proyectado es de aproximadamente <strong>USD 19,8M/año</strong> (≈ CLP 18.060 M/año). ROI mensual de <strong>109×</strong> y payback operativo menor a un día.
+            </div>
+        </div>
+
+        <!-- ESCENARIOS -->
+        <div class="section" id="escenarios">
+            <h2>10. Recomendación de volumen — Tres escenarios</h2>
+            <p class="intro">Comparación de los tres escenarios modelables sobre la base de 150.000 clientes. El escenario recomendado como objetivo del primer año se destaca en verde.</p>
+            <table class="scenarios">
+                <thead>
+                    <tr>
+                        <th>Escenario</th>
+                        <th class="number">Cobertura</th>
+                        <th class="number">Clientes</th>
+                        <th class="number">Costo WA anual</th>
+                        <th class="number">Beneficio neto anual</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Piloto acotado <em>(propuesta inicial)</em></td>
+                        <td class="number">10%</td>
+                        <td class="number">15.000</td>
+                        <td class="number">USD 18.225</td>
+                        <td class="number">USD 2,0M</td>
+                    </tr>
+                    <tr class="recommended">
+                        <td>Régimen medio <em>(recomendado año 1)</em></td>
+                        <td class="number">60%</td>
+                        <td class="number">90.000</td>
+                        <td class="number">USD 109.350</td>
+                        <td class="number">USD 11,9M</td>
+                    </tr>
+                    <tr>
+                        <td>Alto impacto <em>(cobertura total)</em></td>
+                        <td class="number">100%</td>
+                        <td class="number">150.000</td>
+                        <td class="number">USD 182.250</td>
+                        <td class="number">USD 19,8M</td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="callout">
+                <span class="title">Punto clave para la decisión</span>
+                La diferencia entre operar el canal al 10% versus al 60% <strong>no es cuestión de riesgo</strong>. El ROI es <strong>idéntico (109×)</strong> en cualquiera de los escenarios. Es estrictamente una decisión sobre el <strong>tamaño del beneficio</strong> que la filial decide capturar. Con el piloto acotado, la filial estaría postergando aproximadamente <strong>USD 9,9M/año de beneficio incremental</strong> respecto al escenario recomendado.
+            </div>
+            <div class="callout green">
+                <span class="title">Referencia comparativa</span>
+                El costo total anual del canal a cobertura completa (<strong>USD 182.250</strong>) es equivalente al costo de mantener <strong>12 FTEs adicionales por un año</strong> (12 × USD 1.200 × 12 meses ≈ USD 172.800). Escalar el canal a los 150.000 clientes cuesta lo mismo que sumar un equipo de 12 personas, pero genera un retorno anual comparable al output completo del equipo actual de 685 personas de la filial.
+            </div>
+        </div>
+
+        <!-- CONTEXTO -->
+        <div class="section" id="contexto">
+            <h2>11. Contexto de BancoEstado que refuerza la oportunidad</h2>
+            <p class="intro">Extraído de la Memoria Integrada BancoEstado 2025 (auditada por KPMG, publicada 06/03/2026).</p>
+            <div class="ideas-grid">
+                <div class="idea-card">
+                    <div class="idea-num">A</div>
+                    <div class="idea-title">Provisiones liberadas</div>
+                    <div class="idea-desc"><strong>CLP 53.800 M</strong> liberados en provisiones adicionales durante 2025, gracias a mejores tasas de recuperación en carteras comercial y consumo. Un canal digital reforzaría esa tendencia.</div>
+                </div>
+                <div class="idea-card">
+                    <div class="idea-num">B</div>
+                    <div class="idea-title">Escala institucional</div>
+                    <div class="idea-desc">BancoEstado es <strong>N°1 en Chile en número de deudores hipotecarios</strong> (34,2% de participación) y N°3 en colocaciones totales. La escala del banco amerita canales digitales de gestión masiva.</div>
+                </div>
+                <div class="idea-card">
+                    <div class="idea-num">C</div>
+                    <div class="idea-title">Capacidad operativa</div>
+                    <div class="idea-desc"><strong>685 personas</strong> en la dotación de la filial de cobranzas — escala en la que la productividad marginal por FTE genera impacto financiero directo y medible.</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- PRÓXIMOS PASOS -->
+        <div class="cta-card" id="pasos">
+            <h3>12. Propuesta de siguiente paso</h3>
+            <p style="opacity: 0.95;">Sugerimos realizar un <strong>workshop de dimensionamiento</strong> con el equipo de la filial en las próximas dos semanas, para:</p>
+            <ol>
+                <li>Validar las variables asumidas con datos internos reales (contactabilidad actual, PTP rate baseline, distribución del portfolio bajo gestión).</li>
+                <li>Ajustar los tres escenarios con las cifras confirmadas por el equipo.</li>
+                <li>Definir un roadmap de escalamiento (piloto → régimen medio → régimen alto) con hitos, métricas de gobernanza y criterios de decisión.</li>
+            </ol>
+        </div>
+
+        <div class="section">
+            <h3>Roadmap propuesto</h3>
+            <div class="roadmap">
+                <div class="phase">
+                    <div class="phase-num">1</div>
+                    <div class="phase-timeline">Mes 1</div>
+                    <div class="phase-title">Workshop de dimensionamiento</div>
+                    <div class="phase-body">
+                        Validación de supuestos con el equipo. Definición del alcance del piloto y KPIs de éxito. Asignación de recursos operativos.
+                    </div>
+                </div>
+                <div class="phase">
+                    <div class="phase-num">2</div>
+                    <div class="phase-timeline">Meses 2-4</div>
+                    <div class="phase-title">Piloto controlado</div>
+                    <div class="phase-body">
+                        Ejecución del piloto con métricas de gobernanza. Ajuste iterativo de segmentación, timing y contenido. Reporte quincenal de resultados.
+                    </div>
+                </div>
+                <div class="phase">
+                    <div class="phase-num">3</div>
+                    <div class="phase-timeline">Meses 5-12</div>
+                    <div class="phase-title">Escalamiento a régimen</div>
+                    <div class="phase-body">
+                        Expansión progresiva hacia el escenario recomendado (60% de cobertura). Consolidación de procesos y capacitación del equipo. Preparación para régimen de alto impacto en año 2.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- FUENTES -->
+        <div class="section sources" id="fuentes">
+            <h2>13. Fuentes citadas</h2>
+            <ul>
+                <li><strong>Contrato Salesforce 04339910</strong> — BancoEstado, vigente 2025-06-01 → 2030-05-31.</li>
+                <li><strong>Connectly Benchmarks 2025</strong> — Efectividad de canales digitales en cobranzas.</li>
+                <li><strong>Salesforce Customer Success Stories</strong> — Pefisa, PenFed Credit Union, Payway SAU.</li>
+                <li><strong>Memoria Integrada BancoEstado 2025</strong> — Auditada por KPMG, publicada 06/03/2026.</li>
+                <li><strong>CMF Chile</strong> — Información Financiera Mensual Sistema Bancario, junio 2026.</li>
+                <li><strong>ABIF Informa Nº 238</strong> — Cifras financieras junio 2026, publicado 03/08/2026.</li>
+                <li><strong>Banco Ripley Chile — Business Case Cobranzas Digital</strong> (Salesforce BVS Latam, julio 2026), como referencia metodológica.</li>
+            </ul>
+        </div>
+
+        <!-- COVER FOOTER -->
+        <div class="cover-footer">
+            <div class="brand">Sebastián Maulén</div>
+            <div class="role">Account Executive · Salesforce Chile</div>
+            <div class="confidential">Confidencial · Metodología BVS Value Engineering</div>
+        </div>
+    </main>
+</div>
+</body>
+</html>
