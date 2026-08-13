@@ -60,6 +60,13 @@ body {
     margin-bottom: 24px;
 }
 
+.sidebar-brand img {
+    display: block;
+    max-height: 32px;
+    width: auto;
+    margin-bottom: 12px;
+}
+
 .sidebar-brand .logo {
     font-weight: 700;
     font-size: 18px;
@@ -136,6 +143,23 @@ body {
     padding-bottom: 24px;
     margin-bottom: 32px;
 }
+
+.header-logos {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 24px;
+    margin-bottom: 24px;
+    border-bottom: 1px solid var(--sf-border);
+}
+
+.header-logos img {
+    display: block;
+    width: auto;
+}
+
+.header-logos .bech-logo { height: 34px; }
+.header-logos .sf-logo   { height: 42px; }
 
 .header .eyebrow {
     color: var(--sf-blue);
@@ -575,6 +599,28 @@ table.scenarios tbody tr.recommended td:first-child::before {
     text-align: center;
 }
 
+.cover-logos {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 32px;
+    margin-bottom: 24px;
+}
+
+.cover-logos img {
+    display: block;
+    width: auto;
+}
+
+.cover-logos .bech-logo { height: 30px; }
+.cover-logos .sf-logo   { height: 38px; }
+
+.cover-logos .separator {
+    width: 1px;
+    height: 30px;
+    background: var(--sf-border);
+}
+
 .cover-footer .brand {
     font-weight: 700;
     color: var(--sf-blue-darker);
@@ -640,6 +686,7 @@ table.scenarios tbody tr.recommended td:first-child::before {
 <div class="layout">
     <aside class="sidebar">
         <div class="sidebar-brand">
+            <img src="logos/bancoestado-white.svg" alt="BancoEstado">
             <div class="logo">Salesforce · BVS</div>
             <div class="team">Business Value Services Chile</div>
         </div>
@@ -664,6 +711,10 @@ table.scenarios tbody tr.recommended td:first-child::before {
 
     <main class="content">
         <div class="header">
+            <div class="header-logos">
+                <img src="logos/bancoestado.svg" alt="BancoEstado" class="bech-logo">
+                <img src="logos/salesforce.svg" alt="Salesforce" class="sf-logo">
+            </div>
             <div class="eyebrow">Business Case · Preparado por Salesforce Chile</div>
             <h1>Canal WhatsApp para Cobranza BancoEstado</h1>
             <div class="subtitle">Análisis de volumetría e impacto sobre los 150.000 clientes en mora bajo gestión de la Filial de Cobranzas.</div>
@@ -1136,6 +1187,11 @@ costo_USD         = créditos_totales × <span class="var">$0,0009</span></div>
 
         <!-- COVER FOOTER -->
         <div class="cover-footer">
+            <div class="cover-logos">
+                <img src="logos/bancoestado.svg" alt="BancoEstado" class="bech-logo">
+                <span class="separator"></span>
+                <img src="logos/salesforce.svg" alt="Salesforce" class="sf-logo">
+            </div>
             <div class="brand">Sebastián Maulén</div>
             <div class="role">Account Executive · Salesforce Chile</div>
             <div class="confidential">Confidencial · Metodología BVS Value Engineering</div>
