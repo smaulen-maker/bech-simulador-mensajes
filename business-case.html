@@ -237,39 +237,19 @@ body {
     margin-bottom: 12px;
 }
 
-.hero-grid {
-    display: grid;
-    grid-template-columns: 2fr 1fr 1fr;
-    gap: 32px;
-    align-items: end;
-}
-
-.hero-primary .value {
-    font-size: 56px;
+.hero-single .value {
+    font-size: 64px;
     font-weight: 700;
     line-height: 1;
-    letter-spacing: -1.5px;
-    margin-bottom: 6px;
+    letter-spacing: -2px;
+    margin-bottom: 14px;
 }
 
-.hero-primary .subtext {
-    font-size: 14px;
-    opacity: 0.9;
-    max-width: 400px;
-}
-
-.hero-secondary .label {
-    font-size: 11px;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    opacity: 0.75;
-    margin-bottom: 6px;
-}
-
-.hero-secondary .value {
-    font-size: 26px;
-    font-weight: 700;
-    line-height: 1.1;
+.hero-single .subtext {
+    font-size: 15px;
+    opacity: 0.92;
+    max-width: 780px;
+    line-height: 1.55;
 }
 
 /* Ideas fuerza */
@@ -424,6 +404,32 @@ td.strong { font-weight: 600; color: var(--sf-blue-darker); }
     font-size: 11px;
     color: var(--sf-text-muted);
     margin-top: 2px;
+}
+
+.palanca.palanca-upside {
+    border-top-color: var(--sf-orange);
+}
+
+.palanca-upside .upside-badge {
+    display: inline-block;
+    padding: 3px 10px;
+    background: var(--sf-orange-bg);
+    color: var(--sf-orange);
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    border-radius: 10px;
+    margin-top: auto;
+}
+
+.palanca-upside .upside-note {
+    margin-top: 12px;
+    padding-top: 12px;
+    border-top: 1px dashed var(--sf-border);
+    font-size: 12px;
+    color: var(--sf-text-muted);
+    line-height: 1.55;
 }
 
 .palanca ul {
@@ -721,26 +727,16 @@ table.scenarios tbody tr.recommended td:first-child::before {
             <div class="meta">
                 <div><strong>Preparado para:</strong> Filial de Cobranzas BancoEstado</div>
                 <div><strong>Fecha:</strong> 13 de agosto de 2026</div>
-                <div><strong>Versión:</strong> 3.1</div>
+                <div><strong>Versión:</strong> 4.0 (revisión metodológica BVS)</div>
             </div>
         </div>
 
         <!-- HERO -->
         <div class="hero-card" id="resumen">
-            <div class="hero-eyebrow">Beneficio neto proyectado — Escenario de alto impacto</div>
-            <div class="hero-grid">
-                <div class="hero-primary">
-                    <div class="value">USD 19,8M</div>
-                    <div class="subtext">Retorno anual al operar el canal sobre los 150.000 clientes en mora bajo gestión de la filial.</div>
-                </div>
-                <div class="hero-secondary">
-                    <div class="label">ROI mensual</div>
-                    <div class="value">109×</div>
-                </div>
-                <div class="hero-secondary">
-                    <div class="label">Payback</div>
-                    <div class="value">&lt; 1 día</div>
-                </div>
+            <div class="hero-eyebrow">Beneficio neto proyectado — Escenario de cobertura completa</div>
+            <div class="hero-single">
+                <div class="value">USD 18,2M</div>
+                <div class="subtext">Retorno anual neto al operar el canal WhatsApp sobre los 150.000 clientes en mora bajo gestión de la filial. Cifra con todos los costos de habilitación y operación incluidos (canal Meta, licenciamiento incremental, implementación amortizada y operativo continuo). Sin cuantificar la palanca de productividad, que constituye un upside adicional a validar.</div>
             </div>
         </div>
 
@@ -972,22 +968,24 @@ table.scenarios tbody tr.recommended td:first-child::before {
                     <div class="value">USD 346.500</div>
                     <div class="value-note">por mes</div>
                 </div>
-                <div class="palanca">
+                <div class="palanca palanca-upside">
                     <div class="label">Palanca 3</div>
                     <div class="title">Productividad de FTEs</div>
-                    <div class="subtitle">Reducción TMO en gestión bidireccional</div>
+                    <div class="subtitle">Upside adicional — no cuantificado en el modelo base</div>
                     <ul>
-                        <li>Dotación: <strong>685 ejecutivos</strong></li>
-                        <li>Costo FTE: USD 1.200/mes</li>
-                        <li>Reducción TMO conservadora: <strong>15%</strong></li>
+                        <li>Reducción de TMO por gestión bidireccional</li>
+                        <li>Deflexión de FAQs (referencias: Pefisa 80%, PenFed +55%)</li>
+                        <li>Dotación referencial: <strong>685 ejecutivos</strong></li>
                     </ul>
-                    <div class="value">USD 123.000</div>
-                    <div class="value-note">por mes</div>
+                    <span class="upside-badge">Upside a validar</span>
+                    <div class="upside-note">
+                        Cuantificar este ahorro requiere validar TMO base, mix de gestiones por canal y horas productivas efectivas por FTE — datos que se levantarán en el workshop de dimensionamiento.
+                    </div>
                 </div>
             </div>
             <div class="callout">
                 <span class="title">No duplicación entre palancas</span>
-                <strong>P1</strong> agrega contactos <em>nuevos</em> al rate WhatsApp. <strong>P2</strong> mejora el rate sobre el volumen que ya era contactado por otros canales. <strong>P3</strong> mide ahorro operativo en FTEs. Cada palanca opera sobre una dimensión distinta (volumen · conversión · costo operativo).
+                <strong>P1</strong> agrega contactos <em>nuevos</em> al rate WhatsApp. <strong>P2</strong> mejora el rate sobre el volumen que ya era contactado por otros canales. <strong>P3</strong> mide ahorro operativo en FTEs y se cuantificará con datos internos en el workshop. Cada palanca opera sobre una dimensión distinta (volumen · conversión · costo operativo) sin solapamiento matemático.
             </div>
         </div>
 
@@ -1033,43 +1031,51 @@ costo_USD         = créditos_totales × <span class="var">$0,0009</span></div>
 
         <!-- RESUMEN ECONÓMICO -->
         <div class="section" id="economico">
-            <h2>9. Resumen económico mensual — Cobertura 100%</h2>
+            <h2>9. Resumen económico anual — Cobertura 100%</h2>
+            <p class="intro">Modelo con todos los costos de habilitación y operación incluidos. Sin cuantificar la Palanca 3 de productividad (upside adicional a validar).</p>
             <table>
                 <thead>
                     <tr>
                         <th>Concepto</th>
-                        <th class="number">Monto (USD/mes)</th>
+                        <th class="number">Monto anual (USD)</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr><td>Palanca 1 · Contactabilidad</td><td class="number">1.196.000</td></tr>
-                    <tr><td>Palanca 2 · Mejora PTP</td><td class="number">346.500</td></tr>
-                    <tr><td>Palanca 3 · Productividad FTEs</td><td class="number">123.000</td></tr>
-                    <tr><td class="strong">Beneficio bruto total</td><td class="number strong">1.665.500</td></tr>
-                    <tr><td>Costo WhatsApp (fórmula compuesta, sección 8)</td><td class="number">(15.187)</td></tr>
+                    <tr><td>Palanca 1 · Contactabilidad (contactos nuevos × PTP rate WhatsApp)</td><td class="number">14.355.000</td></tr>
+                    <tr><td>Palanca 2 · Mejora PTP (contactos existentes × delta rate)</td><td class="number">4.158.000</td></tr>
+                    <tr><td class="strong">Beneficio bruto total</td><td class="number strong">18.513.000</td></tr>
+                    <tr><td>Costos — Canal WhatsApp Meta (fórmula compuesta, sección 8)</td><td class="number">(182.250)</td></tr>
+                    <tr><td>Costos — Licenciamiento Salesforce incremental</td><td class="number">(50.000)</td></tr>
+                    <tr><td>Costos — Implementación año 1 (amortizada a 3 años)</td><td class="number">(50.000)</td></tr>
+                    <tr><td>Costos — Operativo anual (equipo dedicado + gobernanza)</td><td class="number">(80.000)</td></tr>
+                    <tr><td class="strong">Total costos anuales</td><td class="number strong">(362.250)</td></tr>
                     <tr style="background: var(--sf-green-bg);">
-                        <td class="strong">Beneficio neto mensual</td>
-                        <td class="number strong">1.650.313</td>
+                        <td class="strong">Beneficio neto anual</td>
+                        <td class="number strong">18.150.750</td>
                     </tr>
                 </tbody>
             </table>
             <div class="callout green">
-                <span class="title">Anualizado</span>
-                El beneficio neto proyectado es de aproximadamente <strong>USD 19,8M/año</strong> (≈ CLP 18.060 M/año). ROI mensual de <strong>109×</strong> y payback operativo menor a un día.
+                <span class="title">Notas metodológicas</span>
+                <ul style="margin: 8px 0 0 20px; font-size: 13.5px; line-height: 1.7;">
+                    <li><strong>Costos completos:</strong> se incluyen los cuatro componentes de habilitación (canal Meta, licenciamiento incremental, implementación amortizada y operativo continuo), no solo el precio del canal.</li>
+                    <li><strong>Palanca 3 no cuantificada:</strong> el beneficio de productividad (reducción TMO + deflexión FAQs) es un upside real observado en la industria, pero su cuantificación requiere datos internos que se levantarán en el workshop.</li>
+                    <li><strong>Supuestos conservadores:</strong> se toma el límite inferior de los rangos de benchmark de industria (contactabilidad WhatsApp 80% del rango 80-90%, PTP rate 29% del dato real Banco Ripley).</li>
+                </ul>
             </div>
         </div>
 
         <!-- ESCENARIOS -->
         <div class="section" id="escenarios">
             <h2>10. Recomendación de volumen — Tres escenarios</h2>
-            <p class="intro">Comparación de los tres escenarios modelables sobre la base de 150.000 clientes. El escenario recomendado como objetivo del primer año se destaca en verde.</p>
+            <p class="intro">Comparación de los tres escenarios modelables sobre la base de 150.000 clientes. El escenario recomendado como objetivo del primer año se destaca en verde. Las cifras incluyen todos los costos de habilitación (canal, licenciamiento, implementación amortizada y operativo).</p>
             <table class="scenarios">
                 <thead>
                     <tr>
                         <th>Escenario</th>
                         <th class="number">Cobertura</th>
                         <th class="number">Clientes</th>
-                        <th class="number">Costo WA anual</th>
+                        <th class="number">Costos totales anuales</th>
                         <th class="number">Beneficio neto anual</th>
                     </tr>
                 </thead>
@@ -1078,32 +1084,33 @@ costo_USD         = créditos_totales × <span class="var">$0,0009</span></div>
                         <td>Piloto acotado <em>(propuesta inicial)</em></td>
                         <td class="number">10%</td>
                         <td class="number">15.000</td>
-                        <td class="number">USD 18.225</td>
-                        <td class="number">USD 2,0M</td>
+                        <td class="number">USD 198.225</td>
+                        <td class="number">USD 1,7M</td>
                     </tr>
                     <tr class="recommended">
                         <td>Régimen medio <em>(recomendado año 1)</em></td>
                         <td class="number">60%</td>
                         <td class="number">90.000</td>
-                        <td class="number">USD 109.350</td>
-                        <td class="number">USD 11,9M</td>
+                        <td class="number">USD 289.350</td>
+                        <td class="number">USD 10,8M</td>
                     </tr>
                     <tr>
                         <td>Alto impacto <em>(cobertura total)</em></td>
                         <td class="number">100%</td>
                         <td class="number">150.000</td>
-                        <td class="number">USD 182.250</td>
-                        <td class="number">USD 19,8M</td>
+                        <td class="number">USD 362.250</td>
+                        <td class="number">USD 18,2M</td>
                     </tr>
                 </tbody>
             </table>
+            <div class="table-source">Los costos de habilitación (implementación, licenciamiento, operativo) son en su mayoría fijos y no escalan proporcionalmente con el volumen — el único costo verdaderamente variable es el canal Meta. Por eso el beneficio absoluto crece de forma no lineal con la cobertura.</div>
             <div class="callout">
                 <span class="title">Punto clave para la decisión</span>
-                La diferencia entre operar el canal al 10% versus al 60% <strong>no es cuestión de riesgo</strong>. El ROI es <strong>idéntico (109×)</strong> en cualquiera de los escenarios. Es estrictamente una decisión sobre el <strong>tamaño del beneficio</strong> que la filial decide capturar. Con el piloto acotado, la filial estaría postergando aproximadamente <strong>USD 9,9M/año de beneficio incremental</strong> respecto al escenario recomendado.
+                La diferencia entre operar el canal al 10% versus al 60% <strong>no es cuestión de riesgo estructural</strong>. La habilitación técnica y los costos fijos ya están contemplados en el modelo del piloto. Es una decisión sobre el <strong>tamaño del beneficio</strong> que la filial captura durante el primer año. Con el piloto acotado, la filial estaría postergando aproximadamente <strong>USD 9,2M/año de beneficio incremental</strong> respecto al escenario recomendado.
             </div>
             <div class="callout green">
                 <span class="title">Referencia comparativa</span>
-                El costo total anual del canal a cobertura completa (<strong>USD 182.250</strong>) es equivalente al costo de mantener <strong>12 FTEs adicionales por un año</strong> (12 × USD 1.200 × 12 meses ≈ USD 172.800). Escalar el canal a los 150.000 clientes cuesta lo mismo que sumar un equipo de 12 personas, pero genera un retorno anual comparable al output completo del equipo actual de 685 personas de la filial.
+                El costo total anual del canal a cobertura completa (<strong>USD 362.250</strong>) es equivalente al costo de mantener <strong>~25 FTEs adicionales por un año</strong> (25 × USD 1.200 × 12 meses ≈ USD 360.000). Escalar el canal a los 150.000 clientes cuesta lo mismo que sumar un equipo de 25 personas — pero apalanca la efectividad del equipo actual de 685 personas de la filial.
             </div>
         </div>
 
