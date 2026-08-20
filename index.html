@@ -2213,8 +2213,8 @@
             caso6: 0.8,      // Caso 7: 80%
             caso7: 0.8,      // Caso 8: 80%
             caso8: 0.8,      // Caso 9: 80%
-            caso9: 1,        // Caso 10: 100%
-            caso10: 1,       // Caso 11: 100%
+            caso9: 0,        // Interacciones Inbound: 0% outbound (solo se cobra el inbound)
+            caso10: 0,       // Interacciones Inbound Casos (oculto): 0% outbound
             caso11: 1, caso12: 1, caso13: 1
         };
 
@@ -3593,7 +3593,7 @@
             const meses = ['Jun 26', 'Jul 26', 'Ago 26', 'Sep 26', 'Oct 26', 'Nov 26', 'Dic 26',
                            'Ene 27', 'Feb 27', 'Mar 27', 'Abr 27', 'May 27', 'Jun 27',
                            'Jul 27', 'Ago 27', 'Sep 27', 'Oct 27', 'Nov 27', 'Dic 27'];
-            const HIGHLIGHT_MONTHS = [idxProp1, 18]; // hito Prop 1 (dinámico) y Dic 27 (fin del período)
+            const HIGHLIGHT_MONTHS = []; // sin destacar meses en el gráfico (todas las barras iguales)
 
             const consumoMensual = [];
             const consumoAcumulado = [];
